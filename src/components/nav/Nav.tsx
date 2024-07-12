@@ -42,7 +42,7 @@ const Nav = () => {
         </NavItem>
         <NavItem
           href="/experiences"
-          classes={`${pathName === "/experience" ? "active" : ""}`}
+          classes={`${pathName === "/experiences" ? "active" : ""}`}
         >
           <Image src={experiencesSvg} alt="code icone" />
           <span className={spanClasses}>Experiences</span>

@@ -1,11 +1,16 @@
 "use client";
 
-import technologyType from "../../types/technologyType";
 import Image from "next/image";
 import useGradient from "../../hooks/use-gradient";
 import useTransform from "../../hooks/use-transform";
 
-export default function SkillCard({ name, image, color }: technologyType) {
+interface props {
+  name: string;
+  image: string;
+  color: string;
+}
+
+export default function SkillCard({ name, image, color }: props) {
   const { gradient, moveGradient, removeGradient } = useGradient();
   const { transform, rotateTransform, removeTransform } = useTransform();
 
@@ -31,9 +36,10 @@ export default function SkillCard({ name, image, color }: technologyType) {
         transform: `perspective(1000px) rotateX(${transform.x}deg) rotateY(${transform.y}deg) scale(1.01)`,
         backgroundImage: gradient,
       }}
-      className={`border-1 
+      className={`card border-1 
     border-light-grey 
-    rounded-2xl 
+    rounded-2xl
+    h-16 
     bg-gradient-to-br
     from-transparent
     via-transparent
@@ -42,7 +48,8 @@ export default function SkillCard({ name, image, color }: technologyType) {
     relative
     overflow-hidden
     hover:border-[#8e8e8e]
-    card
+    my-3 
+    md:my-0
     `}
       onMouseMove={mouseMoveHandler}
       onMouseLeave={mouseLeaveHandler}
@@ -50,7 +57,7 @@ export default function SkillCard({ name, image, color }: technologyType) {
       <div className="absolute h-full w-full bg-gradient-to-r from-white via-transparent via-20% to-white z-10"></div>
       <h6 className="p-4">{name}</h6>
       <Image
-        src={image.src}
+        src={`stack/${image}`}
         alt={`${name} logo`}
         width={120}
         height={120}

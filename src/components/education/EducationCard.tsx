@@ -1,9 +1,9 @@
 "use client";
 
 import educationCardType from "../../types/educationCardType";
-import Card from "../../ui/Card";
+import Card from "../ui/Card";
 import Image from "next/image";
-import Button from "../../ui/Button";
+import Button from "../ui/Button";
 
 interface props extends educationCardType {
   className?: string;

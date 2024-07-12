@@ -1,4 +1,4 @@
-import skillType from "../types/skillType";
+import skillType from "../types/Skills";
 
 const skills: skillType[] = [
   { name: "Algebra" },

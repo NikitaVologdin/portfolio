@@ -1,8 +1,8 @@
 "use client";
 
 import technologyType from "../../types/technologyType";
-import Card from "../../ui/Card";
-import SquaredButton from "../../ui/SquaredButton";
+import Card from "../ui/Card";
+import SquaredButton from "../ui/SquaredButton";
 import Stack from "../Stack";
 import Image from "next/image";
 

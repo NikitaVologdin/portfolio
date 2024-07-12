@@ -11,7 +11,7 @@ import facebookSvg from "../../../public/social/facebook.svg";
 import technologies from "../../data/technologies";
 import Link from "next/link";
 import Image from "next/image";
-import Slider from "../../ui/slider/slider";
+import Slider from "../ui/slider/slider";
 
 export default function Intro() {
   return (

@@ -1,36 +1,37 @@
 "use client";
 
 import { useEffect, useContext } from "react";
-import { usePathname } from "next/navigation";
-import { context } from "../../context/ContextProvider";
+import { MenuContext, ImenuContext } from "@/context/portfolio/MenuContext";
 import Logo from "./Logo";
 import Nav from "./Nav";
 import Burger from "./Burger";
+import { usePathname } from "next/navigation";
 
 interface props {
   children: JSX.Element;
 }
 
 export default function Navbar({ children }: props) {
-  const { isMenuShown, setMenuIsShown, toggleMenu } = useContext(context);
+  const { isMenuShown, setMenuIsShown, toggleMenu } = useContext(
+    MenuContext
+  ) as ImenuContext;
 
   const pathName = usePathname();
 
   useEffect(() => {
     setMenuIsShown(false);
-  }, [pathName, setMenuIsShown]);
+  }, [setMenuIsShown, pathName]);
 
   function clickHandler() {
     toggleMenu();
   }
-
   return (
-    <div className="flex justify-between lg:justify-normal">
+    <div className="navbar flex justify-between bg-white lg:justify-normal relative">
       <Logo />
       <div
-        className={`nav absolute top-[51px] bottom-[0px] lg:static ${
-          isMenuShown ? "translate-y-0" : "-translate-y-[calc(200%)]"
-        } lg:translate-y-0 transition-transform duration-300 w-full bg-white z-20`}
+        className={`nav-wrapper ${
+          isMenuShown ? "translate-y-0" : "-translate-y-[calc(100vh+51px)]"
+        } absolute top-[51px] right-0 left-0 lg:static transition duration-300 ease-linear w-full h-[calc(100vh-51px)] lg:h-auto lg:translate-y-0 bg-white lg:z-0 -z-10`}
       >
         <Nav />
       </div>

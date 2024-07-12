@@ -1,6 +1,6 @@
 import technologyType from "../types/technologyType";
 import Image from "next/image";
-import SquaredButton from "../ui/SquaredButton";
+import SquaredButton from "./ui/SquaredButton";
 
 interface props {
   stack: technologyType[];

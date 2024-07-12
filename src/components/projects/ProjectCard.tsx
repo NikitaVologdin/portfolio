@@ -2,10 +2,10 @@
 
 import projectCardType from "../../types/projectCardType";
 import linkSvg from "../../../public/icons/link.svg";
-import Card from "../../ui/Card";
+import Card from "../ui/Card";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../../ui/Button";
+import Button from "../ui/Button";
 import Stack from "../Stack";
 
 export default function ProjectCard({

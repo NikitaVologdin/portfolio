@@ -4,7 +4,7 @@ import expressSvg from "../../public/stack/express.svg";
 import htmlSvg from "../../public/stack/html.svg";
 import jsSvg from "../../public/stack/js.svg";
 import reactSvg from "../../public/stack/react.svg";
-import sassSvg from "../../public/stack/sass.png";
+import sassSvg from "../../public/stack/sass.svg";
 import tsSvg from "../../public/stack/ts.svg";
 
 const technologies = {

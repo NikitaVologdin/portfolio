@@ -1,4 +1,4 @@
-import skillType from "./skillType";
+import skillType from "./Skills";
 
 export default interface educationCardType {
   course: string;
