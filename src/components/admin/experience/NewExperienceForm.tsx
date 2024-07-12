@@ -282,6 +282,7 @@ export default function NewProjectForm({
           id="image"
           name="image"
           value={imageUploadValue}
+          fetchedImageName={experience?.image}
           isTouched={imageUploadIsTouched}
           hasError={imageUploadHasError}
           changeHandler={imageUploadChangeHandler}

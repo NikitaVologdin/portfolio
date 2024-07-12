@@ -32,6 +32,10 @@ function dateValidator(value) {
   return true;
 }
 
+function fileValidator(value) {
+  return true;
+}
+
 export {
   nameValidator,
   imageUploadValidator,
@@ -39,4 +43,5 @@ export {
   descriptionValidator,
   dateValidator,
   gitHubLinkValidator,
+  fileValidator,
 };

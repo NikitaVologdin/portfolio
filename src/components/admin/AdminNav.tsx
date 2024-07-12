@@ -68,7 +68,7 @@ export default function AdminNav() {
         <Link
           href={"/admin/resume"}
           className={`${linkClasses} ${
-            pathName === "/admin/resune" ? "active" : ""
+            pathName === "/admin/resume" ? "active" : ""
           }`}
         >
           Resume

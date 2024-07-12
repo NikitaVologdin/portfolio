@@ -251,6 +251,7 @@ export default function NewEducationForm({
           id="image"
           name="image"
           value={imageUploadValue}
+          fetchedImageName={education?.image}
           isTouched={imageUploadIsTouched}
           hasError={imageUploadHasError}
           changeHandler={imageUploadChangeHandler}
