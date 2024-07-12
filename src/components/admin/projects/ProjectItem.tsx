@@ -11,6 +11,8 @@ export default function ProjectItem({
   editHandler,
   deleteHandler,
 }: props) {
+  const duration = project.duration / 1000 / 60 / 60 / 24;
+
   return (
     <>
       <div className="py-2">
@@ -31,12 +33,15 @@ export default function ProjectItem({
           Start date: <span className="font-semibold">{project.start}</span>
         </p>
         <p>
-          Edn date: <span className="font-semibold">{project.end}</span>
+          Edn date:{" "}
+          <span className="font-semibold">
+            {project.present ? "present" : project.end}
+          </span>
         </p>
         <p>
           Duration:{" "}
           <span className="font-semibold">
-            {project.duration / 1000 / 60 / 60 / 24} days
+            {project.present ? "present" : `${duration} days`}
           </span>
         </p>
         <p>

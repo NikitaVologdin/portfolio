@@ -116,7 +116,6 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     ) as unknown as IFormDataSkill;
 
     const imageName = await createImage(formData, body);
-    console.log("body", body);
     const query = await Skill.findOneAndUpdate(
       { _id: body._id },
       { ...body, image: imageName },

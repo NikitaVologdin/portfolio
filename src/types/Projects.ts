@@ -6,6 +6,7 @@ export interface IProject extends Document<Types.ObjectId> {
   github: string;
   start: string;
   end: string;
+  present: boolean;
   duration: number;
   color: string;
   image: string;
@@ -19,6 +20,7 @@ export interface IFetchedProject {
   github: string;
   start: string;
   end: string;
+  present: boolean;
   duration: number;
   color: string;
   image: string;

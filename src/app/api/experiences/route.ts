@@ -50,19 +50,19 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const imageName = await createImage(formData, body);
     const startDate = new Date(body.start);
     let endDate;
-    let difTime;
+    let diffTime;
     let experience;
     let present = body.present === "on" ? true : false;
     if (body.end) {
       endDate = new Date(body.end);
-      difTime = endDate.getTime() - startDate.getTime();
+      diffTime = endDate.getTime() - startDate.getTime();
 
       experience = new Experiences({
         ...body,
         image: imageName,
         start: startDate.toISOString().slice(0, 10),
         end: endDate.toISOString().slice(0, 10),
-        duration: difTime,
+        duration: diffTime,
         skills,
         present,
       });

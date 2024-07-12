@@ -89,6 +89,11 @@ export default function NewProjectForm({
     blurHandler: startDateBlurHandler,
   } = useInput(dateValidator);
 
+  const [presentCheckbox, setPresentCheckbox] = useState(false);
+  function checkBoxHandler() {
+    setPresentCheckbox(!presentCheckbox);
+  }
+
   const {
     value: endDateValue,
     setValue: setEndDateValue,
@@ -142,6 +147,7 @@ export default function NewProjectForm({
       setNameIsTouched(true);
       setGitHubLinkIsTouched(true);
       setStartDateIsTouched(true);
+      setPresentCheckbox(project.present);
       setEndDateIsTouched(true);
       setImageUploadIsTouched(true);
       setColorIsTouched(true);
@@ -156,6 +162,7 @@ export default function NewProjectForm({
     setGitHubLinkIsTouched,
     setStartDateValue,
     setStartDateIsTouched,
+    setPresentCheckbox,
     setEndDateValue,
     setEndDateIsTouched,
     setImageUploadValue,
@@ -191,6 +198,11 @@ export default function NewProjectForm({
         formData.append("_id", project._id);
       }
       formData.append("skills", JSON.stringify(selectedChecks));
+      if (presentCheckbox) {
+        formData.append("present", "on");
+      } else {
+        formData.append("present", "off");
+      }
       const response = await fetch("http://localhost:3000/api/projects", {
         method: project ? "PUT" : "POST",
         body: formData,
@@ -271,6 +283,19 @@ export default function NewProjectForm({
           blurHandler={startDateBlurHandler}
         />
       </InputGroup>
+      <InputGroup label="Present" id="present" hasError={false} error="">
+        <div className="flex content-center justify-between">
+          <label htmlFor="">Present employment ?</label>
+          <input
+            id="present"
+            name="present"
+            type="checkbox"
+            className="px-5"
+            checked={presentCheckbox}
+            onChange={checkBoxHandler}
+          />
+        </div>
+      </InputGroup>
       <InputGroup
         label="End of the project"
         id="endDate"
@@ -286,6 +311,7 @@ export default function NewProjectForm({
           hasError={endDateHasError}
           changeHandler={endDateChangeHandler}
           blurHandler={endDateBlurHandler}
+          disabled={presentCheckbox}
         />
       </InputGroup>
       <InputGroup

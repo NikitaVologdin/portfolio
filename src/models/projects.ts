@@ -7,6 +7,7 @@ const projectSchema = new Schema<IProject>({
   start: String,
   end: String,
   duration: Number,
+  present: Boolean,
   image: String,
   color: String,
   skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],

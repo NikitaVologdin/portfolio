@@ -10,6 +10,7 @@ interface IFormDataProject {
   name: string;
   github: string;
   start: string;
+  present: string;
   end: string;
   image: File;
   skills: string;
@@ -46,19 +47,37 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const skills = JSON.parse(body.skills) as string[];
     const imageName = await createImage(formData, body);
     const startDate = new Date(body.start);
-    const endDate = new Date(body.end);
-    const difTime = endDate.getTime() - startDate.getTime();
+    let endDate;
+    let diffTime;
+    let project;
+    const present = body.present === "on" ? true : false;
+    if (body.end) {
+      endDate = new Date(body.end);
+      diffTime = endDate.getTime() - startDate.getTime();
+
+      project = new Projects({
+        ...body,
+        image: imageName,
+        start: startDate.toISOString().slice(0, 10),
+        present,
+        end: endDate.toISOString().slice(0, 10),
+        duration: diffTime,
+        skills,
+      });
+    } else {
+      project = new Projects({
+        ...body,
+        image: imageName,
+        start: startDate.toISOString().slice(0, 10),
+        present,
+        duration: diffTime,
+        skills,
+      });
+    }
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const project = new Projects({
-      ...body,
-      image: imageName,
-      start: startDate.toISOString().slice(0, 10),
-      end: endDate.toISOString().slice(0, 10),
-      duration: difTime,
-      skills,
-    });
+
     await project.save();
     return NextResponse.json({
       message: `${project.name} Project is created`,

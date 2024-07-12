@@ -11,14 +11,16 @@ import Stack from "../Stack";
 export default function ProjectCard({
   name,
   github,
-  category,
+  start,
+  end,
   duration,
-  description,
-  date,
-  now,
-  stack,
+  image,
+  present,
   color,
+  skills,
+  description,
 }: projectCardType) {
+  const days = "";
   return (
     <Card color={color} className="flex-col">
       <div className="pb-5">
@@ -32,22 +34,22 @@ export default function ProjectCard({
             target={"_blank"}
             className="p-[4px] border border-light-grey rounded-lg hover:border-[#8e8e8e]"
           >
-            <Image alt="github link icon" src={linkSvg} />
+            <Image alt="github link icon" src={`/${image}`} />
           </Link>
         </div>
       </div>
       <hr className="my-2.5 border-light-grey" />
       <div className="flex justify-between italic">
-        <div>{category}</div>
-        <div>{duration}</div>
+        {/* <div>{category}</div> */}
+        <div>{days}</div>
       </div>
       <div className="mt-5 mb-8 grow">{description}</div>
       <div className="flex justify-between">
-        <Button name={date} />
-        <Button name={now} />
+        <Button name={start} />
+        <Button name={present ? present : end} />
       </div>
       <hr className="my-2.5 border-light-grey" />
-      <Stack stack={stack} />
+      <Stack stack={skills} />
     </Card>
   );
 }

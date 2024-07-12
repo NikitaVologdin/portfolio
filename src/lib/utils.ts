@@ -37,26 +37,26 @@ async function fetchDataOnClient(path: string, id?: string) {
   }
 }
 
-async function updateData(form: HTMLFormElement, id: string, path: string) {
-  try {
-    const fd = new FormData(form);
-    const formData = Object.fromEntries(fd.entries());
-    formData._id = id;
-    const response = await fetch("http://localhost:3000/api/" + path, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+// async function updateData(form: HTMLFormElement, id: string, path: string) {
+//   try {
+//     const fd = new FormData(form);
+//     const formData = Object.fromEntries(fd.entries());
+//     formData._id = id;
+//     const response = await fetch("http://localhost:3000/api/" + path, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(formData),
+//     });
 
-    return response.json();
-  } catch (e) {
-    if (e instanceof Error) {
-      throw new Error(e.message || "Failed to update developers information");
-    }
-  }
-}
+//     return response.json();
+//   } catch (e) {
+//     if (e instanceof Error) {
+//       throw new Error(e.message || "Failed to update developers information");
+//     }
+//   }
+// }
 
 async function fetchDataWithPopulate<T>(model: Model<T>, populate?: string) {
   try {
@@ -96,7 +96,7 @@ async function deleteData(path: string, id: string) {
 export {
   fetchDataOnServer,
   fetchDataOnClient,
-  updateData,
+  // updateData,
   fetchDataWithPopulate,
   deleteData,
 };
