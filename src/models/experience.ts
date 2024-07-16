@@ -3,9 +3,12 @@ import { IExperience } from "@/types/Experience";
 
 const experienceSchema = new Schema<IExperience>({
   name: String,
+  company: String,
+  location: String,
+  contract: String,
   start: String,
-  end: String,
   present: Boolean,
+  end: String,
   duration: Number,
   color: String,
   image: String,

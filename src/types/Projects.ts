@@ -3,6 +3,7 @@ import { IFetchedSkill } from "./Skills";
 
 export interface IProject extends Document<Types.ObjectId> {
   name: string;
+  category: string;
   github: string;
   start: string;
   end: string;
@@ -17,6 +18,7 @@ export interface IProject extends Document<Types.ObjectId> {
 export interface IFetchedProject {
   _id: string;
   name: string;
+  category: string;
   github: string;
   start: string;
   end: string;

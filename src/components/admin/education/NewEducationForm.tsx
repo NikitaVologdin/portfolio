@@ -53,6 +53,26 @@ export default function NewEducationForm({
   } = useInput(nameValidator);
 
   const {
+    value: universityValue,
+    setValue: setUniversityValue,
+    isTouched: universityIsTouched,
+    setIsTouched: setUniversityIsTouched,
+    hasError: universityHasError,
+    changeHandler: universityChangeHandler,
+    blurHandler: universityBlurHandler,
+  } = useInput(nameValidator);
+
+  const {
+    value: locationValue,
+    setValue: setLocationValue,
+    isTouched: locationIsTouched,
+    setIsTouched: setLocationIsTouched,
+    hasError: locationHasError,
+    changeHandler: locationChangeHandler,
+    blurHandler: locationBlurHandler,
+  } = useInput(nameValidator);
+
+  const {
     value: imageUploadValue,
     setValue: setImageUploadValue,
     isTouched: imageUploadIsTouched,
@@ -92,33 +112,55 @@ export default function NewEducationForm({
     changeHandler: checksChangeHandler,
   } = useCheckboxes<string>();
 
+  const {
+    value: descriptionValue,
+    setValue: setDescriptionValue,
+    isTouched: descriptionIsTouched,
+    setIsTouched: setDescriptionIsTouched,
+    hasError: descriptionHasError,
+    changeHandler: descriptionChangeHandler,
+    blurHandler: descriptionBlurHandler,
+  } = useInput(descriptionValidator);
+
   useEffect(() => {
     if (education) {
       setNameValue(education.name);
+      setUniversityValue(education.university);
+      setLocationValue(education.location);
       setStartDateValue(education.start);
       setEndDateValue(education.end);
       setImageUploadValue([{ name: education.image }]);
       setPresentCheckbox(education.present);
       setSelectedChecks(education.skills.map((s) => s._id));
+      setDescriptionValue(education.description);
       setNameIsTouched(true);
+      setUniversityIsTouched(true);
+      setLocationIsTouched(true);
       setStartDateIsTouched(true);
       setEndDateIsTouched(true);
       setImageUploadIsTouched(true);
       setSelectedChecksAreTouched(true);
+      setDescriptionIsTouched(true);
     }
   }, [
     education,
     setNameValue,
     setNameIsTouched,
+    setUniversityValue,
+    setUniversityIsTouched,
+    setLocationValue,
+    setLocationIsTouched,
     setStartDateValue,
     setPresentCheckbox,
     setStartDateIsTouched,
     setEndDateValue,
+    setDescriptionValue,
     setEndDateIsTouched,
     setImageUploadValue,
     setImageUploadIsTouched,
     setSelectedChecks,
     setSelectedChecksAreTouched,
+    setDescriptionIsTouched,
   ]);
 
   const isFormValid =
@@ -126,7 +168,8 @@ export default function NewEducationForm({
     !startDateHasError &&
     !endDateHasError &&
     !imageUploadHasError &&
-    !checksHaveError;
+    !checksHaveError &&
+    !descriptionHasError;
 
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
@@ -194,7 +237,39 @@ export default function NewEducationForm({
         />
       </InputGroup>
       <InputGroup
-        label="Start date of the employment"
+        label="University"
+        id="university"
+        hasError={universityHasError}
+        error="Invalid university name"
+      >
+        <Input
+          id="university"
+          name="university"
+          value={universityValue}
+          isTouched={universityIsTouched}
+          hasError={universityHasError}
+          changeHandler={universityChangeHandler}
+          blurHandler={universityBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Location"
+        id="location"
+        hasError={locationHasError}
+        error="Invalid location"
+      >
+        <Input
+          id="location"
+          name="location"
+          value={locationValue}
+          isTouched={locationIsTouched}
+          hasError={locationHasError}
+          changeHandler={locationChangeHandler}
+          blurHandler={locationBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Start date of studies"
         id="startDate"
         hasError={startDateHasError}
         error="Invalid date"
@@ -212,7 +287,7 @@ export default function NewEducationForm({
       </InputGroup>
       <InputGroup label="Present" id="present" hasError={false} error="">
         <div className="flex content-center justify-between">
-          <label htmlFor="">Present employment ?</label>
+          <label htmlFor="">Present study ?</label>
           <input
             id="present"
             name="present"
@@ -224,7 +299,7 @@ export default function NewEducationForm({
         </div>
       </InputGroup>
       <InputGroup
-        label="End date of the employment"
+        label="End date of studies"
         id="endDate"
         hasError={endDateHasError}
         error="Invalid date"
@@ -281,6 +356,24 @@ export default function NewEducationForm({
             );
           })}
         </div>
+      </InputGroup>
+      <InputGroup
+        label="description"
+        id="description"
+        hasError={descriptionHasError}
+        error="Description is not valid"
+      >
+        <TextArea
+          id="description"
+          name="description"
+          value={descriptionValue}
+          rows={5}
+          cols={7}
+          isTouched={descriptionIsTouched}
+          hasError={descriptionHasError}
+          changeHandler={descriptionChangeHandler}
+          blurHandler={descriptionBlurHandler}
+        />
       </InputGroup>
       <div className="control flex gap-3">
         <SubmitButton

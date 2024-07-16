@@ -7,6 +7,7 @@ import { Projects as ProjectsModel } from "@/models/projects";
 
 export default async function page() {
   const projects = await fetchDataWithPopulate(ProjectsModel, "skills");
+
   return (
     <Container>
       <Heading>Projects</Heading>

@@ -20,6 +20,17 @@ export default function ExperienceItem({
         </h5>
         <p className="mt-1">{experience.description}</p>
         <p className="mt-3">
+          Company: <span className={`font-semibold`}>{experience.company}</span>
+        </p>
+        <p>
+          Location:{" "}
+          <span className={`font-semibold`}>{experience.location}</span>
+        </p>
+        <p>
+          Contract:{" "}
+          <span className={`font-semibold`}>{experience.contract}</span>
+        </p>
+        <p className="mt-3">
           Color:
           <span
             className={`font-semibold`}

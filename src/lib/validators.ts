@@ -1,5 +1,6 @@
 function nameValidator(value: string) {
-  return value.trim().length >= 2;
+  // return value.trim().length >= 2;
+  return true;
 }
 
 function imageUploadValidator(value: [File]) {

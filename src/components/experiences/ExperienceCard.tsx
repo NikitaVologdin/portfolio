@@ -1,32 +1,38 @@
 "use client";
-
-import technologyType from "../../types/technologyType";
+import DateObject from "react-date-object";
 import Card from "../ui/Card";
 import SquaredButton from "../ui/SquaredButton";
 import Stack from "../Stack";
 import Image from "next/image";
+import { IFetchedExperience } from "@/types/Experience";
 
-interface props {
-  company: string;
-  location: string;
-  contract: string;
-  position: string;
-  description: string;
-  stack: technologyType[];
+interface props extends IFetchedExperience {
   className?: string;
-  color?: string;
 }
 
 export default function ExperienceCard({
+  _id,
+  name,
   company,
   location,
   contract,
-  position,
+  start,
+  present,
+  end,
   description,
-  stack,
+  skills,
   className,
-  color = "#f1f5f9",
+  color,
 }: props) {
+  const startDate = new DateObject(start);
+  let endDate;
+  const todayDate = new DateObject();
+  let duration = todayDate.toUnix() - startDate.toUnix();
+  if (!present) {
+    endDate = new DateObject(end);
+    duration = endDate.toUnix() - startDate.toUnix();
+  }
+  const daysAmount = Math.floor(duration / 60 / 60 / 24);
   return (
     <Card
       color={color}
@@ -42,9 +48,7 @@ export default function ExperienceCard({
         />
       </div>
       <div className="flex flex-col gap-3 md:ml-6">
-        <h5 className="text-xl text-black font-bold tracking-wide">
-          {position}
-        </h5>
+        <h5 className="text-xl text-black font-bold tracking-wide">{name}</h5>
         <div className="flex flex-row gap-2">
           <SquaredButton backdropText={`Company: ${company}`}>
             <Image
@@ -73,10 +77,12 @@ export default function ExperienceCard({
           </SquaredButton>
         </div>
         <div className="text-[#3e3e3e] text-sm font-extralight">
-          February 2024 - Present · 2 days
+          {`${startDate.month.name} ${startDate.year} - ${
+            present ? "present" : `${endDate?.month.name} ${endDate?.year}`
+          } · ${daysAmount} days`}
         </div>
-        <div className="text-base">{description}</div>
-        <Stack stack={stack} />
+        <div>{description}</div>
+        <Stack skills={skills} />
       </div>
     </Card>
   );

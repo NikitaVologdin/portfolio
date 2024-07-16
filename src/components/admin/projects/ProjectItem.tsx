@@ -19,7 +19,8 @@ export default function ProjectItem({
         <h5 className="font-semibold text-lg text-indigo-900">
           {project.name}
         </h5>
-        <p className="mt-1">{project.description}</p>
+        <p className="mt-1 font-semibold">{project.category}</p>
+        <p className="mt-3">{project.description}</p>
         <p className="mt-3">
           Color:{" "}
           <span

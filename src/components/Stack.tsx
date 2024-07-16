@@ -1,22 +1,23 @@
-import technologyType from "../types/technologyType";
+// import technologyType from "../types/technologyType";
+import { IFetchedSkill } from "@/types/Skills";
 import Image from "next/image";
 import SquaredButton from "./ui/SquaredButton";
 
 interface props {
-  stack: technologyType[];
+  skills: IFetchedSkill[];
 }
 
-export default function Stack({ stack }: props) {
+export default function Stack({ skills }: props) {
   return (
     <div className="flex gap-4 flex-wrap">
-      {stack.map((t, index) => {
+      {skills.map((s, index) => {
         return (
-          <SquaredButton key={index} backdropText={t.name}>
+          <SquaredButton key={index} backdropText={s.name}>
             <Image
-              src={t.image}
+              src={`/stack/${s.image}`}
               width="15"
               height="15"
-              alt={`${t.name} icon`}
+              alt={`${s.name} icon`}
             />
           </SquaredButton>
         );

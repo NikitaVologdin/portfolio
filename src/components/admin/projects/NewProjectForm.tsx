@@ -60,6 +60,16 @@ export default function NewProjectForm({
     blurHandler: imageUploadBlurHandler,
   } = useFileInput(imageUploadValidator);
 
+  const {
+    value: categoryValue,
+    setValue: setCategoryValue,
+    isTouched: categoryIsTouched,
+    setIsTouched: setCategoryIsTouched,
+    hasError: categoryHasError,
+    changeHandler: categoryChangeHandler,
+    blurHandler: categoryBlurHandler,
+  } = useInput(nameValidator);
+
   useEffect(() => {
     if (imageUploadIsValid && imageUploadIsTouched) {
       setImageUploadHasError(false);
@@ -140,6 +150,7 @@ export default function NewProjectForm({
       setStartDateValue(project.start);
       setEndDateValue(project.end);
       setImageUploadValue([{ name: project.image }]);
+      setCategoryValue(project.category);
       setColorValue(project.color);
       setSelectedChecks(project.skills.map((s) => s._id));
       setDescriptionValue(project.description);
@@ -150,6 +161,7 @@ export default function NewProjectForm({
       setPresentCheckbox(project.present);
       setEndDateIsTouched(true);
       setImageUploadIsTouched(true);
+      setCategoryIsTouched(true);
       setColorIsTouched(true);
       setSelectedChecksAreTouched(true);
       setDescriptionIsTouched(true);
@@ -160,6 +172,8 @@ export default function NewProjectForm({
     setNameIsTouched,
     setGitHubLinkValue,
     setGitHubLinkIsTouched,
+    setCategoryValue,
+    setCategoryIsTouched,
     setStartDateValue,
     setStartDateIsTouched,
     setPresentCheckbox,
@@ -329,6 +343,22 @@ export default function NewProjectForm({
           hasError={imageUploadHasError}
           changeHandler={imageUploadChangeHandler}
           blurHandler={imageUploadBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Category name"
+        id="categoryName"
+        hasError={categoryHasError}
+        error="Invalid category name"
+      >
+        <Input
+          id="categoryName"
+          name="category"
+          value={categoryValue}
+          isTouched={categoryIsTouched}
+          hasError={categoryHasError}
+          changeHandler={categoryChangeHandler}
+          blurHandler={categoryBlurHandler}
         />
       </InputGroup>
       <InputGroup

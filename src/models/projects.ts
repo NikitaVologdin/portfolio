@@ -3,6 +3,7 @@ import { IProject } from "@/types/Projects";
 
 const projectSchema = new Schema<IProject>({
   name: String,
+  category: String,
   github: String,
   start: String,
   end: String,

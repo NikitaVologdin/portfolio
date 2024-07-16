@@ -1,4 +1,3 @@
-import { Skill as Skills } from "@/models/skills";
 import dbConnect from "./dbConnect";
 import { Model } from "mongoose";
 
@@ -71,7 +70,7 @@ async function fetchDataWithPopulate<T>(model: Model<T>, populate?: string) {
     if (data.length > 1) {
       return data;
     } else {
-      return data[0];
+      return data;
     }
   } catch (e) {
     if (e instanceof Error) {

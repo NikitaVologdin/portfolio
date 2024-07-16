@@ -54,7 +54,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     if (body.end) {
       endDate = new Date(body.end);
       diffTime = endDate.getTime() - startDate.getTime();
-
       project = new Projects({
         ...body,
         image: imageName,
@@ -70,7 +69,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
         image: imageName,
         start: startDate.toISOString().slice(0, 10),
         present,
-        duration: diffTime,
         skills,
       });
     }
@@ -100,24 +98,38 @@ export async function PUT(req: NextRequest, res: NextResponse) {
 
     let skills = JSON.parse(body.skills) as string[];
     const imageName = await createImage(formData, body);
-    console.log(body);
     const startDate = new Date(body.start);
-    const endDate = new Date(body.end);
-    const difTime = endDate.getTime() - startDate.getTime();
-    const query = await Projects.findOneAndUpdate(
-      { _id: body._id },
-      {
-        ...body,
-        image: imageName,
-        start: startDate.toISOString().slice(0, 10),
-        end: endDate.toISOString().slice(0, 10),
-        duration: difTime,
-        skills,
-      },
-      {
-        new: true,
-      }
-    );
+    const present = body.present === "on" ? true : false;
+    let endDate;
+    let diffTime;
+    let query;
+    if (body.end) {
+      endDate = new Date(body.end);
+      diffTime = endDate.getTime() - startDate.getTime();
+      query = await Projects.findOneAndUpdate(
+        { _id: body._id },
+        {
+          ...body,
+          image: imageName,
+          start: startDate.toISOString().slice(0, 10),
+          present,
+          end: endDate.toISOString().slice(0, 10),
+          duration: diffTime,
+          skills,
+        }
+      );
+    } else {
+      query = await Projects.findOneAndUpdate(
+        { _id: body._id },
+        {
+          ...body,
+          image: imageName,
+          start: startDate.toISOString().slice(0, 10),
+          present,
+          skills,
+        }
+      );
+    }
     if (query) {
       return NextResponse.json({
         message: `${query.name} project info has been uptated`,

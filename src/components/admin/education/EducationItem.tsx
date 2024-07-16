@@ -18,8 +18,8 @@ export default function ExperienceItem({
         <h5 className="font-semibold text-lg text-indigo-900">
           {education.name}
         </h5>
-        {/* <p className="mt-1">{education.description}</p> */}
-        <p>
+        <p className="mt-1">{education.description}</p>
+        <p className="mt-3">
           Start date: <span className="font-semibold">{education.start}</span>
         </p>
         <p>

@@ -53,6 +53,36 @@ export default function NewProjectForm({
   } = useInput(nameValidator);
 
   const {
+    value: companyValue,
+    setValue: setCompanyValue,
+    isTouched: companyIsTouched,
+    setIsTouched: setCompanyIsTouched,
+    hasError: companyHasError,
+    changeHandler: companyChangeHandler,
+    blurHandler: companyBlurHandler,
+  } = useInput(nameValidator);
+
+  const {
+    value: locationValue,
+    setValue: setLocationValue,
+    isTouched: locationIsTouched,
+    setIsTouched: setLocationIsTouched,
+    hasError: locationHasError,
+    changeHandler: locationChangeHandler,
+    blurHandler: locationBlurHandler,
+  } = useInput(nameValidator);
+
+  const {
+    value: contractValue,
+    setValue: setContractValue,
+    isTouched: contractIsTouched,
+    setIsTouched: setContractIsTouched,
+    hasError: contractHasError,
+    changeHandler: contractChangeHandler,
+    blurHandler: contractBlurHandler,
+  } = useInput(nameValidator);
+
+  const {
     value: imageUploadValue,
     setValue: setImageUploadValue,
     isTouched: imageUploadIsTouched,
@@ -115,6 +145,9 @@ export default function NewProjectForm({
   useEffect(() => {
     if (experience) {
       setNameValue(experience.name);
+      setCompanyValue(experience.company);
+      setLocationValue(experience.location);
+      setContractValue(experience.contract);
       setStartDateValue(experience.start);
       setEndDateValue(experience.end);
       setImageUploadValue([{ name: experience.image }]);
@@ -123,6 +156,9 @@ export default function NewProjectForm({
       setSelectedChecks(experience.skills.map((s) => s._id));
       setDescriptionValue(experience.description);
       setNameIsTouched(true);
+      setCompanyIsTouched(true);
+      setLocationIsTouched(true);
+      setContractIsTouched(true);
       setStartDateIsTouched(true);
       setEndDateIsTouched(true);
       setImageUploadIsTouched(true);
@@ -134,6 +170,12 @@ export default function NewProjectForm({
     experience,
     setNameValue,
     setNameIsTouched,
+    setCompanyValue,
+    setCompanyIsTouched,
+    setLocationValue,
+    setLocationIsTouched,
+    setContractValue,
+    setContractIsTouched,
     setStartDateValue,
     setPresentCheckbox,
     setStartDateIsTouched,
@@ -222,6 +264,54 @@ export default function NewProjectForm({
           hasError={nameHasError}
           changeHandler={nameChangeHandler}
           blurHandler={nameBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Company"
+        id="company"
+        hasError={companyHasError}
+        error="Invalid company name"
+      >
+        <Input
+          id="company"
+          name="company"
+          value={companyValue}
+          isTouched={companyIsTouched}
+          hasError={companyHasError}
+          changeHandler={companyChangeHandler}
+          blurHandler={companyBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Location"
+        id="location"
+        hasError={locationHasError}
+        error="Invalid location"
+      >
+        <Input
+          id="location"
+          name="location"
+          value={locationValue}
+          isTouched={locationIsTouched}
+          hasError={locationHasError}
+          changeHandler={locationChangeHandler}
+          blurHandler={locationBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Contract"
+        id="contract"
+        hasError={contractHasError}
+        error="Invalid contract"
+      >
+        <Input
+          id="contract"
+          name="contract"
+          value={contractValue}
+          isTouched={contractIsTouched}
+          hasError={contractHasError}
+          changeHandler={contractChangeHandler}
+          blurHandler={contractBlurHandler}
         />
       </InputGroup>
       <InputGroup
