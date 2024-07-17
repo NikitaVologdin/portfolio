@@ -50,7 +50,9 @@ export default function EducationCard({
         <p className="text-[#3e3e3e] font-extralight text-sm mb-2">
           <span className="capitalize">{location}</span>
           <span> · </span>
-          <span>{`${monthAmount} month`}</span>
+          <span>{`${startDate.month.name} ${startDate.year}`}</span>
+          <span> · </span>
+          <span>{present ? "present" : `${monthAmount} month`}</span>
         </p>
         <div className="flex flex-row gap-2 flex-wrap">
           {skills.map((s, index) => {
