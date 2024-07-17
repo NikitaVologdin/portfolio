@@ -26,12 +26,14 @@ export default function Navbar({ children }: props) {
     toggleMenu();
   }
   return (
-    <div className="navbar flex justify-between bg-white lg:justify-normal relative">
+    <div className="navbar flex justify-between bg-white lg:justify-normal">
       <Logo />
       <div
         className={`nav-wrapper ${
-          isMenuShown ? "translate-y-0" : "-translate-y-[calc(100vh+51px)]"
-        } absolute top-[51px] right-0 left-0 lg:static transition duration-300 ease-linear w-full h-[calc(100vh-51px)] lg:h-auto lg:translate-y-0 bg-white lg:z-0 -z-10`}
+          isMenuShown
+            ? "translate-y-0 top-[51px] right-0 left-0 bottom-0"
+            : "-translate-y-[calc(100vh+51px)] "
+        } absolute transition duration-300 ease-linear w-full lg:static lg:h-auto lg:translate-y-0 bg-white lg:z-0 -z-10`}
       >
         <Nav />
       </div>
