@@ -1,18 +1,25 @@
 import left from "../../../../public/arrows/left.svg";
 import right from "../../../../public/arrows/right.svg";
 
-import { props } from "./types";
-
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IFetchedSkill } from "@/types/Skills";
+
+interface props {
+  firstElementIndex: number;
+  skills: IFetchedSkill[];
+  direction: "left" | "right";
+  timeOut: number;
+}
 
 export default function Slider({
   firstElementIndex,
-  slides,
+  skills,
   direction,
   timeOut,
 }: props) {
+  const slides = skills.map((s) => s.image);
   const [currentSliderSettings, setSliderSettings] = useState({
     currentSlideIndex: firstElementIndex,
     currentSliderDirection: direction,
@@ -119,8 +126,10 @@ export default function Slider({
           className="grow w-fit max-h-48 px-4 flex justify-center items-center"
         >
           <Image
-            src={slides[currentSliderSettings.currentSlideIndex]}
+            src={`/stack/${slides[currentSliderSettings.currentSlideIndex]}`}
             alt="node-js icon"
+            height={160}
+            width={150}
             priority={true}
             className="object-cover"
           />

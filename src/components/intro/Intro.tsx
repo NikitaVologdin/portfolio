@@ -8,12 +8,17 @@ import emailSvg from "../../../public/social/email.svg";
 import youtubeSvg from "../../../public/social/youtube.svg";
 import facebookSvg from "../../../public/social/facebook.svg";
 
-import technologies from "../../data/technologies";
+// import technologies from "../../data/technologies";
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "../ui/slider/slider";
+import { IFetchedSkill } from "@/types/Skills";
 
-export default function Intro() {
+interface props {
+  skills: IFetchedSkill[];
+}
+
+export default function Intro({ skills }: props) {
   return (
     <div className="flex flex-wrap md:flex-nowrap md:justify-around md:items-center">
       <div className="md:w-9/12 px-3 md:px-4">
@@ -53,7 +58,7 @@ export default function Intro() {
       <div className="w-3/5 sm:w-4/12 md:w-3/12 mx-auto mt-10 sm:mt-16 md:mt-0 flex items-center justify-center">
         <Slider
           firstElementIndex={0}
-          slides={technologies.slides}
+          skills={skills}
           direction={"right"}
           timeOut={2000}
         />
