@@ -2,6 +2,23 @@ import { NextResponse, NextRequest } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Developer from "@/models/developer";
 
+export async function POST(req: NextRequest, res: NextResponse) {
+  try {
+    await dbConnect();
+    const body = await req.json();
+    const developer = new Developer(body);
+    await developer.save();
+    return NextResponse.json({
+      message: `${body.name} developer is created`,
+      code: 201,
+    });
+  } catch (e) {
+    if (e instanceof Error) {
+      return NextResponse.json({ message: e.message, code: 500 });
+    }
+  }
+}
+
 export async function PUT(req: NextRequest, res: NextResponse) {
   try {
     await dbConnect();
