@@ -6,29 +6,23 @@ import useInput from "../../hooks/use-input";
 import SubmitButton from "../ui/form/SubmitButton";
 import { SyntheticEvent, useEffect, useContext } from "react";
 import { NotificationContext } from "@/context/NotificationContext";
-import { updateData } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { IDeveloper } from "@/models/developer";
+import { IFetchedDeveloper } from "@/types/Developer";
+import { nameValidator, descriptionValidator } from "@/lib/validators";
 
 interface props {
-  developer: IDeveloper;
+  developer: IFetchedDeveloper;
 }
 
 export default function IntroForm({ developer }: props) {
   const notificationCTX = useContext(NotificationContext);
   const router = useRouter();
 
-  const nameValidator = (value: string): boolean => {
-    return value.trim().length >= 2;
-  };
-  const descriptionValidator = (value: string): boolean => {
-    return value.trim().length >= 5;
-  };
-
   const {
     value: nameValue,
     setValue: setNameValue,
     isTouched: nameIsTouched,
+    setIsTouched: setNameIsTouched,
     hasError: nameHasError,
     changeHandler: nameChangeHandler,
     blurHandler: nameBlurHandler,
@@ -38,6 +32,7 @@ export default function IntroForm({ developer }: props) {
     value: descriptionValue,
     setValue: setDescriptionValue,
     isTouched: descriptionIsTouched,
+    setIsTouched: setDescriptionIsTouched,
     hasError: descriptionHasError,
     changeHandler: descriptionChangeHandler,
     blurHandler: descriptionBlurHandler,
@@ -48,27 +43,43 @@ export default function IntroForm({ developer }: props) {
     if (developer) {
       setNameValue(developer.name);
       setDescriptionValue(developer.description);
-    }
-  }, [developer, setNameValue, setDescriptionValue]);
 
-  const resetInputs = () => {
-    nameReset();
-    descriptionReset();
-  };
+      setNameIsTouched(true);
+      setDescriptionIsTouched(true);
+    }
+  }, [
+    developer,
+    setNameValue,
+    setNameIsTouched,
+    setDescriptionValue,
+    setDescriptionIsTouched,
+  ]);
 
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) {
     event.preventDefault();
     if (!nameHasError && !descriptionHasError) {
-      const response = updateData(event.currentTarget, developer._id, "hero")
+      const response = await fetch("http://localhost:3000/api/hero", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          _id: developer._id,
+          name: nameValue,
+          description: descriptionValue,
+        }),
+      });
+      response
+        .json()
         .then((info) => {
+          console.log(info);
           notificationCTX.setNotification({
             status: info.status,
             message: info.message,
             isActive: true,
           });
-          resetInputs();
           router.refresh();
         })
         .catch((e) => {
