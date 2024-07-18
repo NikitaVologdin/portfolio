@@ -2,8 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import { Skill, SkillsGroup } from "@/models/skills";
 import mongoose from "mongoose";
-import { writeFile } from "fs/promises";
-import path from "path";
+import createImage from "@/lib/createImage";
 
 export interface IFormDataSkill {
   _id: string;
@@ -21,28 +20,6 @@ export interface IFormDataSkillsGroup {
   skills: IFormDataSkill[];
 }
 
-async function createImage(fd: FormData, body: IFormDataSkill) {
-  const image = fd.get("image") as File;
-  if (!image) {
-    return NextResponse.json({ error: "No files received.", status: 400 });
-  }
-
-  if (image.size === 0) {
-    const imageName = body.image.name;
-    return imageName;
-  }
-
-  if (image instanceof File) {
-    const buffer = Buffer.from(await image.arrayBuffer());
-    const imageName = image.name.replaceAll(" ", "_");
-    await writeFile(
-      path.join(process.cwd(), "public/stack/" + imageName),
-      buffer
-    );
-    return imageName;
-  }
-}
-
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     await dbConnect();
@@ -50,8 +27,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const body = Object.fromEntries(
       formData.entries()
     ) as unknown as IFormDataSkill;
-    const imageName = await createImage(formData, body);
-
+    const imageName = await createImage(formData, body, "stack");
     if (body.group === "New group") {
       const groupId = new mongoose.Types.ObjectId();
       const skillId = new mongoose.Types.ObjectId();
@@ -66,7 +42,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         name: body.name,
         _id: skillId,
         group: groupId,
-        image: body.image,
+        image: imageName,
         color: body.color,
         description: body.description,
       });
@@ -74,7 +50,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       await group.save();
 
       return NextResponse.json({
-        message: `${group.name} group and ${skill.name}skill have been created`,
+        message: `${group.name} group and ${skill.name} skill have been created`,
         status: 200,
       });
     } else {
@@ -85,7 +61,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
         name: body.name,
         _id: skillId,
         group: group._id,
-        image: body.image,
+        image: imageName,
         color: body.color,
         description: body.description,
       });
@@ -102,6 +78,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
   } catch (error) {
     if (error instanceof Error) {
+      console.log(error.message);
       return NextResponse.json({ message: error.message, status: 500 });
     }
   }
@@ -115,7 +92,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
       formData.entries()
     ) as unknown as IFormDataSkill;
 
-    const imageName = await createImage(formData, body);
+    const imageName = await createImage(formData, body, "stack");
     const query = await Skill.findOneAndUpdate(
       { _id: body._id },
       { ...body, image: imageName },

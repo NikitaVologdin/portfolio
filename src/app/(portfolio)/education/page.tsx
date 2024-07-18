@@ -11,7 +11,7 @@ export default async function Page() {
     <Container>
       <Heading>Education</Heading>
       <Search />
-      <Education education={education} />
+      <Education education={education.reverse()} />
     </Container>
   );
 }

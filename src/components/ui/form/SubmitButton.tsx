@@ -1,7 +1,7 @@
 interface props {
   className?: string;
   name: string;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 export default function FormButton({ className, name, disabled }: props) {

@@ -10,7 +10,7 @@ export default async function page() {
 
   return (
     <Container>
-      <Experience experiences={experiences} skills={skills} />
+      <Experience experiences={experiences.reverse()} skills={skills} />
     </Container>
   );
 }

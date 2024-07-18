@@ -67,7 +67,7 @@ export default function ProjectCard({
       <div className="flex justify-between">
         <Button name={`${startDate.month.name} ${startDate.year}`} />
         <Button
-          name={present ? "now" : `${startDate.month.name} ${startDate.year}`}
+          name={present ? "now" : `${endDate.month.name} ${endDate.year}`}
         />
       </div>
       <hr className="my-2.5 border-light-grey" />

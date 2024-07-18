@@ -12,7 +12,7 @@ export default async function Page() {
     <Container>
       <Heading>Experiences</Heading>
       <Search />
-      <Experiences experiences={experiences} />
+      <Experiences experiences={experiences.reverse()} />
     </Container>
   );
 }

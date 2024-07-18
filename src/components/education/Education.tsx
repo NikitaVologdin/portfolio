@@ -17,12 +17,15 @@ export default function Education({ education }: props) {
           <div key={index} className={`flex ${flexRow} w-full items-center`}>
             <div className="flex flex-1">
               <EducationCard
+                _id={e._id}
                 name={e.name}
                 university={e.university}
                 location={e.location}
                 start={e.start}
                 present={e.present}
                 end={e.end}
+                duration={e.duration}
+                image={e.image}
                 skills={e.skills}
                 description={e.description}
               />

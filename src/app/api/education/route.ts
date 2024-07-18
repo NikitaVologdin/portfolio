@@ -25,7 +25,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const imageName = await createImage(formData, body);
+    const imageName = await createImage(formData, body, "education");
     const startDate = new Date(body.start);
     let endDate;
     let difTime;
@@ -79,7 +79,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const imageName = await createImage(formData, body);
+    const imageName = await createImage(formData, body, "education");
     const startDate = new Date(body.start);
     let endDate;
     let difTime;

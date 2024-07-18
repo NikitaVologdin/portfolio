@@ -4,6 +4,7 @@ import path from "path";
 import { Projects } from "@/models/projects";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
+import createImage from "@/lib/createImage";
 
 interface IFormDataProject {
   _id: string;
@@ -17,26 +18,6 @@ interface IFormDataProject {
   description: string;
 }
 
-async function createImage(fd: FormData, body: IFormDataProject) {
-  const image = fd.get("image") as File;
-  if (!image || !(image instanceof File)) {
-    throw new Error("No image received");
-  }
-
-  if (image.size === 0) {
-    const imageName = body.image.name;
-    return imageName;
-  }
-
-  const buffer = Buffer.from(await image.arrayBuffer());
-  const imageName = image.name.replaceAll(" ", "_");
-  await writeFile(
-    path.join(process.cwd(), "public/projects/" + imageName),
-    buffer
-  );
-  return imageName;
-}
-
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     dbConnect();
@@ -45,7 +26,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       formData.entries()
     ) as unknown as IFormDataProject;
     const skills = JSON.parse(body.skills) as string[];
-    const imageName = await createImage(formData, body);
+    const imageName = await createImage(formData, body, "projects");
     const startDate = new Date(body.start);
     let endDate;
     let diffTime;
@@ -97,7 +78,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     ) as unknown as IFormDataProject;
 
     let skills = JSON.parse(body.skills) as string[];
-    const imageName = await createImage(formData, body);
+    const imageName = await createImage(formData, body, "projects");
     const startDate = new Date(body.start);
     const present = body.present === "on" ? true : false;
     let endDate;

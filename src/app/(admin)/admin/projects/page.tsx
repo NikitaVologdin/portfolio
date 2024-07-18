@@ -9,7 +9,7 @@ export default async function skillsPage() {
   const skills = await fetchDataOnServer(Skills);
   return (
     <Container>
-      <Projects projects={projects} skills={skills} />
+      <Projects projects={projects.reverse()} skills={skills} />
     </Container>
   );
 }

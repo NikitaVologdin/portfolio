@@ -5,7 +5,11 @@ interface body {
   image: { name: string };
 }
 
-export default async function createImage(fd: FormData, body: body) {
+export default async function createImage(
+  fd: FormData,
+  body: body,
+  directory: string
+) {
   const image = fd.get("image") as File;
   if (!image || !(image instanceof File)) {
     throw new Error("No image received");
@@ -19,7 +23,7 @@ export default async function createImage(fd: FormData, body: body) {
   const buffer = Buffer.from(await image.arrayBuffer());
   const imageName = image.name.replaceAll(" ", "_");
   await writeFile(
-    path.join(process.cwd(), "public/experiences/" + imageName),
+    path.join(process.cwd(), `public/${directory}/` + imageName),
     buffer
   );
   return imageName;

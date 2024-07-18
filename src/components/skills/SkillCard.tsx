@@ -61,7 +61,7 @@ export default function SkillCard({ name, image, color }: props) {
         alt={`${name} logo`}
         width={120}
         height={120}
-        className="absolute -bottom-10 right-0 z-0"
+        className="absolute -bottom-10 right-0 z-0 object-fill"
       />
     </div>
   );

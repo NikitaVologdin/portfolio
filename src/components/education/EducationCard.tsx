@@ -16,10 +16,12 @@ export default function EducationCard({
   start,
   present,
   end,
+  image,
   skills,
   description,
   className,
 }: props) {
+  console.log(image);
   const startDate = new DateObject(start);
   let endDate;
   const todayDate = new DateObject();
@@ -37,7 +39,7 @@ export default function EducationCard({
       <div className="">
         <Image
           alt="logo"
-          src={"no-img.svg"}
+          src={`/education/${image}`}
           width="50"
           height="50"
           className=""

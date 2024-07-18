@@ -4,6 +4,7 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
+import createImage from "@/lib/createImage";
 
 interface IFormDataExperience {
   _id: string;
@@ -14,26 +15,6 @@ interface IFormDataExperience {
   image: File;
   skills: string;
   description: string;
-}
-
-async function createImage(fd: FormData, body: IFormDataExperience) {
-  const image = fd.get("image") as File;
-  if (!image || !(image instanceof File)) {
-    throw new Error("No image received");
-  }
-
-  if (image.size === 0) {
-    const imageName = body.image.name;
-    return imageName;
-  }
-
-  const buffer = Buffer.from(await image.arrayBuffer());
-  const imageName = image.name.replaceAll(" ", "_");
-  await writeFile(
-    path.join(process.cwd(), "public/experiences/" + imageName),
-    buffer
-  );
-  return imageName;
 }
 
 export async function POST(req: NextRequest, res: NextResponse) {
@@ -47,7 +28,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const imageName = await createImage(formData, body);
+    const imageName = await createImage(formData, body, "expeeriences");
     const startDate = new Date(body.start);
     let endDate;
     let diffTime;
@@ -101,7 +82,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const imageName = await createImage(formData, body);
+    const imageName = await createImage(formData, body, "expeeriences");
     const startDate = new Date(body.start);
     let endDate;
     let difTime;

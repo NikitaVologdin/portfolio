@@ -61,7 +61,7 @@ export default function IntroForm({ developer }: props) {
     event.preventDefault();
     if (!nameHasError && !descriptionHasError) {
       const response = await fetch("http://localhost:3000/api/hero", {
-        method: "PUT",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },

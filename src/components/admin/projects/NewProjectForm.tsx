@@ -299,7 +299,7 @@ export default function NewProjectForm({
       </InputGroup>
       <InputGroup label="Present" id="present" hasError={false} error="">
         <div className="flex content-center justify-between">
-          <label htmlFor="">Present employment ?</label>
+          <label htmlFor="">In development ?</label>
           <input
             id="present"
             name="present"
