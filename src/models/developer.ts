@@ -1,9 +1,5 @@
 import { Schema, model, models, Document } from "mongoose";
-
-export interface IDeveloper extends Document {
-  name: string;
-  description: string;
-}
+import { IDeveloper } from "@/types/Developer";
 
 const developerSchema = new Schema<IDeveloper>({
   name: String,
