@@ -9,7 +9,7 @@ import { IFetchedSkill } from "@/types/Skills";
 interface props {
   firstElementIndex: number;
   skills: IFetchedSkill[];
-  direction: "left" | "right";
+  direction: string;
   timeOut: number;
 }
 
