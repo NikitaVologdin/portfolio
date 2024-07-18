@@ -3,7 +3,6 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import { Resume } from "@/models/resume";
 import dbConnect from "@/lib/dbConnect";
-import mongoose from "mongoose";
 
 interface IFormDataResume {
   _id?: string;
