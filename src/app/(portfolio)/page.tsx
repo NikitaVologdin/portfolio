@@ -9,7 +9,7 @@ export default async function Home() {
   const [developer] = await fetchDataOnServer(Developer);
 
   return (
-    <Container className="h-dvh">
+    <Container className="h-dvh my-auto">
       <Intro developer={developer} skills={skills} />
     </Container>
   );

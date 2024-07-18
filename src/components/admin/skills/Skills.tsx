@@ -10,6 +10,7 @@ import { fetchDataOnClient, deleteData } from "@/lib/utils";
 import { NotificationContext } from "@/context/NotificationContext";
 import { useRouter } from "next/navigation";
 import { IFetchedSkill, IFetchedSkillsGroup } from "@/types/Skills";
+import Link from "next/link";
 
 interface props {
   groups: IFetchedSkillsGroup[];
@@ -96,8 +97,8 @@ export default function Skills({ groups }: props) {
                 const last = group.skills.length === index + 1;
                 return (
                   <SkillItem
-                    skill={skill}
                     key={index}
+                    skill={skill}
                     last={last}
                     editSkillHandler={editSkillHandler}
                     deleteSkillHandler={deleteSkillHandler}

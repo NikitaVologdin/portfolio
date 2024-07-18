@@ -21,7 +21,6 @@ export default function EducationCard({
   description,
   className,
 }: props) {
-  console.log(image);
   const startDate = new DateObject(start);
   let endDate;
   const todayDate = new DateObject();

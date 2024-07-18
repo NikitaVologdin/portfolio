@@ -31,7 +31,7 @@ export default function ProjectCard({
   }
   const daysAmount = Math.floor(duration / 60 / 60 / 24);
   return (
-    <Card color={color} className="flex-col">
+    <Card color={color} className="flex-col h-full">
       <div className="pb-5">
         <Image
           src={`/projects/${image}`}
