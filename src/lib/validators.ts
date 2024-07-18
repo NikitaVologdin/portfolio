@@ -29,11 +29,11 @@ function gitHubLinkValidator(link: string) {
   return /^https:\/\/github.com\//gi.test(link.trim());
 }
 
-function dateValidator(value) {
+function dateValidator(value: any) {
   return true;
 }
 
-function fileValidator(value) {
+function fileValidator(value: any) {
   return true;
 }
 

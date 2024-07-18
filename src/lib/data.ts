@@ -1,6 +1,6 @@
 import dbConnect from "./dbConnect";
 import developerModel from "../models/developer";
-import { IDeveloper } from "../models/developer";
+import { IDeveloper } from "../types/Developer";
 
 const fetchDeveloper = async () => {
   dbConnect();

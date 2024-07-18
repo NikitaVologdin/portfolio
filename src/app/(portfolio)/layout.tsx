@@ -7,7 +7,6 @@ import Nav from "../../components/nav/Nav";
 import Navbar from "../../components/nav/Navbar";
 import Container from "../../components/Container";
 import MenuContextProvider from "@/context/portfolio/MenuContext";
-import { MenuContext } from "@/context/portfolio/MenuContext";
 import { ReactElement, ReactNode } from "react";
 
 export const metadata: Metadata = {
