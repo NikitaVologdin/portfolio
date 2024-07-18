@@ -8,28 +8,26 @@ import emailSvg from "../../../public/social/email.svg";
 import youtubeSvg from "../../../public/social/youtube.svg";
 import facebookSvg from "../../../public/social/facebook.svg";
 
-// import technologies from "../../data/technologies";
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "../ui/slider/slider";
 import { IFetchedSkill } from "@/types/Skills";
+import { IDeveloper } from "@/types/Developer";
 
 interface props {
   skills: IFetchedSkill[];
+  developer: IDeveloper;
 }
 
-export default function Intro({ skills }: props) {
+export default function Intro({ skills, developer }: props) {
   return (
     <div className="flex flex-wrap md:flex-nowrap md:justify-around md:items-center">
       <div className="md:w-9/12 px-3 md:px-4">
         <h1 className="text-3xl text-center md:text-left md:text-6xl font-black my-1.5 tracking-heading-wider">
-          Nikita Vologdins,
+          {developer.name},
         </h1>
         <p className="text-medium-grey text-lg text-center md:text-left font-extralight text-left tracking-wider m-0">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti,
-          rerum. Debitis accusantium deleniti enim iste dignissimos? Similique,
-          exercitationem! Odit vero, numquam quae ratione maxime sunt reiciendis
-          laudantium quaerat iure ipsum!
+          {developer.description}
         </p>
         <div className="flex justify-center md:justify-start py-4 gap-2">
           <Link href="https://github.com/nikitaVologdin" target="_blank">
