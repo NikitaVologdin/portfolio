@@ -131,7 +131,7 @@ export default function Slider({
             height={160}
             width={150}
             priority={true}
-            className="object-cover"
+            className="object-cover w-auto h-auto"
           />
         </motion.div>
         <button
