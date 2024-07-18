@@ -15,8 +15,8 @@ export default function Stack({ skills }: props) {
           <SquaredButton key={index} backdropText={s.name}>
             <Image
               src={`/stack/${s.image}`}
-              width="15"
-              height="15"
+              width="12"
+              height="12"
               alt={`${s.name} icon`}
             />
           </SquaredButton>
