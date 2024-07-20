@@ -7,6 +7,7 @@ import Button from "../ui/Button";
 import Stack from "../Stack";
 import SquaredButton from "@/components/ui/SquaredButton";
 import { IFetchedProject } from "@/types/Projects";
+import { useRouter } from "next/navigation";
 
 export default function ProjectCard({
   _id,
@@ -30,15 +31,24 @@ export default function ProjectCard({
     duration = endDate.toUnix() - startDate.toUnix();
   }
   const daysAmount = Math.floor(duration / 60 / 60 / 24);
+
+  const router = useRouter();
+  function clickHandler() {
+    return router.push(`/projects/${_id}`);
+  }
+
   return (
-    <Card color={color} className="flex-col h-full">
+    <Card color={color} className="flex-col h-full" clickHandler={clickHandler}>
       <div className="pb-5">
-        <Image
-          src={`/projects/${image}`}
-          width="40"
-          height="40"
-          alt="project logo"
-        />
+        <div className="h-10 w-10">
+          <Image
+            src={`/projects/${image}`}
+            width={0}
+            height={0}
+            alt="project logo"
+            className="h-auto w-auto"
+          />
+        </div>
       </div>
       <div className="flex justify-between">
         <h5 className="text-xl text-black font-bold tracking-wide">{name}</h5>
@@ -48,12 +58,15 @@ export default function ProjectCard({
               backdropText={github}
               className={"p-[5px] rounded-[10px]"}
             >
-              <Image
-                alt="github link icon"
-                src="/icons/link.svg"
-                width={15}
-                height={15}
-              />
+              <div className="h-3.5 w-3.5">
+                <Image
+                  alt="github link icon"
+                  src="/icons/link.svg"
+                  width={0}
+                  height={0}
+                  className="w-auto h-auto"
+                />
+              </div>
             </SquaredButton>
           </Link>
         </div>

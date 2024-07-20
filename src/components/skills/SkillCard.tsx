@@ -3,14 +3,16 @@
 import Image from "next/image";
 import useGradient from "../../hooks/use-gradient";
 import useTransform from "../../hooks/use-transform";
+import { useRouter } from "next/navigation";
 
 interface props {
+  _id: string;
   name: string;
   image: string;
   color: string;
 }
 
-export default function SkillCard({ name, image, color }: props) {
+export default function SkillCard({ _id, name, image, color }: props) {
   const { gradient, moveGradient, removeGradient } = useGradient();
   const { transform, rotateTransform, removeTransform } = useTransform();
 
@@ -28,6 +30,11 @@ export default function SkillCard({ name, image, color }: props) {
 
   function mouseLeaveHandler() {
     removeGradient();
+  }
+
+  const router = useRouter();
+  function clickHandler() {
+    return router.push(`/skills/${_id}`);
   }
 
   return (
@@ -50,9 +57,11 @@ export default function SkillCard({ name, image, color }: props) {
     hover:border-[#8e8e8e]
     my-3 
     md:my-0
+    hover:cursor-pointer
     `}
       onMouseMove={mouseMoveHandler}
       onMouseLeave={mouseLeaveHandler}
+      onClick={clickHandler}
     >
       <div className="absolute h-full w-full bg-gradient-to-r from-white via-transparent via-20% to-white z-10"></div>
       <h6 className="p-4">{name}</h6>

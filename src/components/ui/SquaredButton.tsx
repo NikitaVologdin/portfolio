@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface props {
   children: JSX.Element;
   backdropText?: string;

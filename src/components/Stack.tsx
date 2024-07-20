@@ -1,4 +1,3 @@
-// import technologyType from "../types/technologyType";
 import { IFetchedSkill } from "@/types/Skills";
 import Image from "next/image";
 import SquaredButton from "./ui/SquaredButton";
@@ -13,12 +12,15 @@ export default function Stack({ skills }: props) {
       {skills.map((s, index) => {
         return (
           <SquaredButton key={index} backdropText={s.name}>
-            <Image
-              src={`/stack/${s.image}`}
-              width="12"
-              height="12"
-              alt={`${s.name} icon`}
-            />
+            <div className="h-3 w-3">
+              <Image
+                src={`/stack/${s.image}`}
+                width={0}
+                height={0}
+                alt={`${s.name} icon`}
+                className="h-auto w-auto"
+              />
+            </div>
           </SquaredButton>
         );
       })}

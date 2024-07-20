@@ -15,14 +15,13 @@ export default function Skills({ groups }: props) {
           <SkillsGroup key={index} name={group.name}>
             {group.skills.map((skill, index) => {
               return (
-                <Link key={index} href={`skills/${skill._id}`}>
-                  <SkillCard
-                    name={skill.name}
-                    image={skill.image}
-                    color={skill.color}
-                    key={index}
-                  />
-                </Link>
+                <SkillCard
+                  _id={skill._id}
+                  name={skill.name}
+                  image={skill.image}
+                  color={skill.color}
+                  key={index}
+                />
               );
             })}
           </SkillsGroup>
