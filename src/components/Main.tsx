@@ -6,9 +6,7 @@ interface props {
 export default function Main({ children }: props) {
   return (
     <main
-      className={
-        "flex flex-col grow pt-6 px-6 pb-6 md:pb-20 md:px-0 md:pt-12 -z-20"
-      }
+      className={"flex flex-col grow px-6 py-6 md:pb-20 md:px-0 md:pt-12 -z-20"}
     >
       {children}
     </main>
