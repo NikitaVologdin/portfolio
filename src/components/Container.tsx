@@ -7,7 +7,7 @@ interface props {
 
 export default function container({ children, className }: props) {
   return (
-    <div className={`container h-full mx-auto md:px-5 lg:px-24 ${className}`}>
+    <div className={`container h-full mx-auto px-5 lg:px-24 ${className}`}>
       {children}
     </div>
   );
