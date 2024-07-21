@@ -6,7 +6,7 @@ interface props {
   children: JSX.Element[];
   color: string;
   className?: string;
-  clickHandler: () => void;
+  clickHandler?: () => void;
 }
 
 export default function Card({

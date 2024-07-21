@@ -27,13 +27,13 @@ export default function RootLayout({ children }: { children: ReactElement }) {
         className={`${inter.className} antialiased min-h-screen text-grey flex flex-col relative z-20`}
       >
         <Header>
-          <Container>
+          <div className="container my-auto h-full mx-auto md:px-5 lg:px-24">
             <MenuContextProvider>
               <Navbar>
                 <Nav />
               </Navbar>
             </MenuContextProvider>
-          </Container>
+          </div>
         </Header>
         <Main>{children}</Main>
       </body>
