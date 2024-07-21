@@ -11,7 +11,7 @@ interface props {
 
 export default function ProjectAbout({ project }: props) {
   return (
-    <div className="">
+    <div className="about">
       <Background path={`/projects/${project.image}`}>
         <div className="py-5 flex flex-col justify-center items-center">
           <Heading>{project.name}</Heading>
