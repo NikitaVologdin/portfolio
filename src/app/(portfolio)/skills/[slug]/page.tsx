@@ -6,8 +6,8 @@ import Container from "@/components/Container";
 export default async function page({ params }: { params: { slug: string } }) {
   const skill = await fetchDataOnServer(Skills, params.slug);
   return (
-    <Container>
+    <div className={"container h-full mx-auto lg:px-24"}>
       <SkillAbout skill={skill} />
-    </Container>
+    </div>
   );
 }
