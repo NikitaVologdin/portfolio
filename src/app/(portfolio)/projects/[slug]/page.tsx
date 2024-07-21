@@ -7,8 +7,8 @@ export default async function page({ params }: { params: { slug: string } }) {
   const project = await fetchDataWithPopulate(Projects, "skills", params.slug);
 
   return (
-    <Container>
+    <div className={"container h-full mx-auto lg:px-24"}>
       <ProjectAbout project={project} />
-    </Container>
+    </div>
   );
 }
