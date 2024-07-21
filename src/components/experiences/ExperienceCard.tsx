@@ -5,6 +5,7 @@ import SquaredButton from "../ui/SquaredButton";
 import Stack from "../Stack";
 import Image from "next/image";
 import { IFetchedExperience } from "@/types/Experience";
+import { useRouter } from "next/navigation";
 
 interface props extends IFetchedExperience {
   className?: string;
@@ -33,10 +34,15 @@ export default function ExperienceCard({
     duration = endDate.toUnix() - startDate.toUnix();
   }
   const daysAmount = Math.floor(duration / 60 / 60 / 24);
+  const router = useRouter();
+  function clickHandler() {
+    return router.push(`/experiences/${_id}`);
+  }
   return (
     <Card
       color={color}
       className={`w-full flex-col md:flex-row items-stretch ${className}`}
+      clickHandler={clickHandler}
     >
       <div className="mb-4 md:mb-0">
         <Image
