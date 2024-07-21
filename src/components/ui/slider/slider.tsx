@@ -123,7 +123,7 @@ export default function Slider({
             x: animateDirection === "right" ? -xMovementValue : xMovementValue,
           }}
           transition={{ duration: transitionDuration }}
-          className="grow w-fit max-h-48 px-4 flex justify-center items-center"
+          className="grow w-fit h-48 px-4 flex justify-center items-center"
         >
           <Image
             src={`/stack/${slides[currentSliderSettings.currentSlideIndex]}`}
