@@ -3,6 +3,7 @@ import Heading from "../Heading";
 import ButtonLink from "@/components/ui/about/ButtonLink";
 import Background from "@/components/ui/about/Background";
 import Image from "next/image";
+import Container from "@/components/Container";
 
 interface props {
   project: IFetchedProject;
@@ -10,7 +11,7 @@ interface props {
 
 export default function ProjectAbout({ project }: props) {
   return (
-    <div className="-mt-6 md:-mt-12">
+    <div className="">
       <Background path={`/projects/${project.image}`}>
         <div className="py-5 flex flex-col justify-center items-center">
           <Heading>{project.name}</Heading>
@@ -30,7 +31,7 @@ export default function ProjectAbout({ project }: props) {
               <span className="text-xs">GitHub</span>
             </div>
           </ButtonLink>
-          <div className="flex gap-2 flex-wrap mt-3">
+          <div className="flex gap-2 flex-wrap mt-3 justify-center">
             {project.skills.map((s, index) => {
               return (
                 <ButtonLink link={`/skills/${s._id}`} target="" key={index}>
@@ -53,7 +54,9 @@ export default function ProjectAbout({ project }: props) {
         </div>
       </Background>
       <div className="mt-5 py-3 font-mono border-b border-[#e1e1e1]">
-        <article>{project.description}</article>
+        <Container>
+          <article>{project.description}</article>
+        </Container>
       </div>
     </div>
   );
