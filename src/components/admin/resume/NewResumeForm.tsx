@@ -17,9 +17,14 @@ interface props {
   modalCloseHandler: () => void;
   resume?: IFetchedResume | null;
   setEdit: ({}: IEditState) => void;
+  path: string;
 }
 
-export default function NewProjectForm({ modalCloseHandler, resume }: props) {
+export default function NewProjectForm({
+  modalCloseHandler,
+  resume,
+  path,
+}: props) {
   const ctx = useContext(NotificationContext);
   const router = useRouter();
 
@@ -78,7 +83,7 @@ export default function NewProjectForm({ modalCloseHandler, resume }: props) {
       if (resume) {
         formData.append("_id", resume._id);
       }
-      const response = await fetch("http://localhost:3000/api/resume", {
+      const response = await fetch("http://" + path + "/api/resume", {
         method: resume ? "PUT" : "POST",
         body: formData,
       });

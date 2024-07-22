@@ -5,7 +5,7 @@ import { fetchDataOnServer } from "@/lib/utils";
 
 export default async function page() {
   const [developer] = await fetchDataOnServer(Developer);
-  const path = process.env.VERCEL_URL;
+  const path = process.env.APP_URL || process.env.VERCEL_URL;
 
   return (
     <Container>

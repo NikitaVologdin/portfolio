@@ -5,9 +5,11 @@ import { Resume as ResumeModel } from "@/models/resume";
 
 export default async function skillsPage() {
   const resume = await fetchDataOnServer(ResumeModel);
+  const path = process.env.APP_URL || process.env.VERCEL_URL;
+
   return (
     <Container>
-      <Resume resume={resume} />
+      <Resume resume={resume} path={path ? path : ""} />
     </Container>
   );
 }

@@ -28,12 +28,14 @@ interface props {
   skills: IFetchedSkill[];
   project?: IFetchedProject | null;
   setEdit: ({}: IEditState) => void;
+  path: string;
 }
 
 export default function NewProjectForm({
   modalCloseHandler,
   skills,
   project,
+  path,
 }: props) {
   const ctx = useContext(NotificationContext);
   const router = useRouter();
@@ -217,7 +219,7 @@ export default function NewProjectForm({
       } else {
         formData.append("present", "off");
       }
-      const response = await fetch("http://localhost:3000/api/projects", {
+      const response = await fetch("http://" + path + "/api/projects", {
         method: project ? "PUT" : "POST",
         body: formData,
       });

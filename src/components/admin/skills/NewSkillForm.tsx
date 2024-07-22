@@ -26,6 +26,7 @@ interface props {
   groups: IFetchedSkillsGroup[];
   skill?: IFetchedSkill | null;
   setEdit: ({}: IEditState) => void;
+  path: string;
 }
 
 export default function SkillsForm({
@@ -33,6 +34,7 @@ export default function SkillsForm({
   groups,
   skill,
   setEdit,
+  path,
 }: props) {
   const router = useRouter();
   const ctx = useContext(NotificationContext);
@@ -187,7 +189,7 @@ export default function SkillsForm({
         formData.append("_id", skill._id);
         formData.set("group", skill.group._id);
       }
-      const response = await fetch("http://localhost:3000/api/skills", {
+      const response = await fetch("http://" + path + "/api/skills", {
         method: skill ? "PUT" : "POST",
         body: formData,
       });

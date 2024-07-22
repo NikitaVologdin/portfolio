@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 interface props {
   experiences?: IFetchedExperience[];
   skills: IFetchedSkill[];
+  path: string;
 }
 
 export interface IEditState {
@@ -21,7 +22,7 @@ export interface IEditState {
   experience?: IFetchedExperience;
 }
 
-export default function Experience({ experiences, skills }: props) {
+export default function Experience({ experiences, skills, path }: props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [edit, setEdit] = useState<IEditState>({ state: false });
   const dialog = useRef<HTMLDialogElement>(null);
@@ -79,6 +80,7 @@ export default function Experience({ experiences, skills }: props) {
               skills={skills}
               experience={edit.state ? edit.experience : null}
               setEdit={setEdit}
+              path={path}
             />
           </FormWrapper>
         </Modal>

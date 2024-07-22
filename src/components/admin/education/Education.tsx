@@ -14,6 +14,7 @@ import { IFetchedEducation } from "@/types/Education";
 interface props {
   education: IFetchedEducation[];
   skills: IFetchedSkill[];
+  path: string;
 }
 
 export interface IEditState {
@@ -21,7 +22,7 @@ export interface IEditState {
   education?: IFetchedEducation;
 }
 
-export default function Education({ education, skills }: props) {
+export default function Education({ education, skills, path }: props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [edit, setEdit] = useState<IEditState>({ state: false });
   const dialog = useRef<HTMLDialogElement>(null);
@@ -80,6 +81,7 @@ export default function Education({ education, skills }: props) {
                 education={edit.state ? edit.education : null}
                 skills={skills}
                 setEdit={setEdit}
+                path={path}
               />
             </FormWrapper>
           </Modal>

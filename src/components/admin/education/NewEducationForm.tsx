@@ -11,7 +11,6 @@ import {
   imageUploadValidator,
   nameValidator,
   dateValidator,
-  colorValidator,
   descriptionValidator,
 } from "@/lib/validators";
 import { SyntheticEvent, useContext, useEffect, useState } from "react";
@@ -27,12 +26,14 @@ interface props {
   skills: IFetchedSkill[];
   education?: IFetchedEducation | null;
   setEdit: ({}: IEditState) => void;
+  path: string;
 }
 
 export default function NewEducationForm({
   modalCloseHandler,
   skills,
   education,
+  path,
 }: props) {
   const ctx = useContext(NotificationContext);
   const router = useRouter();
@@ -189,7 +190,7 @@ export default function NewEducationForm({
       if (education) {
         formData.append("_id", education._id);
       }
-      const response = await fetch("http://localhost:3000/api/education", {
+      const response = await fetch("http://" + path + "/api/education", {
         method: education ? "PUT" : "POST",
         body: formData,
       });

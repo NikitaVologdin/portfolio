@@ -10,10 +10,10 @@ import { fetchDataOnClient, deleteData } from "@/lib/utils";
 import { NotificationContext } from "@/context/NotificationContext";
 import { useRouter } from "next/navigation";
 import { IFetchedSkill, IFetchedSkillsGroup } from "@/types/Skills";
-import Link from "next/link";
 
 interface props {
   groups: IFetchedSkillsGroup[];
+  path: string;
 }
 
 export interface IEditState {
@@ -21,7 +21,7 @@ export interface IEditState {
   skill?: IFetchedSkill;
 }
 
-export default function Skills({ groups }: props) {
+export default function Skills({ groups, path }: props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [edit, setEdit] = useState<IEditState>({ state: false });
   const dialog = useRef<HTMLDialogElement>(null);
@@ -80,6 +80,7 @@ export default function Skills({ groups }: props) {
                 groups={groups}
                 skill={edit.state ? edit.skill : null}
                 setEdit={setEdit}
+                path={path}
               />
             </FormWrapper>
           </Modal>

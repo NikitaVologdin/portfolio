@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 
 interface props {
   resume: IFetchedResume[];
+  path: string;
 }
 
 export interface IEditState {
@@ -19,7 +20,7 @@ export interface IEditState {
   resume?: IFetchedResume;
 }
 
-export default function Resume({ resume }: props) {
+export default function Resume({ resume, path }: props) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [edit, setEdit] = useState<IEditState>({ state: false });
   const dialog = useRef<HTMLDialogElement>(null);
@@ -76,6 +77,7 @@ export default function Resume({ resume }: props) {
               modalCloseHandler={modalToggleHandler}
               resume={edit.state ? edit.resume : null}
               setEdit={setEdit}
+              path={path}
             />
           </FormWrapper>
         </Modal>

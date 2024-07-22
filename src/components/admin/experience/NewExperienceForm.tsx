@@ -27,12 +27,14 @@ interface props {
   skills: IFetchedSkill[];
   experience?: IFetchedExperience | null;
   setEdit: ({}: IEditState) => void;
+  path: string;
 }
 
 export default function NewProjectForm({
   modalCloseHandler,
   skills,
   experience,
+  path,
 }: props) {
   const ctx = useContext(NotificationContext);
   const router = useRouter();
@@ -218,7 +220,7 @@ export default function NewProjectForm({
       if (experience) {
         formData.append("_id", experience._id);
       }
-      const response = await fetch("http://localhost:3000/api/experiences", {
+      const response = await fetch("http://" + path + "/api/experiences", {
         method: experience ? "PUT" : "POST",
         body: formData,
       });
