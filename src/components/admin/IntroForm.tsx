@@ -9,6 +9,7 @@ import { NotificationContext } from "@/context/NotificationContext";
 import { useRouter } from "next/navigation";
 import { IFetchedDeveloper } from "@/types/Developer";
 import { nameValidator, descriptionValidator } from "@/lib/validators";
+import { revalidatePath } from "next/cache";
 
 interface props {
   developer: IFetchedDeveloper;
@@ -80,7 +81,8 @@ export default function IntroForm({ developer, path }: props) {
             message: info.message,
             isActive: true,
           });
-          router.refresh();
+          // router.refresh();
+          revalidatePath("/", "page");
         })
         .catch((e) => {
           console.log(e);
