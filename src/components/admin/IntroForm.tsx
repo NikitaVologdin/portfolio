@@ -60,17 +60,20 @@ export default function IntroForm({ developer }: props) {
   ) {
     event.preventDefault();
     if (!nameHasError && !descriptionHasError) {
-      const response = await fetch("/api/hero", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          _id: developer._id,
-          name: nameValue,
-          description: descriptionValue,
-        }),
-      });
+      const response = await fetch(
+        "https://" + process.env.VERCEL_URL + "/api/hero",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            _id: developer._id,
+            name: nameValue,
+            description: descriptionValue,
+          }),
+        }
+      );
       response
         .json()
         .then((info) => {
