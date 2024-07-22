@@ -45,12 +45,12 @@ export default function Projects({ projects, skills, path }: props) {
 
   const editHandler = async (id: string) => {
     modalToggleHandler();
-    const project = await fetchDataOnClient("projects", id);
+    const project = await fetchDataOnClient("projects", path, id);
     setEdit({ state: true, project });
   };
 
   const deleteHandler = async (id: string) => {
-    const response = await deleteData("projects", id);
+    const response = await deleteData("projects", path, id);
     response
       ?.json()
       .then((info) => {

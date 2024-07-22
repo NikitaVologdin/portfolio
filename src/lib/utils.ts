@@ -1,8 +1,6 @@
 import dbConnect from "./dbConnect";
 import { Model } from "mongoose";
 
-const uri = process.env.APP_URL || process.env.VERCEL_URL;
-
 async function fetchDataOnServer<T>(model: Model<T>, id?: string) {
   try {
     await dbConnect();
@@ -21,7 +19,7 @@ async function fetchDataOnServer<T>(model: Model<T>, id?: string) {
   }
 }
 
-async function fetchDataOnClient(path: string, id?: string) {
+async function fetchDataOnClient(path: string, uri: string, id?: string) {
   try {
     const response = await fetch(`http://${uri}/api/${path}/` + id, {
       method: "GET",
@@ -65,7 +63,7 @@ async function fetchDataWithPopulate<T>(
   }
 }
 
-async function deleteData(path: string, id: string) {
+async function deleteData(path: string, uri: string, id: string) {
   try {
     const response = fetch(`http://${uri}/api/${path}/${id}`, {
       method: "DELETE",

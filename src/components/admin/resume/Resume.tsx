@@ -43,12 +43,12 @@ export default function Resume({ resume, path }: props) {
 
   const editHandler = async (id: string) => {
     modalToggleHandler();
-    const resume = await fetchDataOnClient("resume", id);
+    const resume = await fetchDataOnClient("resume", path, id);
     setEdit({ state: true, resume });
   };
 
   const deleteHandler = async (id: string) => {
-    const response = await deleteData("resume", id);
+    const response = await deleteData("resume", path, id);
     response
       ?.json()
       .then((info) => {

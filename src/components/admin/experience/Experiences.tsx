@@ -45,12 +45,12 @@ export default function Experience({ experiences, skills, path }: props) {
 
   const editHandler = async (id: string) => {
     modalToggleHandler();
-    const experience = await fetchDataOnClient("experiences", id);
+    const experience = await fetchDataOnClient("experiences", path, id);
     setEdit({ state: true, experience });
   };
 
   const deleteHandler = async (id: string) => {
-    const response = await deleteData("experiences", id);
+    const response = await deleteData("experiences", path, id);
     response
       ?.json()
       .then((info) => {

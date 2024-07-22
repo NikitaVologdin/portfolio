@@ -35,12 +35,12 @@ export default function Skills({ groups, path }: props) {
 
   const editSkillHandler = async (skillId: string) => {
     modalToggleHandler();
-    const skill = await fetchDataOnClient("skills", skillId);
+    const skill = await fetchDataOnClient("skills", path, skillId);
     setEdit({ state: true, skill });
   };
 
   const deleteSkillHandler = async (skillId: string) => {
-    const response = await deleteData("skills", skillId);
+    const response = await deleteData("skills", path, skillId);
     response
       ?.json()
       .then((info) => {
