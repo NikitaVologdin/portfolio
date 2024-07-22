@@ -9,6 +9,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const developer = new Developer(body);
     await developer.save();
     return NextResponse.json({
+      revalidated: true,
       message: `${body.name} developer is created`,
       code: 201,
     });

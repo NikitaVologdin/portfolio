@@ -81,8 +81,7 @@ export default function IntroForm({ developer, path }: props) {
             message: info.message,
             isActive: true,
           });
-          // router.refresh();
-          revalidatePath("/", "page");
+          router.refresh();
         })
         .catch((e) => {
           console.log(e);
