@@ -60,8 +60,8 @@ export default function IntroForm({ developer }: props) {
   ) {
     event.preventDefault();
     if (!nameHasError && !descriptionHasError) {
-      const response = await fetch("http://localhost:3000/api/hero", {
-        method: "POST",
+      const response = await fetch("/api/hero", {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
@@ -74,7 +74,6 @@ export default function IntroForm({ developer }: props) {
       response
         .json()
         .then((info) => {
-          console.log(info);
           notificationCTX.setNotification({
             status: info.status,
             message: info.message,
@@ -83,6 +82,7 @@ export default function IntroForm({ developer }: props) {
           router.refresh();
         })
         .catch((e) => {
+          console.log(e);
           notificationCTX.setNotification({
             status: e.status,
             message: e.message,
