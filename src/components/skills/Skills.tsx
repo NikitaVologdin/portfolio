@@ -1,7 +1,6 @@
 import SkillCard from "./SkillCard";
 import { IFetchedSkillsGroup } from "@/types/Skills";
 import SkillsGroup from "./SkillsGroup";
-import Link from "next/link";
 
 interface props {
   groups: IFetchedSkillsGroup[];

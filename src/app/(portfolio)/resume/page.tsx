@@ -1,9 +1,9 @@
+import { Resume } from "@/models/resume";
 import Heading from "../../../components/Heading";
 import Container from "../../../components/Container";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { fetchDataOnServer } from "@/lib/utils";
-import { Resume } from "@/models/resume";
 
 export default async function page() {
   const [resume] = await fetchDataOnServer(Resume);

@@ -48,7 +48,6 @@ async function fetchDataWithPopulate<T>(
       response = await model.findById(id).populate(populate);
     } else {
       response = await model.find().populate(populate);
-      // response = await model.find();
     }
     const data = JSON.parse(JSON.stringify(response));
     if (data.length > 1) {
