@@ -219,7 +219,7 @@ export default function NewProjectForm({
       } else {
         formData.append("present", "off");
       }
-      const response = await fetch("http://" + path + "/api/projects", {
+      const response = await fetch("https://" + path + "/api/projects", {
         method: project ? "PUT" : "POST",
         body: formData,
       });

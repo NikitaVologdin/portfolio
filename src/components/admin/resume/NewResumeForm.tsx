@@ -83,7 +83,7 @@ export default function NewProjectForm({
       if (resume) {
         formData.append("_id", resume._id);
       }
-      const response = await fetch("http://" + path + "/api/resume", {
+      const response = await fetch("https://" + path + "/api/resume", {
         method: resume ? "PUT" : "POST",
         body: formData,
       });

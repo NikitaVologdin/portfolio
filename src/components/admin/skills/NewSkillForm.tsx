@@ -189,7 +189,7 @@ export default function SkillsForm({
         formData.append("_id", skill._id);
         formData.set("group", skill.group._id);
       }
-      const response = await fetch("http://" + path + "/api/skills", {
+      const response = await fetch("https://" + path + "/api/skills", {
         method: skill ? "PUT" : "POST",
         body: formData,
       });

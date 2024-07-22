@@ -220,7 +220,7 @@ export default function NewProjectForm({
       if (experience) {
         formData.append("_id", experience._id);
       }
-      const response = await fetch("http://" + path + "/api/experiences", {
+      const response = await fetch("https://" + path + "/api/experiences", {
         method: experience ? "PUT" : "POST",
         body: formData,
       });

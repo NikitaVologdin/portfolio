@@ -190,7 +190,7 @@ export default function NewEducationForm({
       if (education) {
         formData.append("_id", education._id);
       }
-      const response = await fetch("http://" + path + "/api/education", {
+      const response = await fetch("https://" + path + "/api/education", {
         method: education ? "PUT" : "POST",
         body: formData,
       });
