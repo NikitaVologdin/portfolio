@@ -12,11 +12,13 @@ import { nameValidator, descriptionValidator } from "@/lib/validators";
 
 interface props {
   developer: IFetchedDeveloper;
+  path: string;
 }
 
-export default function IntroForm({ developer }: props) {
+export default function IntroForm({ developer, path }: props) {
   const notificationCTX = useContext(NotificationContext);
   const router = useRouter();
+  console.log(path);
 
   const {
     value: nameValue,
@@ -61,7 +63,8 @@ export default function IntroForm({ developer }: props) {
     event.preventDefault();
     if (!nameHasError && !descriptionHasError) {
       const response = await fetch(
-        "https://" + process.env.VERCEL_URL + "/api/hero",
+        // "https://" + process.env.VERCEL_URL + "/api/hero",
+        "https://" + path + "/api/hero",
         {
           method: "PUT",
           headers: {

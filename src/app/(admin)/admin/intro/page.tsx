@@ -5,10 +5,11 @@ import { fetchDataOnServer } from "@/lib/utils";
 
 export default async function page() {
   const [developer] = await fetchDataOnServer(Developer);
+  const path = process.env.VERCEL_URL;
 
   return (
     <Container>
-      <IntroForm developer={developer} />
+      <IntroForm developer={developer} path={path ? path : ""} />
     </Container>
   );
 }
