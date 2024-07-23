@@ -20,9 +20,9 @@ export default function Page() {
 
   return (
     <>
-      <div className="mt-10">
+      <header className="mt-10">
         <Heading>Education</Heading>
-      </div>
+      </header>
       <Container className="h-dvh my-auto">
         <Suspense fallback={<Loading />}>
           <Component />

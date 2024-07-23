@@ -22,7 +22,7 @@ interface props {
 export default function Intro({ skills, developer }: props) {
   return (
     <div className="h-full flex flex-wrap justify-center items-center md:flex-nowrap md:justify-around">
-      <div className="md:w-9/12 px-3 md:px-4">
+      <header className="md:w-9/12 px-3 md:px-4">
         <h1 className="text-3xl text-center md:text-left md:text-6xl font-black my-1.5 tracking-heading-wider">
           {developer.name},
         </h1>
@@ -52,7 +52,7 @@ export default function Intro({ skills, developer }: props) {
             <Image src={facebookSvg} alt="github icon" className="" />
           </Link>
         </div>
-      </div>
+      </header>
       <div className="w-3/5 sm:w-4/12 md:w-3/12 mx-auto flex items-center justify-center self-start md:self-center">
         <Slider
           firstElementIndex={0}

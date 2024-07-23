@@ -23,9 +23,9 @@ export default function page() {
   }
   return (
     <>
-      <div className="mt-10">
+      <header className="mt-10">
         <Heading>Resume</Heading>
-      </div>
+      </header>
       <Container>
         <Suspense fallback={<Loading />}>
           <Component />

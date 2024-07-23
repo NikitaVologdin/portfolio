@@ -10,7 +10,9 @@ export default function page() {
   }
   return (
     <Container>
-      <Heading>Search</Heading>
+      <header>
+        <Heading>Search</Heading>
+      </header>
       <Suspense fallback={<Loading />}>
         <Search />
       </Suspense>
