@@ -7,8 +7,16 @@ import { Experiences as ExperienceModel } from "@/models/experience";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
 
-export default async function Page() {
-  const experiences = await fetchDataWithPopulate(ExperienceModel, "skills");
+export default function Page() {
+  async function Component() {
+    const experiences = await fetchDataWithPopulate(ExperienceModel, "skills");
+    return (
+      <>
+        <Search />
+        <Experiences experiences={experiences.reverse()} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -17,8 +25,7 @@ export default async function Page() {
       </div>
       <Container className="h-dvh my-auto">
         <Suspense fallback={<Loading />}>
-          <Search />
-          <Experiences experiences={experiences.reverse()} />
+          <Component />
         </Suspense>
       </Container>
     </>

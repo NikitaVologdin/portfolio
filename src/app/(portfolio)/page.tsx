@@ -6,14 +6,18 @@ import Developer from "@/models/developer";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
 
-export default async function Home() {
-  const skills = await fetchDataOnServer(Skills);
-  const [developer] = await fetchDataOnServer(Developer);
+export default function Home() {
+  async function Component() {
+    const skills = await fetchDataOnServer(Skills);
+    const [developer] = await fetchDataOnServer(Developer);
+
+    return <Intro developer={developer} skills={skills} />;
+  }
 
   return (
     <Container className="h-dvh my-auto">
       <Suspense fallback={<Loading />}>
-        <Intro developer={developer} skills={skills} />
+        <Component />
       </Suspense>
     </Container>
   );

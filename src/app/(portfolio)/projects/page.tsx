@@ -8,11 +8,20 @@ import { IProject } from "@/types/Projects";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
 
-export default async function page() {
-  const projects = await fetchDataWithPopulate<IProject>(
-    ProjectsModel,
-    "skills"
-  );
+export default function page() {
+  async function Component() {
+    const projects = await fetchDataWithPopulate<IProject>(
+      ProjectsModel,
+      "skills"
+    );
+
+    return (
+      <>
+        <Search />
+        <Projects projects={projects.reverse()} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -21,8 +30,7 @@ export default async function page() {
       </div>
       <Container className="h-dvh my-auto">
         <Suspense fallback={<Loading />}>
-          <Search />
-          <Projects projects={projects.reverse()} />
+          <Component />
         </Suspense>
       </Container>
     </>

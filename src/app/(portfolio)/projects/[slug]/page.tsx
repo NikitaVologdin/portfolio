@@ -5,17 +5,20 @@ import { IProject } from "@/types/Projects";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
 
-export default async function page({ params }: { params: { slug: string } }) {
-  const project = await fetchDataWithPopulate<IProject>(
-    Projects,
-    "skills",
-    params.slug
-  );
+export default function page({ params }: { params: { slug: string } }) {
+  async function Component() {
+    const project = await fetchDataWithPopulate<IProject>(
+      Projects,
+      "skills",
+      params.slug
+    );
+    return <ProjectAbout project={project} />;
+  }
 
   return (
     <div className={"container h-full mx-auto lg:px-24"}>
       <Suspense fallback={<Loading />}>
-        <ProjectAbout project={project} />
+        <Component />
       </Suspense>
     </div>
   );
