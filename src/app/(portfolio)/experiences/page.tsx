@@ -4,7 +4,8 @@ import Experiences from "../../../components/experiences/Experiences";
 import Container from "../../../components/Container";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import { Experiences as ExperienceModel } from "@/models/experience";
-import Loading from "@/components/ui/LoadingSkeleton";
+import Loading from "@/components/ui/Loading";
+import { Suspense } from "react";
 
 export default async function Page() {
   const experiences = await fetchDataWithPopulate(ExperienceModel, "skills");
@@ -15,16 +16,10 @@ export default async function Page() {
         <Heading>Experiences</Heading>
       </div>
       <Container className="h-dvh my-auto">
-        {experiences ? (
-          <>
-            <Search />
-            <Experiences experiences={experiences.reverse()} />;
-          </>
-        ) : (
-          <div className="absolute top-0 bottom-0 right-0 left-0 h-full flex justify-center items-center">
-            <Loading />
-          </div>
-        )}
+        <Suspense fallback={<Loading />}>
+          <Search />
+          <Experiences experiences={experiences.reverse()} />;
+        </Suspense>
       </Container>
     </>
   );

@@ -3,7 +3,8 @@ import Heading from "../../../components/Heading";
 import Container from "../../../components/Container";
 import Button from "@/components/ui/Button";
 import { fetchDataOnServer } from "@/lib/utils";
-import Loading from "@/components/ui/LoadingSkeleton";
+import Loading from "@/components/ui/Loading";
+import { Suspense } from "react";
 
 export default async function page() {
   const [resume] = await fetchDataOnServer(Resume);
@@ -14,7 +15,7 @@ export default async function page() {
         <Heading>Resume</Heading>
       </div>
       <Container>
-        {resume ? (
+        <Suspense fallback={<Loading />}>
           <div className="flex justify-center">
             <Button
               name="Download"
@@ -22,11 +23,7 @@ export default async function page() {
               target={"_blank"}
             />
           </div>
-        ) : (
-          <div className="absolute top-0 bottom-0 right-0 left-0 h-full flex justify-center items-center">
-            <Loading />
-          </div>
-        )}
+        </Suspense>
       </Container>
     </>
   );

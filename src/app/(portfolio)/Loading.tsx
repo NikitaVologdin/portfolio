@@ -1,5 +1,4 @@
-import LoadingSkeleton from "@/components/ui/LoadingSkeleton";
-
-export default function Loading() {
-  return <LoadingSkeleton />;
+import Loading from "@/components/ui/Loading";
+export default function loading() {
+  return <Loading />;
 }
