@@ -53,7 +53,7 @@ export default function Intro({ skills, developer }: props) {
           </Link>
         </div>
       </div>
-      <div className="w-3/5 sm:w-4/12 md:w-3/12 mx-auto flex items-center justify-center">
+      <div className="w-3/5 sm:w-4/12 md:w-3/12 mx-auto flex items-center justify-center self-start md:self-center">
         <Slider
           firstElementIndex={0}
           skills={skills}
