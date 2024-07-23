@@ -1,5 +1,6 @@
 import { Schema, model, models, Document } from "mongoose";
 import { IExperience } from "@/types/Experience";
+import { Skill } from "./skills";
 
 const experienceSchema = new Schema<IExperience>({
   name: String,
@@ -12,7 +13,7 @@ const experienceSchema = new Schema<IExperience>({
   duration: Number,
   color: String,
   image: String,
-  skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
+  skills: [{ type: Schema.Types.ObjectId, ref: Skill }],
   description: String,
 });
 
