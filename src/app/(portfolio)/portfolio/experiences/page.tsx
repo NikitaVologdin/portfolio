@@ -1,7 +1,7 @@
-import Heading from "../../../components/Heading";
-import Search from "../../../components/ui/form/Search";
-import Experiences from "../../../components/experiences/Experiences";
-import Container from "../../../components/Container";
+import Heading from "@/components/Heading";
+import Search from "@/components/ui/form/Search";
+import Experiences from "@/components/experiences/Experiences";
+import Container from "@/components/Container";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import { Experiences as ExperienceModel } from "@/models/experience";
 import Loading from "@/components/ui/Loading";

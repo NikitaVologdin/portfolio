@@ -1,8 +1,8 @@
 import { Projects as ProjectsModel } from "@/models/projects";
-import Heading from "../../../components/Heading";
-import Search from "../../../components/ui/form/Search";
-import Projects from "../../../components/projects/Projects";
-import Container from "../../../components/Container";
+import Heading from "@/components/Heading";
+import Search from "@/components/ui/form/Search";
+import Projects from "@/components/projects/Projects";
+import Container from "@/components/Container";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import { IProject } from "@/types/Projects";
 import Loading from "@/components/ui/Loading";
@@ -26,7 +26,7 @@ export default function page() {
   return (
     <>
       <div className="mt-10">
-        <Heading>Skills</Heading>
+        <Heading>Projects</Heading>
       </div>
       <Container className="h-dvh my-auto">
         <Suspense fallback={<Loading />}>

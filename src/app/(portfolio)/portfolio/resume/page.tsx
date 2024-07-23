@@ -1,6 +1,6 @@
 import { Resume } from "@/models/resume";
-import Heading from "../../../components/Heading";
-import Container from "../../../components/Container";
+import Heading from "@/components/Heading";
+import Container from "@/components/Container";
 import Button from "@/components/ui/Button";
 import { fetchDataOnServer } from "@/lib/utils";
 import Loading from "@/components/ui/Loading";
