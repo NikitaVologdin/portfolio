@@ -7,7 +7,8 @@ import { Skill as Skills } from "@/models/skills";
 export default async function skillsPage() {
   const projects = await fetchDataOnServer(ProjectsModel);
   const skills = await fetchDataOnServer(Skills);
-  const path = process.env.APP_URL || process.env.VERCEL_URL;
+  const path =
+    process.env.MY_DOMAIN || process.env.APP_URL || process.env.VERCEL_URL;
 
   return (
     <Container>

@@ -5,7 +5,8 @@ import { SkillsGroup as SkillsGroups } from "@/models/skills";
 
 export default async function skillsPage() {
   const groups = await fetchDataWithPopulate(SkillsGroups, "skills");
-  const path = process.env.APP_URL || process.env.VERCEL_URL;
+  const path =
+    process.env.MY_DOMAIN || process.env.APP_URL || process.env.VERCEL_URL;
 
   return (
     <Container>
