@@ -6,4 +6,42 @@
     .active {
         background-color: #e1e1e1;
     }
+
+    .loader {
+        width: 48px;
+        height: 48px;
+        display: inline-block;
+        position: relative;
+        margin-bottom: 51px
+    }
+
+    .loader::after,
+    .loader::before {
+        content: '';
+        box-sizing: border-box;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        border: 2px solid #1e1e1e;
+        position: absolute;
+        left: 0;
+        top: 0;
+        animation: animloader 2s linear infinite;
+    }
+
+    .loader::after {
+        animation-delay: 1s;
+    }
+
+    @keyframes animloader {
+        0% {
+            transform: scale(0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 0;
+        }
+    }
 }

@@ -22,9 +22,9 @@ const inter = Inter({
 
 export default function RootLayout({ children }: { children: ReactElement }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth h-full">
       <body
-        className={`${inter.className} antialiased min-h-screen text-grey flex flex-col relative z-20`}
+        className={`${inter.className} h-full antialiased min-h-screen text-grey flex flex-col relative z-20`}
       >
         <Header>
           <div className="container my-auto h-full mx-auto md:px-5 lg:px-24">

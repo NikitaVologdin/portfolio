@@ -21,7 +21,7 @@ interface props {
 
 export default function Intro({ skills, developer }: props) {
   return (
-    <div className="flex flex-wrap md:flex-nowrap md:justify-around md:items-center">
+    <div className="flex flex-wrap h-full my-auto md:flex-nowrap md:justify-around md:items-center">
       <div className="md:w-9/12 px-3 md:px-4">
         <h1 className="text-3xl text-center md:text-left md:text-6xl font-black my-1.5 tracking-heading-wider">
           {developer.name},
