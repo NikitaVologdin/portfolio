@@ -21,7 +21,7 @@ interface props {
 
 export default function Intro({ skills, developer }: props) {
   return (
-    <div className="flex flex-wrap h-full my-auto md:flex-nowrap md:justify-around md:items-center">
+    <div className="h-full flex flex-wrap justify-center items-center md:flex-nowrap md:justify-around">
       <div className="md:w-9/12 px-3 md:px-4">
         <h1 className="text-3xl text-center md:text-left md:text-6xl font-black my-1.5 tracking-heading-wider">
           {developer.name},
@@ -53,7 +53,7 @@ export default function Intro({ skills, developer }: props) {
           </Link>
         </div>
       </div>
-      <div className="w-3/5 sm:w-4/12 md:w-3/12 mx-auto mt-10 sm:mt-16 md:mt-0 flex items-center justify-center">
+      <div className="w-3/5 sm:w-4/12 md:w-3/12 mx-auto flex items-center justify-center">
         <Slider
           firstElementIndex={0}
           skills={skills}
