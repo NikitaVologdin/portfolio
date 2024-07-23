@@ -13,7 +13,7 @@ export default function ProjectAbout({ project }: props) {
   return (
     <div className="about">
       <Background path={`/projects/${project.image}`}>
-        <div className="py-5 flex flex-col justify-center items-center">
+        <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{project.name}</Heading>
           <h5 className="pt-3 pb-2">{project.category}</h5>
           <div className="w-9/12 h-px bg-slate-200 my-3 rounded"></div>

@@ -13,7 +13,7 @@ export default function ProjectAbout({ experience }: props) {
   return (
     <div className="about">
       <Background path={`/projects/${experience.image}`}>
-        <div className="py-5 flex flex-col justify-center items-center">
+        <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{experience.name}</Heading>
           <p className="pt-3 pb-2 text-sm">
             {experience.company} · {experience.location} ·{" "}

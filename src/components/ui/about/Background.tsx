@@ -7,11 +7,11 @@ export default function background({ path, children }: props) {
   return (
     <div
       className={
-        "bg-contain bg-right bg-no-repeat h-full h-80 bg-cover bg-gradient-to-l flex flex-col justify-center items-center border-b border-[#e1e1e1]"
+        "h-[350px] bg-cover bg-gradient-to-l border-b border-[#e1e1e1]"
       }
       style={{
         backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
+        backgroundSize: "cover",
         backgroundImage: `linear-gradient(90deg, #FFF 0%, #FFF 55%, rgba(255, 255, 255, .6) 130%), url('${path}')`,
         backgroundPosition: "right",
       }}
