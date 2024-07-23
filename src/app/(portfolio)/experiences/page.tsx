@@ -18,7 +18,7 @@ export default async function Page() {
       <Container className="h-dvh my-auto">
         <Suspense fallback={<Loading />}>
           <Search />
-          <Experiences experiences={experiences.reverse()} />;
+          <Experiences experiences={experiences.reverse()} />
         </Suspense>
       </Container>
     </>
