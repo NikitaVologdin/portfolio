@@ -5,7 +5,7 @@ import Projects from "../../../components/projects/Projects";
 import Container from "../../../components/Container";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import { IProject } from "@/types/Projects";
-import Loading from "@/components/ui/Loading";
+import Loading from "@/components/ui/LoadingSkeleton";
 
 export default async function page() {
   const projects = await fetchDataWithPopulate<IProject>(

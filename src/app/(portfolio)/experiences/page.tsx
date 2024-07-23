@@ -4,7 +4,7 @@ import Experiences from "../../../components/experiences/Experiences";
 import Container from "../../../components/Container";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import { Experiences as ExperienceModel } from "@/models/experience";
-import Loading from "@/components/ui/Loading";
+import Loading from "@/components/ui/LoadingSkeleton";
 
 export default async function Page() {
   const experiences = await fetchDataWithPopulate(ExperienceModel, "skills");

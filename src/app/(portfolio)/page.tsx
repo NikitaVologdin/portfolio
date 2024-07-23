@@ -3,7 +3,7 @@ import Container from "../../components/Container";
 import { fetchDataOnServer } from "@/lib/utils";
 import { Skill as Skills } from "@/models/skills";
 import Developer from "@/models/developer";
-import Loading from "@/components/ui/Loading";
+import Loading from "@/components/ui/LoadingSkeleton";
 
 export default async function Home() {
   const skills = await fetchDataOnServer(Skills);
@@ -11,13 +11,16 @@ export default async function Home() {
 
   return (
     <Container className="h-dvh my-auto">
-      {developer ? (
-        <Intro developer={developer} skills={skills} />
-      ) : (
-        <div className="absolute top-0 bottom-0 right-0 left-0 h-full flex justify-center items-center">
-          <Loading />
-        </div>
-      )}
+      <Intro developer={developer} skills={skills} />
     </Container>
   );
 }
+// <Container className="h-dvh my-auto">
+//   {developer ? (
+//     <Intro developer={developer} skills={skills} />
+//   ) : (
+//     <div className="absolute top-0 bottom-0 right-0 left-0 h-full flex justify-center items-center">
+//       <Loading />
+//     </div>
+//   )}
+// </Container>;

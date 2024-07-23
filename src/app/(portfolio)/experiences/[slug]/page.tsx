@@ -2,7 +2,7 @@ import { Experiences } from "@/models/experience";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import ExperienceAbout from "@/components/experiences/ExperienceAbout";
 import { IExperience } from "@/types/Experience";
-import Loading from "@/components/ui/Loading";
+import Loading from "@/components/ui/LoadingSkeleton";
 
 export default async function page({ params }: { params: { slug: string } }) {
   const experience = await fetchDataWithPopulate<IExperience>(

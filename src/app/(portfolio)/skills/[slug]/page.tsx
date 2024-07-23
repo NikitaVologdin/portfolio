@@ -1,7 +1,7 @@
 import { Skill as Skills } from "@/models/skills";
 import { fetchDataOnServer } from "@/lib/utils";
 import SkillAbout from "@/components/skills/SkillAbout";
-import Loading from "@/components/ui/Loading";
+import Loading from "@/components/ui/LoadingSkeleton";
 
 export default async function page({ params }: { params: { slug: string } }) {
   const skill = await fetchDataOnServer(Skills, params.slug);

@@ -2,7 +2,7 @@ import { Projects } from "@/models/projects";
 import ProjectAbout from "@/components/projects/ProjectAbout";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import { IProject } from "@/types/Projects";
-import Loading from "@/components/ui/Loading";
+import Loading from "@/components/ui/LoadingSkeleton";
 
 export default async function page({ params }: { params: { slug: string } }) {
   const project = await fetchDataWithPopulate<IProject>(
