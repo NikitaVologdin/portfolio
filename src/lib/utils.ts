@@ -45,7 +45,7 @@ async function fetchDataWithPopulate<T>(
     await dbConnect();
     let response;
     if (id) {
-      response = await model.findById(id).populate(populate);
+      response = await model.findById(id).populate({ path: populate });
     } else {
       response = await model.find().populate(populate);
     }
