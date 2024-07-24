@@ -33,7 +33,7 @@ export default function Experiences({ experiences }: props) {
               />
             </div>
             <div className="hidden md:block p-3.5 mx-2 inline bg-white z-10">
-              <Image src="bullet.svg" alt="" width="16" height="16" />
+              <Image src="../bullet.svg" alt="" width="16" height="16" />
             </div>
             <div className="hidden md:block flex flex-1"></div>
           </div>
