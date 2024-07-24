@@ -63,15 +63,12 @@ export default function SkillCard({ _id, name, image, color }: props) {
       onMouseLeave={mouseLeaveHandler}
       onClick={clickHandler}
     >
-      <div className="absolute h-full w-full bg-gradient-to-r from-white via-transparent via-20% to-white z-10"></div>
-      <h6 className="p-4">{name}</h6>
-      <Image
-        src={`../stack/${image}`}
-        alt={`${name} logo`}
-        width={100}
-        height={100}
-        className="absolute top-0 right-0 z-0 object-contain"
-      />
+      <div className="h-full flex items-center justify-between px-10">
+        <h6 className="">{name}</h6>
+        <div className="h-full w-[30%] relative">
+          <Image src={`../stack/${image}`} alt={`${name} logo`} fill />
+        </div>
+      </div>
     </div>
   );
 }

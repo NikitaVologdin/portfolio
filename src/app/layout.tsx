@@ -17,6 +17,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth h-full">
       <head>
+        <link rel="icon" href="favicon.ico" sizes="any" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
