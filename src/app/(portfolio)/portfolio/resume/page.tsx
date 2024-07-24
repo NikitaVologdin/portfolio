@@ -14,7 +14,7 @@ export default function page() {
         <div className="flex justify-center">
           <Button
             name="Download"
-            link={`/resume/${resume.file}`}
+            link={`../resume/${resume.file}`}
             target={"_blank"}
           />
         </div>
