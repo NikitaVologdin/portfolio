@@ -59,7 +59,7 @@ export default function ExperienceCard({
         <div className="flex flex-row gap-2">
           <SquaredButton backdropText={`Company: ${company}`}>
             <Image
-              src="icons/town.svg"
+              src="../icons/town.svg"
               alt="company icon"
               width="14"
               height="14"
@@ -68,7 +68,7 @@ export default function ExperienceCard({
           </SquaredButton>
           <SquaredButton backdropText={`Location: ${location}`}>
             <Image
-              src="icons/location.svg"
+              src="../icons/location.svg"
               alt="location icon"
               width="14"
               height="14"
@@ -76,7 +76,7 @@ export default function ExperienceCard({
           </SquaredButton>
           <SquaredButton backdropText={`Contract: ${contract}`}>
             <Image
-              src="icons/hour-glasses.svg"
+              src="../icons/hour-glasses.svg"
               alt="contract icon"
               width="14"
               height="14"
