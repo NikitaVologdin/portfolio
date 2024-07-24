@@ -16,9 +16,7 @@ const inter = Inter({
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth h-full">
-      <body
-        className={`${inter.className} h-full antialiased min-h-screen text-grey flex flex-col relative z-20`}
-      >
+      <head>
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -36,6 +34,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           sizes="16x16"
           href="favicon-16x16.png"
         />
+      </head>
+      <body
+        className={`${inter.className} h-full antialiased min-h-screen text-grey flex flex-col relative z-20`}
+      >
         {children}
       </body>
     </html>
