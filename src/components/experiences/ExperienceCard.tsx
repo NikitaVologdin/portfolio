@@ -16,6 +16,7 @@ export default function ExperienceCard({
   name,
   company,
   location,
+  image,
   contract,
   start,
   present,
@@ -36,7 +37,7 @@ export default function ExperienceCard({
   const daysAmount = Math.floor(duration / 60 / 60 / 24);
   const router = useRouter();
   function clickHandler() {
-    return router.push(`/experiences/${_id}`);
+    return router.push(`/portfolio/experiences/${_id}`);
   }
   return (
     <Card
@@ -47,7 +48,7 @@ export default function ExperienceCard({
       <div className="mb-4 md:mb-0">
         <Image
           alt="logo"
-          src={"no-img.svg"}
+          src={`../experiences/${image}`}
           width="75"
           height="75"
           className="rounded-xl"

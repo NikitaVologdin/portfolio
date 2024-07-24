@@ -34,7 +34,7 @@ export default function SkillCard({ _id, name, image, color }: props) {
 
   const router = useRouter();
   function clickHandler() {
-    return router.push(`/skills/${_id}`);
+    return router.push(`/portfolio/skills/${_id}`);
   }
 
   return (
@@ -66,7 +66,7 @@ export default function SkillCard({ _id, name, image, color }: props) {
       <div className="absolute h-full w-full bg-gradient-to-r from-white via-transparent via-20% to-white z-10"></div>
       <h6 className="p-4">{name}</h6>
       <Image
-        src={`stack/${image}`}
+        src={`../stack/${image}`}
         alt={`${name} logo`}
         width={100}
         height={100}

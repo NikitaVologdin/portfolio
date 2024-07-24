@@ -34,7 +34,7 @@ export default function ProjectCard({
 
   const router = useRouter();
   function clickHandler() {
-    return router.push(`/projects/${_id}`);
+    return router.push(`/portfolio/projects/${_id}`);
   }
 
   return (
@@ -42,7 +42,7 @@ export default function ProjectCard({
       <div className="pb-5">
         <div className="h-10 w-10">
           <Image
-            src={`/projects/${image}`}
+            src={`../projects/${image}`}
             width={0}
             height={0}
             alt="project logo"
