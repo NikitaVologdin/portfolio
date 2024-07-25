@@ -83,7 +83,7 @@ export default function Resume({ resume, path }: props) {
         </Modal>
       )}
       <div className="">
-        <div className="py-8 flex justify-end">
+        <div className="flex justify-end">
           <Nav
             modalToggleHandler={modalToggleHandler}
             openFormButtonName="New Resume"

@@ -1,5 +1,5 @@
-import Container from "../../../../components/Container";
-import Skills from "../../../../components/admin/skills/Skills";
+import Container from "@/components/Container";
+import Skills from "@/components/admin/skills/Skills";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import { SkillsGroup as SkillsGroups } from "@/models/skills";
 

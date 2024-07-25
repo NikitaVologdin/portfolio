@@ -4,17 +4,18 @@ function nameValidator(value: string) {
 }
 
 function imageUploadValidator(value: [File]) {
-  if (typeof value === "undefined") {
-    return false;
-  }
-  if (Array.isArray(value) && value.length > 0) {
-    const indexOfExtension = value[0].name.lastIndexOf(".");
-    const extension = value[0].name.split("").slice(indexOfExtension).join("");
-    const validatorResult = extension === ".svg";
-    return validatorResult;
-  } else {
-    return false;
-  }
+  // if (typeof value === "undefined") {
+  //   return false;
+  // }
+  // if (Array.isArray(value) && value.length > 0) {
+  //   const indexOfExtension = value[0].name.lastIndexOf(".");
+  //   const extension = value[0].name.split("").slice(indexOfExtension).join("");
+  //   const validatorResult = extension === ".svg";
+  //   return validatorResult;
+  // } else {
+  //   return false;
+  // }
+  return true;
 }
 
 function colorValidator(value: string) {

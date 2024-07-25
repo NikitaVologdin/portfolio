@@ -1,6 +1,6 @@
 import Developer from "@/models/developer";
-import IntroForm from "../../../../components/admin/IntroForm";
-import Container from "../../../../components/Container";
+import IntroForm from "@/components/admin/IntroForm";
+import Container from "@/components/Container";
 import { fetchDataOnServer } from "@/lib/utils";
 import { Suspense } from "react";
 import Loading from "@/components/ui/Loading";

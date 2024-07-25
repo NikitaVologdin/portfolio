@@ -4,6 +4,16 @@ import { Skill, SkillsGroup } from "@/models/skills";
 import mongoose from "mongoose";
 import createImage from "@/lib/createImage";
 
+// import { v2 as cloudinary } from "cloudinary";
+
+// cloudinary.config({
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.CLOUD_API,
+//   api_secret: process.env.CLOUD_SECRET,
+// });
+
+import uploadImage from "@/lib/cloudinary";
+
 export interface IFormDataSkill {
   _id: string;
   name: string;
@@ -27,7 +37,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const body = Object.fromEntries(
       formData.entries()
     ) as unknown as IFormDataSkill;
-    const imageName = await createImage(formData, body, "stack");
+
+    const blob = formData.get("image") as Blob;
+    const imageName = await uploadImage(blob);
+
     if (body.group === "New group") {
       const groupId = new mongoose.Types.ObjectId();
       const skillId = new mongoose.Types.ObjectId();

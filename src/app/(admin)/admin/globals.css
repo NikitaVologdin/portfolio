@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-    .active {
+    .active-link {
         color: white;
         border-bottom-color: white !important;
     }

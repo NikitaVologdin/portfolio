@@ -65,7 +65,10 @@ export default function SkillCard({ _id, name, image, color }: props) {
     >
       <div className="h-full flex items-center justify-between px-10">
         <h6 className="">{name}</h6>
-        <div className="h-full w-[30%] relative">
+        <div
+          className="h-full w-[30%] relative"
+          style={{ backgroundImage: `` }}
+        >
           <Image src={`../stack/${image}`} alt={`${name} logo`} fill />
         </div>
       </div>

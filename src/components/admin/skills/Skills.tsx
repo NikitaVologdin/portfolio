@@ -71,7 +71,7 @@ export default function Skills({ groups, path }: props) {
 
   return (
     <div className="skills">
-      <div className="py-8 flex justify-end">
+      <div className="flex justify-end">
         {isModalOpen && (
           <Modal ref={dialog} modalToggleHandler={modalToggleHandler}>
             <FormWrapper modalCloseHandler={modalToggleHandler}>

@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Logo from "../../components/nav/Logo";
+import Logo from "@/components/nav/Logo";
 
 export default function AdminNav() {
   const pathName = usePathname();
@@ -16,7 +16,7 @@ export default function AdminNav() {
         <Link
           href={"/admin/intro"}
           className={`${linkClasses} ${
-            pathName === "/admin/intro" ? "active" : ""
+            pathName === "/admin/intro" ? "active-link" : ""
           }`}
         >
           Intro
@@ -26,7 +26,7 @@ export default function AdminNav() {
         <Link
           href={"/admin/skills"}
           className={`${linkClasses} ${
-            pathName === "/admin/skills" ? "active" : ""
+            pathName === "/admin/skills" ? "active-link" : ""
           }`}
         >
           Skills
@@ -36,7 +36,7 @@ export default function AdminNav() {
         <Link
           href={"/admin/projects"}
           className={`${linkClasses} ${
-            pathName === "/admin/projects" ? "active" : ""
+            pathName === "/admin/projects" ? "active-link" : ""
           }`}
         >
           Projects
@@ -46,7 +46,7 @@ export default function AdminNav() {
         <Link
           href={"/admin/experiences"}
           className={`${linkClasses} ${
-            pathName === "/admin/experiences" ? "active" : ""
+            pathName === "/admin/experiences" ? "active-link" : ""
           }`}
         >
           Experiences
@@ -57,7 +57,7 @@ export default function AdminNav() {
         <Link
           href={"/admin/education"}
           className={`${linkClasses} ${
-            pathName === "/admin/education" ? "active" : ""
+            pathName === "/admin/education" ? "active-link" : ""
           }`}
         >
           Education
@@ -68,7 +68,7 @@ export default function AdminNav() {
         <Link
           href={"/admin/resume"}
           className={`${linkClasses} ${
-            pathName === "/admin/resume" ? "active" : ""
+            pathName === "/admin/resume" ? "active-link" : ""
           }`}
         >
           Resume

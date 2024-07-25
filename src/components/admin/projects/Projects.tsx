@@ -86,7 +86,7 @@ export default function Projects({ projects, skills, path }: props) {
         </Modal>
       )}
       <div className="">
-        <div className="py-8 flex justify-end">
+        <div className="flex justify-end">
           <Nav
             modalToggleHandler={modalToggleHandler}
             openFormButtonName="New Propject"
