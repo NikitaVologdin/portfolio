@@ -40,11 +40,12 @@ export default function ProjectCard({
   return (
     <Card color={color} className="flex-col h-full" clickHandler={clickHandler}>
       <div className="pb-5">
-        <div className="h-10 w-10">
+        <div className="h-10 w-10 relative">
           <Image
-            src={`../projects/${image}`}
+            src={`/projects/${image}`}
             width={0}
             height={0}
+            fill
             alt="project logo"
             className="h-auto w-auto"
           />
