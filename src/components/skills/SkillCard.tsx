@@ -36,6 +36,10 @@ export default function SkillCard({ _id, name, image, color }: props) {
     return router.push(`/portfolio/skills/${_id}`);
   }
 
+  // const grady = "bg-gradient-to-l from-slate-blue to-white";
+  // const grady = "bg-gradient-to-l from-slate-100 from-40% to-60%";
+  // from - [#fff];
+
   return (
     <div
       style={{
@@ -46,11 +50,6 @@ export default function SkillCard({ _id, name, image, color }: props) {
     border-light-grey 
     rounded-2xl
     h-16 
-    bg-gradient-to-br
-    from-transparent
-    via-transparent
-    via-60%
-    to-transparent
     relative
     overflow-hidden
     hover:border-[#8e8e8e]
@@ -62,14 +61,16 @@ export default function SkillCard({ _id, name, image, color }: props) {
       onMouseLeave={mouseLeaveHandler}
       onClick={clickHandler}
     >
-      <div className="h-full flex items-center justify-between px-10">
-        <h6 className="">{name}</h6>
+      <div className="h-full flex items-center justify-between px-10 relative">
+        <h6 className="z-10">{name}</h6>
+        <div className="absolute top-0 bottom-0 right-0 left-0 z-20 bg-gradient-to-l from-[#fffffff7] to-80%"></div>
         <div
-          className="h-full w-[30%] relative"
-          style={{ backgroundImage: `` }}
-        >
-          <CldImage src={image} alt={`${name} logo`} fill />
-        </div>
+          className={`absolute top-0 bottom-0 right-0 left-0 z-0 h-full bg-right bg-no-repeat bg-contain`}
+          style={{
+            backgroundImage: `url(https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image})`,
+            backgroundPosition: "85% 0%",
+          }}
+        ></div>
       </div>
     </div>
   );
