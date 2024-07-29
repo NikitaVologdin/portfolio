@@ -1,6 +1,7 @@
 import left from "../../../../public/arrows/left.svg";
 import right from "../../../../public/arrows/right.svg";
 
+import { CldImage } from "next-cloudinary";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -125,8 +126,8 @@ export default function Slider({
           transition={{ duration: transitionDuration }}
           className="grow w-fit h-48 px-4 flex justify-center items-center"
         >
-          <Image
-            src={`/stack/${slides[currentSliderSettings.currentSlideIndex]}`}
+          <CldImage
+            src={slides[currentSliderSettings.currentSlideIndex]}
             alt="node-js icon"
             height={160}
             width={150}
