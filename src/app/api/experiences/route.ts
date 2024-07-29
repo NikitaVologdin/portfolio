@@ -1,10 +1,8 @@
 import { Experiences } from "@/models/experience";
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
-import path from "path";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
-import createImage from "@/lib/createImage";
+import { uploadImage } from "@/lib/cloudinary";
 
 interface IFormDataExperience {
   _id: string;
@@ -28,7 +26,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const imageName = await createImage(formData, body, "expeeriences");
+    const image = formData.get("image") as File;
+    const imageName = await uploadImage(image, ["experiences"]);
     const startDate = new Date(body.start);
     let endDate;
     let diffTime;
@@ -82,7 +81,8 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const imageName = await createImage(formData, body, "expeeriences");
+    const image = formData.get("image") as File;
+    const imageName = await uploadImage(image, ["experiences"]);
     const startDate = new Date(body.start);
     let endDate;
     let difTime;

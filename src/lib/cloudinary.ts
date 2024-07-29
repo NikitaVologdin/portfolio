@@ -10,14 +10,23 @@ cloudinary.config({
   api_secret: process.env.CLOUD_SECRET,
 });
 
-export default async function uploadImage(image: Blob) {
+export async function uploadImage(image: File, tags: string[]) {
   const bufferedImage = await image.arrayBuffer();
   const buffer = new Uint8Array(bufferedImage);
-  let imageName;
+  const imageName = "portfolio/" + image.name.split(".").shift();
   await new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader
       .upload_stream(
-        { resource_type: "auto", folder: "portfolio" },
+        {
+          public_id: imageName,
+          resource_type: "auto",
+          // folder: "portfolio",
+          format: "svg",
+          use_filename: true,
+          unique_filename: false,
+          overwrite: false,
+          tags: tags,
+        },
         function (
           error: UploadApiErrorResponse | undefined,
           result: UploadApiResponse | undefined
@@ -30,11 +39,16 @@ export default async function uploadImage(image: Blob) {
             reject(error);
             return;
           }
-          imageName = result.public_id;
           resolve(result);
         }
       )
       .end(buffer);
   });
   return imageName;
+}
+
+export async function deleteImage(public_id: string) {
+  cloudinary.uploader.destroy(public_id).then((res) => {
+    return res;
+  });
 }

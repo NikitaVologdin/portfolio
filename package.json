@@ -15,6 +15,7 @@
     "framer-motion": "^11.2.10",
     "mongoose": "^8.2.0",
     "next": "14.0.1",
+    "next-cloudinary": "^6.6.2",
     "react": "^18",
     "react-date-object": "^2.1.9",
     "react-dom": "^18"

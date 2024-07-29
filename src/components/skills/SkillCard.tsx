@@ -1,9 +1,8 @@
 "use client";
-
-import Image from "next/image";
 import useGradient from "../../hooks/use-gradient";
 import useTransform from "../../hooks/use-transform";
 import { useRouter } from "next/navigation";
+import { CldImage } from "next-cloudinary";
 
 interface props {
   _id: string;
@@ -69,7 +68,7 @@ export default function SkillCard({ _id, name, image, color }: props) {
           className="h-full w-[30%] relative"
           style={{ backgroundImage: `` }}
         >
-          <Image src={`../stack/${image}`} alt={`${name} logo`} fill />
+          <CldImage src={image} alt={`${name} logo`} fill />
         </div>
       </div>
     </div>

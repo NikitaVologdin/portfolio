@@ -2,17 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import { Skill, SkillsGroup } from "@/models/skills";
 import mongoose from "mongoose";
-import createImage from "@/lib/createImage";
-
-// import { v2 as cloudinary } from "cloudinary";
-
-// cloudinary.config({
-//   cloud_name: process.env.CLOUD_NAME,
-//   api_key: process.env.CLOUD_API,
-//   api_secret: process.env.CLOUD_SECRET,
-// });
-
-import uploadImage from "@/lib/cloudinary";
+import { uploadImage } from "@/lib/cloudinary";
 
 export interface IFormDataSkill {
   _id: string;
@@ -38,8 +28,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
       formData.entries()
     ) as unknown as IFormDataSkill;
 
-    const blob = formData.get("image") as Blob;
-    const imageName = await uploadImage(blob);
+    const image = formData.get("image") as File;
+    const imageName = await uploadImage(image, ["skills"]);
 
     if (body.group === "New group") {
       const groupId = new mongoose.Types.ObjectId();
@@ -105,7 +95,9 @@ export async function PUT(req: NextRequest, res: NextResponse) {
       formData.entries()
     ) as unknown as IFormDataSkill;
 
-    const imageName = await createImage(formData, body, "stack");
+    const image = formData.get("image") as File;
+    const imageName = await uploadImage(image, ["skills"]);
+
     const query = await Skill.findOneAndUpdate(
       { _id: body._id },
       { ...body, image: imageName },

@@ -1,6 +1,6 @@
 import { IFetchedSkill } from "@/types/Skills";
-import Image from "next/image";
 import SquaredButton from "./ui/SquaredButton";
+import { CldImage } from "next-cloudinary";
 
 interface props {
   skills: IFetchedSkill[];
@@ -13,8 +13,8 @@ export default function Stack({ skills }: props) {
         return (
           <SquaredButton key={index} backdropText={s.name}>
             <div className="h-3 w-3">
-              <Image
-                src={`/stack/${s.image}`}
+              <CldImage
+                src={s.image}
                 width={0}
                 height={0}
                 alt={`${s.name} icon`}

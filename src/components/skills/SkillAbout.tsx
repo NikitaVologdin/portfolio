@@ -10,7 +10,9 @@ interface props {
 export default function SkillAbout({ skill }: props) {
   return (
     <div className="about">
-      <Background path={`/stack/${skill.image}`}>
+      <Background
+        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${skill.image}`}
+      >
         <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{skill.name}</Heading>
           <div className="w-9/12 h-px bg-slate-200 my-3 rounded"></div>

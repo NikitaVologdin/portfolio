@@ -6,6 +6,7 @@ import Stack from "../Stack";
 import Image from "next/image";
 import { IFetchedExperience } from "@/types/Experience";
 import { useRouter } from "next/navigation";
+import { CldImage } from "next-cloudinary";
 
 interface props extends IFetchedExperience {
   className?: string;
@@ -46,9 +47,9 @@ export default function ExperienceCard({
       clickHandler={clickHandler}
     >
       <div className="mb-4 md:mb-0">
-        <Image
+        <CldImage
           alt="logo"
-          src={`../experiences/${image}`}
+          src={image}
           width="75"
           height="75"
           className="rounded-xl"

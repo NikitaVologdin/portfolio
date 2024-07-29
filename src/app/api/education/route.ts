@@ -1,6 +1,6 @@
 import { EducationModel } from "@/models/education";
 import { NextRequest, NextResponse } from "next/server";
-import createImage from "@/lib/createImage";
+import { uploadImage } from "@/lib/cloudinary";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
 
@@ -25,7 +25,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const imageName = await createImage(formData, body, "education");
+    const image = formData.get("image") as File;
+    const imageName = await uploadImage(image, ["education"]);
     const startDate = new Date(body.start);
     let endDate;
     let difTime;
@@ -79,7 +80,8 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
     });
-    const imageName = await createImage(formData, body, "education");
+    const image = formData.get("image") as File;
+    const imageName = await uploadImage(image, ["education"]);
     const startDate = new Date(body.start);
     let endDate;
     let difTime;

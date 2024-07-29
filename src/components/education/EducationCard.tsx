@@ -1,9 +1,9 @@
 "use client";
 import DateObject from "react-date-object";
 import Card from "../ui/Card";
-import Image from "next/image";
 import Button from "../ui/Button";
 import { IFetchedEducation } from "@/types/Education";
+import { CldImage } from "next-cloudinary";
 
 interface props extends IFetchedEducation {
   className?: "string";
@@ -36,13 +36,7 @@ export default function EducationCard({
       className={`flex-col w-full items-stretch ${className}`}
     >
       <div className="">
-        <Image
-          alt="logo"
-          src={`/education/${image}`}
-          width="50"
-          height="50"
-          className=""
-        />
+        <CldImage alt="logo" src={image} width="50" height="50" className="" />
       </div>
       <div className="flex flex-col gap-3 mt-6">
         <h5 className="text-xl text-black tracking-wide font-medium">{name}</h5>

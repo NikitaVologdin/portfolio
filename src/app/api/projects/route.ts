@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
-import path from "path";
 import { Projects } from "@/models/projects";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
-import createImage from "@/lib/createImage";
+import { uploadImage } from "@/lib/cloudinary";
 
 interface IFormDataProject {
   _id: string;
@@ -26,7 +24,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
       formData.entries()
     ) as unknown as IFormDataProject;
     const skills = JSON.parse(body.skills) as string[];
-    const imageName = await createImage(formData, body, "projects");
+    const image = formData.get("image") as File;
+    const imageName = await uploadImage(image, ["projects"]);
     const startDate = new Date(body.start);
     let endDate;
     let diffTime;
@@ -78,7 +77,8 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     ) as unknown as IFormDataProject;
 
     let skills = JSON.parse(body.skills) as string[];
-    const imageName = await createImage(formData, body, "projects");
+    const image = formData.get("image") as File;
+    const imageName = await uploadImage(image, ["projects"]);
     const startDate = new Date(body.start);
     const present = body.present === "on" ? true : false;
     let endDate;

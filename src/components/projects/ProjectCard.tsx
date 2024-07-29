@@ -8,6 +8,7 @@ import Stack from "../Stack";
 import SquaredButton from "@/components/ui/SquaredButton";
 import { IFetchedProject } from "@/types/Projects";
 import { useRouter } from "next/navigation";
+import { CldImage } from "next-cloudinary";
 
 export default function ProjectCard({
   _id,
@@ -41,10 +42,11 @@ export default function ProjectCard({
     <Card color={color} className="flex-col h-full" clickHandler={clickHandler}>
       <div className="pb-5">
         <div className="h-10 w-10 relative">
-          <Image
-            src={`/projects/${image}`}
+          <CldImage
+            src={image}
             width={0}
             height={0}
+            format="svg"
             fill
             alt="project logo"
             className="h-auto w-auto"
