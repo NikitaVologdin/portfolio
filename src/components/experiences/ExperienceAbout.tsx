@@ -2,7 +2,6 @@ import { IFetchedExperience } from "@/types/Experience";
 import Heading from "../Heading";
 import ButtonLink from "@/components/ui/about/ButtonLink";
 import Background from "@/components/ui/about/Background";
-import Image from "next/image";
 import Container from "@/components/Container";
 import { CldImage } from "next-cloudinary";
 
@@ -13,7 +12,9 @@ interface props {
 export default function ProjectAbout({ experience }: props) {
   return (
     <div className="about">
-      <Background path={`/projects/${experience.image}`}>
+      <Background
+        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${experience.image}}`}
+      >
         <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{experience.name}</Heading>
           <p className="pt-3 pb-2 text-sm">

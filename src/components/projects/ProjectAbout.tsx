@@ -4,6 +4,7 @@ import ButtonLink from "@/components/ui/about/ButtonLink";
 import Background from "@/components/ui/about/Background";
 import Image from "next/image";
 import Container from "@/components/Container";
+import { CldImage } from "next-cloudinary";
 
 interface props {
   project: IFetchedProject;
@@ -37,8 +38,8 @@ export default function ProjectAbout({ project }: props) {
                 <ButtonLink link={`/skills/${s._id}`} target="" key={index}>
                   <div className="flex gap-2 items-center">
                     <div className="h-3 w-3">
-                      <Image
-                        src={`/stack/${s.image}`}
+                      <CldImage
+                        src={s.image}
                         height={0}
                         width={0}
                         alt={`${s.name} logo`}
