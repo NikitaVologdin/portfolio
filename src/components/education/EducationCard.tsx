@@ -3,7 +3,7 @@ import DateObject from "react-date-object";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 import { IFetchedEducation } from "@/types/Education";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 
 interface props extends IFetchedEducation {
   className?: "string";
@@ -36,7 +36,13 @@ export default function EducationCard({
       className={`flex-col w-full items-stretch ${className}`}
     >
       <div className="">
-        <CldImage alt="logo" src={image} width="50" height="50" className="" />
+        <Image
+          alt="logo"
+          src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image}`}
+          width="50"
+          height="50"
+          className=""
+        />
       </div>
       <div className="flex flex-col gap-3 mt-6">
         <h5 className="text-xl text-black tracking-wide font-medium">{name}</h5>

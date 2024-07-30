@@ -4,7 +4,6 @@ import ButtonLink from "@/components/ui/about/ButtonLink";
 import Background from "@/components/ui/about/Background";
 import Image from "next/image";
 import Container from "@/components/Container";
-import { CldImage } from "next-cloudinary";
 
 interface props {
   project: IFetchedProject;

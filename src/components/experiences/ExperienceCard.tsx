@@ -47,9 +47,9 @@ export default function ExperienceCard({
       clickHandler={clickHandler}
     >
       <div className="mb-4 md:mb-0">
-        <CldImage
+        <Image
           alt="logo"
-          src={image}
+          src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image}`}
           width="75"
           height="75"
           className="rounded-xl"
