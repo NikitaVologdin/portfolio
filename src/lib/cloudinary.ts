@@ -13,7 +13,7 @@ cloudinary.config({
 export async function uploadImage(image: File, tags: string[]) {
   const bufferedImage = await image.arrayBuffer();
   const buffer = new Uint8Array(bufferedImage);
-  const imageName = "portfolio/" + image.name.split(".").shift();
+  const imageName = "portfolio/" + image.name;
   await new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader
       .upload_stream(

@@ -3,7 +3,7 @@ import Heading from "../Heading";
 import ButtonLink from "@/components/ui/about/ButtonLink";
 import Background from "@/components/ui/about/Background";
 import Container from "@/components/Container";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 
 interface props {
   experience: IFetchedExperience;
@@ -13,7 +13,7 @@ export default function ProjectAbout({ experience }: props) {
   return (
     <div className="about">
       <Background
-        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${experience.image}}`}
+        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${experience.image}`}
       >
         <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{experience.name}</Heading>
@@ -28,10 +28,10 @@ export default function ProjectAbout({ experience }: props) {
                 <ButtonLink link={`/skills/${e._id}`} target="" key={index}>
                   <div className="flex gap-2 items-center">
                     <div className="h-3 w-3">
-                      <CldImage
-                        src={e.image}
-                        height={0}
-                        width={0}
+                      <Image
+                        src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${e.image}`}
+                        height={15}
+                        width={15}
                         alt={`${e.name} logo`}
                         className="h-auto w-auto my-auto"
                       />

@@ -47,7 +47,6 @@ export default function ProjectCard({
             width={0}
             height={0}
             format="svg"
-            fill
             alt="project logo"
             className="h-auto w-auto"
           />

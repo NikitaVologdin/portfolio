@@ -15,10 +15,9 @@ export default function Stack({ skills }: props) {
             <div className="h-3 w-3">
               <CldImage
                 src={s.image}
-                width={0}
-                height={0}
+                width={15}
+                height={15}
                 alt={`${s.name} icon`}
-                className="h-auto w-auto"
               />
             </div>
           </SquaredButton>

@@ -13,7 +13,9 @@ interface props {
 export default function ProjectAbout({ project }: props) {
   return (
     <div className="about">
-      <Background path={`/projects/${project.image}`}>
+      <Background
+        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${project.image}`}
+      >
         <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{project.name}</Heading>
           <h5 className="pt-3 pb-2">{project.category}</h5>
@@ -38,10 +40,10 @@ export default function ProjectAbout({ project }: props) {
                 <ButtonLink link={`/skills/${s._id}`} target="" key={index}>
                   <div className="flex gap-2 items-center">
                     <div className="h-3 w-3">
-                      <CldImage
-                        src={s.image}
-                        height={0}
-                        width={0}
+                      <Image
+                        src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${s.image}`}
+                        height={15}
+                        width={15}
                         alt={`${s.name} logo`}
                         className="h-auto w-auto my-auto"
                       />
