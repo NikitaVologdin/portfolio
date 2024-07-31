@@ -1,14 +1,13 @@
 "use client";
 import DateObject from "react-date-object";
 import Card from "../ui/Card";
-import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/Button";
 import Stack from "../Stack";
 import SquaredButton from "@/components/ui/SquaredButton";
 import { IFetchedProject } from "@/types/Projects";
 import { useRouter } from "next/navigation";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 
 export default function ProjectCard({
   _id,
@@ -42,11 +41,10 @@ export default function ProjectCard({
     <Card color={color} className="flex-col h-full" clickHandler={clickHandler}>
       <div className="pb-5">
         <div className="h-10 w-10 relative">
-          <CldImage
-            src={image}
+          <Image
+            src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image}.svg`}
             width={0}
             height={0}
-            format="svg"
             alt="project logo"
             className="h-auto w-auto"
           />

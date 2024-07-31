@@ -13,7 +13,7 @@ export default function ProjectAbout({ experience }: props) {
   return (
     <div className="about">
       <Background
-        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${experience.image}`}
+        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${experience.image}.svg`}
       >
         <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{experience.name}</Heading>
@@ -29,7 +29,7 @@ export default function ProjectAbout({ experience }: props) {
                   <div className="flex gap-2 items-center">
                     <div className="h-3 w-3">
                       <Image
-                        src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${e.image}`}
+                        src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${e.image}.svg`}
                         height={15}
                         width={15}
                         alt={`${e.name} logo`}

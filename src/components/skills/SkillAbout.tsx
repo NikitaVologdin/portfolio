@@ -11,7 +11,7 @@ export default function SkillAbout({ skill }: props) {
   return (
     <div className="about">
       <Background
-        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${skill.image}`}
+        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${skill.image}.svg`}
       >
         <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{skill.name}</Heading>

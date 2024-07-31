@@ -13,7 +13,7 @@ export default function ProjectAbout({ project }: props) {
   return (
     <div className="about">
       <Background
-        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${project.image}`}
+        path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${project.image}.svg`}
       >
         <div className="h-full flex flex-col justify-center items-center py-5">
           <Heading>{project.name}</Heading>
@@ -40,7 +40,7 @@ export default function ProjectAbout({ project }: props) {
                   <div className="flex gap-2 items-center">
                     <div className="h-3 w-3">
                       <Image
-                        src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${s.image}`}
+                        src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${s.image}.svg`}
                         height={15}
                         width={15}
                         alt={`${s.name} logo`}

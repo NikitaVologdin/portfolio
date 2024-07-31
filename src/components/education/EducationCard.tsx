@@ -30,6 +30,7 @@ export default function EducationCard({
     duration = endDate.toUnix() - startDate.toUnix();
   }
   const monthAmount = Math.floor(duration / 60 / 60 / 24 / 30);
+  console.log(image);
   return (
     <Card
       color={"#ffffff"}
@@ -38,7 +39,7 @@ export default function EducationCard({
       <div className="">
         <Image
           alt="logo"
-          src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image}`}
+          src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image}.svg`}
           width="50"
           height="50"
           className=""

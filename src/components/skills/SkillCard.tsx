@@ -2,7 +2,6 @@
 import useGradient from "../../hooks/use-gradient";
 import useTransform from "../../hooks/use-transform";
 import { useRouter } from "next/navigation";
-import { CldImage } from "next-cloudinary";
 
 interface props {
   _id: string;
@@ -36,10 +35,6 @@ export default function SkillCard({ _id, name, image, color }: props) {
     return router.push(`/portfolio/skills/${_id}`);
   }
 
-  // const grady = "bg-gradient-to-l from-slate-blue to-white";
-  // const grady = "bg-gradient-to-l from-slate-100 from-40% to-60%";
-  // from - [#fff];
-
   return (
     <div
       style={{
@@ -67,7 +62,7 @@ export default function SkillCard({ _id, name, image, color }: props) {
         <div
           className={`absolute top-0 bottom-0 right-0 left-0 z-0 h-full bg-right bg-no-repeat bg-contain`}
           style={{
-            backgroundImage: `url(https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image})`,
+            backgroundImage: `url(https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image}.svg)`,
             backgroundPosition: "85% 0%",
           }}
         ></div>

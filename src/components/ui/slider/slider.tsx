@@ -132,6 +132,7 @@ export default function Slider({
             height={160}
             width={150}
             priority={true}
+            format="svg"
             className="object-cover w-auto h-auto"
           />
         </motion.div>
