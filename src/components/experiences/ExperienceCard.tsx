@@ -46,13 +46,15 @@ export default function ExperienceCard({
       clickHandler={clickHandler}
     >
       <div className="mb-4 md:mb-0">
-        <Image
-          alt="logo"
-          src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image}.svg`}
-          width="75"
-          height="75"
-          className="rounded-xl"
-        />
+        <div className="h-10 w-10 relative">
+          <Image
+            alt="logo"
+            src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${image}.svg`}
+            width="75"
+            height="75"
+            className="h-auto w-auto rounded-xl"
+          />
+        </div>
       </div>
       <div className="flex flex-col gap-3 md:ml-6">
         <h5 className="text-xl text-black font-bold tracking-wide">{name}</h5>
