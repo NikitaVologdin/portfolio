@@ -1,3 +1,4 @@
+"use client";
 import left from "../../../../public/arrows/left.svg";
 import right from "../../../../public/arrows/right.svg";
 
@@ -98,6 +99,7 @@ export default function Slider({
   const animateDirection = currentSliderSettings.currentSliderDirection;
   const xMovementValue = 20;
   const transitionDuration = 0.5;
+
   return (
     <AnimatePresence>
       <div className="flex items-center justify-between grow">
@@ -126,13 +128,14 @@ export default function Slider({
           transition={{ duration: transitionDuration }}
           className="grow w-fit h-48 px-4 flex justify-center items-center"
         >
-          <CldImage
-            src={slides[currentSliderSettings.currentSlideIndex]}
-            alt="node-js icon"
+          <Image
+            src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${
+              slides[currentSliderSettings.currentSlideIndex]
+            }.svg`}
+            alt={"logo"}
             height={160}
             width={150}
             priority={true}
-            format="svg"
             className="object-cover w-auto h-auto"
           />
         </motion.div>
