@@ -5,6 +5,7 @@ const projectSchema = new Schema<IProject>({
   name: String,
   category: String,
   github: String,
+  link: String,
   start: String,
   end: String,
   duration: Number,

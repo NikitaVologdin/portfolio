@@ -5,6 +5,7 @@ export interface IProject extends Document<Types.ObjectId> {
   name: string;
   category: string;
   github: string;
+  link: string;
   start: string;
   end: string;
   present: boolean;
@@ -20,6 +21,7 @@ export interface IFetchedProject {
   name: string;
   category: string;
   github: string;
+  link?: string;
   start: string;
   end: string;
   present: boolean;

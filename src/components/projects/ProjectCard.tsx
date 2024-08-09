@@ -14,6 +14,7 @@ export default function ProjectCard({
   name,
   category,
   github,
+  link,
   start,
   present,
   end,
@@ -52,7 +53,26 @@ export default function ProjectCard({
       </div>
       <div className="flex justify-between">
         <h5 className="text-xl text-black font-bold tracking-wide">{name}</h5>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          {link && (
+            <Link href={link} target="_blank">
+              <SquaredButton
+                backdropText={link}
+                className={"p-[5px] rounded-[10px]"}
+              >
+                <div className="h-3.5 w-3.5 flex justify-center items-center">
+                  {/* <Image
+                  alt="github link icon"
+                  src="/icons/live.svg"
+                  width={0}
+                  height={0}
+                  className="w-auto h-auto"
+                /> */}
+                  <span className="text-[9px]">live</span>
+                </div>
+              </SquaredButton>
+            </Link>
+          )}
           <Link href={github} target="_blank">
             <SquaredButton
               backdropText={github}
