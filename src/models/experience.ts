@@ -14,6 +14,7 @@ const experienceSchema = new Schema<IExperience>({
   color: String,
   image: String,
   skills: [{ type: Schema.Types.ObjectId, ref: Skill }],
+  preview: String,
   description: String,
 });
 

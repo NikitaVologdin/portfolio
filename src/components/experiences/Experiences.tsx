@@ -27,6 +27,7 @@ export default function Experiences({ experiences }: props) {
                 start={e.start}
                 present={e.present}
                 end={e.end}
+                preview={e.preview}
                 description={e.description}
                 skills={e.skills}
                 color={e.color}

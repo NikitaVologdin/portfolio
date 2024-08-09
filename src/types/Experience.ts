@@ -13,6 +13,7 @@ export interface IExperience extends Document<Types.ObjectId> {
   color: string;
   image: string;
   skills: string[];
+  preview: string;
   description: string;
 }
 
@@ -29,5 +30,6 @@ export interface IFetchedExperience {
   color: string;
   image: string;
   skills: IFetchedSkill[];
+  preview: string;
   description: string;
 }

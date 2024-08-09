@@ -12,6 +12,7 @@ import {
   nameValidator,
   dateValidator,
   colorValidator,
+  previewValidator,
   descriptionValidator,
 } from "@/lib/validators";
 import { SyntheticEvent, useContext, useEffect, useState } from "react";
@@ -135,6 +136,16 @@ export default function NewProjectForm({
   } = useCheckboxes<string>();
 
   const {
+    value: previewValue,
+    setValue: setPreviewValue,
+    isTouched: previewIsTouched,
+    setIsTouched: setPreviewIsTouched,
+    hasError: previewHasError,
+    changeHandler: previewChangeHandler,
+    blurHandler: previewBlurHandler,
+  } = useInput(previewValidator);
+
+  const {
     value: descriptionValue,
     setValue: setDescriptionValue,
     isTouched: descriptionIsTouched,
@@ -156,7 +167,9 @@ export default function NewProjectForm({
       setColorValue(experience.color);
       setPresentCheckbox(experience.present);
       setSelectedChecks(experience.skills.map((s) => s._id));
+      setPreviewValue(experience.preview);
       setDescriptionValue(experience.description);
+
       setNameIsTouched(true);
       setCompanyIsTouched(true);
       setLocationIsTouched(true);
@@ -166,6 +179,7 @@ export default function NewProjectForm({
       setImageUploadIsTouched(true);
       setColorIsTouched(true);
       setSelectedChecksAreTouched(true);
+      setPreviewIsTouched(true);
       setDescriptionIsTouched(true);
     }
   }, [
@@ -189,6 +203,8 @@ export default function NewProjectForm({
     setColorIsTouched,
     setSelectedChecks,
     setSelectedChecksAreTouched,
+    setPreviewValue,
+    setPreviewIsTouched,
     setDescriptionValue,
     setDescriptionIsTouched,
   ]);
@@ -422,6 +438,24 @@ export default function NewProjectForm({
         </div>
       </InputGroup>
       <InputGroup
+        label="Description preview"
+        id="preview"
+        hasError={previewHasError}
+        error="Preview is not valid"
+      >
+        <TextArea
+          id="preview"
+          name="preview"
+          value={previewValue}
+          rows={3}
+          cols={7}
+          isTouched={previewIsTouched}
+          hasError={previewHasError}
+          changeHandler={previewChangeHandler}
+          blurHandler={previewBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
         label="description"
         id="description"
         hasError={descriptionHasError}
@@ -431,7 +465,7 @@ export default function NewProjectForm({
           id="description"
           name="description"
           value={descriptionValue}
-          rows={5}
+          rows={7}
           cols={7}
           isTouched={descriptionIsTouched}
           hasError={descriptionHasError}

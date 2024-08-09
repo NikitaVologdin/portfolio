@@ -18,7 +18,9 @@ export default function ExperienceItem({
         <h5 className="font-semibold text-lg text-indigo-900">
           {experience.name}
         </h5>
-        <p className="mt-1">{experience.description}</p>
+        <p className="mt-1">
+          Preview: <span className="italic">{experience.preview}</span>
+        </p>
         <p className="mt-3">
           Company: <span className={`font-semibold`}>{experience.company}</span>
         </p>

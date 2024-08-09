@@ -21,7 +21,7 @@ export default function ExperienceCard({
   start,
   present,
   end,
-  description,
+  preview,
   skills,
   className,
   color,
@@ -90,7 +90,7 @@ export default function ExperienceCard({
             present ? "present" : `${endDate?.month.name} ${endDate?.year}`
           } · ${daysAmount} days`}
         </div>
-        <div>{description}</div>
+        <div>{preview}</div>
         <Stack skills={skills} />
       </div>
     </Card>
