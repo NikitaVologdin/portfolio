@@ -28,6 +28,8 @@ export default function NewProjectForm({
   const ctx = useContext(NotificationContext);
   const router = useRouter();
 
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
+
   const {
     value: nameValue,
     setValue: setNameValue,
@@ -78,6 +80,7 @@ export default function NewProjectForm({
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) {
     event.preventDefault();
+    setIsFormSubmitting(true);
     if (isFormValid) {
       const formData = new FormData(event.currentTarget);
       if (resume) {
@@ -90,6 +93,7 @@ export default function NewProjectForm({
       response
         .json()
         .then((info) => {
+          setIsFormSubmitting(false);
           modalCloseHandler();
           ctx.setNotification({
             isActive: true,
@@ -99,6 +103,7 @@ export default function NewProjectForm({
           router.refresh();
         })
         .catch((e) => {
+          setIsFormSubmitting(false);
           modalCloseHandler();
           ctx.setNotification({
             isActive: true,
@@ -150,7 +155,8 @@ export default function NewProjectForm({
       <div className="control flex gap-3">
         <SubmitButton
           name={resume ? "Edit" : "Submit"}
-          disabled={!isFormValid}
+          isFormValid={isFormValid}
+          isSubmitting={isFormSubmitting}
         />
         <CloseButton modalCloseHandler={modalCloseHandler} />
       </div>

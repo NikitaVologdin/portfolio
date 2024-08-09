@@ -41,6 +41,8 @@ export default function NewProjectForm({
   const router = useRouter();
 
   const [presentCheckbox, setPresentCheckbox] = useState(false);
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
+
   function checkBoxHandler() {
     setPresentCheckbox(!presentCheckbox);
   }
@@ -211,17 +213,21 @@ export default function NewProjectForm({
 
   const isFormValid =
     !nameHasError &&
+    !locationHasError &&
     !startDateHasError &&
     !endDateHasError &&
     !imageUploadHasError &&
     !colorHasError &&
     !checksHaveError &&
+    !previewHasError &&
     !descriptionHasError;
 
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) {
     event.preventDefault();
+    setIsFormSubmitting(true);
+
     if (isFormValid) {
       const formData = new FormData(event.currentTarget);
       skills.forEach((skill) => {
@@ -243,6 +249,7 @@ export default function NewProjectForm({
       response
         .json()
         .then((info) => {
+          setIsFormSubmitting(false);
           modalCloseHandler();
           ctx.setNotification({
             isActive: true,
@@ -253,6 +260,7 @@ export default function NewProjectForm({
         })
         .catch((e) => {
           console.log(e);
+          setIsFormSubmitting(false);
           modalCloseHandler();
           ctx.setNotification({
             isActive: true,
@@ -476,7 +484,8 @@ export default function NewProjectForm({
       <div className="control flex gap-3">
         <SubmitButton
           name={experience ? "Edit" : "Submit"}
-          disabled={!isFormValid}
+          isFormValid={isFormValid}
+          isSubmitting={isFormSubmitting}
         />
         <CloseButton modalCloseHandler={modalCloseHandler} />
       </div>
