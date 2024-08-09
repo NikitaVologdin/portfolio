@@ -39,6 +39,9 @@ export default function SkillsForm({
   const router = useRouter();
   const ctx = useContext(NotificationContext);
 
+  const [newSkillInputDisabled, setNewSkillInputDisabled] = useState(true);
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
+
   const {
     value: skillNameValue,
     setValue: setSkillNameValue,
@@ -115,8 +118,6 @@ export default function SkillsForm({
     blurHandler: skillDescriptionBlurHandler,
   } = useInput(descriptionValidator);
 
-  const [newSkillInputDisabled, setNewSkillInputDisabled] = useState(true);
-
   useEffect(() => {
     if (skillGroupValue === "New group") {
       setNewSkillInputDisabled(false);
@@ -171,19 +172,12 @@ export default function SkillsForm({
     !colorHasError &&
     !skillDescriptionHasError;
 
-  const isFormTouched =
-    skillNameIsTouched &&
-    skillGroupIsTouched &&
-    skillImageUploadIsTouched &&
-    colorIsTouched &&
-    skillDescriptionIsTouched;
-  const disabled = !isFormValid;
-
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) {
     event.preventDefault();
-    if (isFormValid && isFormTouched) {
+    setIsFormSubmitting(true);
+    if (isFormValid) {
       const formData = new FormData(event.currentTarget);
       if (skill) {
         formData.append("_id", skill._id);
@@ -197,6 +191,7 @@ export default function SkillsForm({
         .json()
         .then((info) => {
           modalCloseHandler();
+          setIsFormSubmitting(false);
           ctx.setNotification({
             isActive: true,
             status: info.status,
@@ -206,6 +201,7 @@ export default function SkillsForm({
           router.refresh();
         })
         .catch((info) => {
+          setIsFormSubmitting(false);
           modalCloseHandler();
           ctx.setNotification({
             isActive: true,
@@ -325,7 +321,11 @@ export default function SkillsForm({
           />
         </InputGroup>
         <div className="form__control flex gap-3">
-          <SubmitButton name={skill ? "Edit" : "Submit"} disabled={disabled} />
+          <SubmitButton
+            name={skill ? "Edit" : "Submit"}
+            isFormValid={isFormValid}
+            isSubmitting={isFormSubmitting}
+          />
           <CloseButton modalCloseHandler={modalCloseHandler} />
         </div>
       </form>

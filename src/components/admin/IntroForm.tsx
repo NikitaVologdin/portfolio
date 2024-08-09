@@ -9,7 +9,7 @@ import { NotificationContext } from "@/context/NotificationContext";
 import { useRouter } from "next/navigation";
 import { IFetchedDeveloper } from "@/types/Developer";
 import { nameValidator, descriptionValidator } from "@/lib/validators";
-import { revalidatePath } from "next/cache";
+import { useState } from "react";
 
 interface props {
   developer: IFetchedDeveloper;
@@ -19,6 +19,7 @@ interface props {
 export default function IntroForm({ developer, path }: props) {
   const notificationCTX = useContext(NotificationContext);
   const router = useRouter();
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
 
   const {
     value: nameValue,
@@ -57,11 +58,14 @@ export default function IntroForm({ developer, path }: props) {
     setDescriptionIsTouched,
   ]);
 
+  const isFormValid = !nameHasError && !descriptionHasError;
+
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) {
     event.preventDefault();
-    if (!nameHasError && !descriptionHasError) {
+    if (isFormValid) {
+      setIsFormSubmitting(true);
       const response = await fetch("https://" + path + "/api/hero", {
         method: "PUT",
         headers: {
@@ -81,8 +85,7 @@ export default function IntroForm({ developer, path }: props) {
             message: info.message,
             isActive: true,
           });
-          revalidatePath("/admin/intro");
-          router.refresh();
+          setIsFormSubmitting(false);
         })
         .catch((e) => {
           console.log(e);
@@ -135,7 +138,11 @@ export default function IntroForm({ developer, path }: props) {
           />
         </InputGroup>
         <div className="control flex gap-3">
-          <SubmitButton name="Submit" />
+          <SubmitButton
+            name="Submit"
+            isSubmitting={isFormSubmitting}
+            isFormValid={isFormValid}
+          />
         </div>
       </form>
     </div>

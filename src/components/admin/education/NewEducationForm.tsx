@@ -39,6 +39,7 @@ export default function NewEducationForm({
   const router = useRouter();
 
   const [presentCheckbox, setPresentCheckbox] = useState(false);
+  const [isFormSubmitting, setIsFormSubmitting] = useState(false);
   function checkBoxHandler() {
     setPresentCheckbox(!presentCheckbox);
   }
@@ -166,9 +167,11 @@ export default function NewEducationForm({
 
   const isFormValid =
     !nameHasError &&
+    !universityHasError &&
+    !locationHasError &&
+    !imageUploadHasError &&
     !startDateHasError &&
     !endDateHasError &&
-    !imageUploadHasError &&
     !checksHaveError &&
     !descriptionHasError;
 
@@ -176,6 +179,7 @@ export default function NewEducationForm({
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) {
     event.preventDefault();
+    setIsFormSubmitting(true);
     if (isFormValid) {
       const formData = new FormData(event.currentTarget);
       skills.forEach((skill) => {
@@ -197,6 +201,7 @@ export default function NewEducationForm({
       response
         .json()
         .then((info) => {
+          setIsFormSubmitting(false);
           modalCloseHandler();
           ctx.setNotification({
             isActive: true,
@@ -206,6 +211,7 @@ export default function NewEducationForm({
           router.refresh();
         })
         .catch((e) => {
+          setIsFormSubmitting(false);
           modalCloseHandler();
           ctx.setNotification({
             isActive: true,
@@ -379,7 +385,8 @@ export default function NewEducationForm({
       <div className="control flex gap-3">
         <SubmitButton
           name={education ? "Edit" : "Submit"}
-          disabled={!isFormValid}
+          isFormValid={isFormValid}
+          isSubmitting={isFormSubmitting}
         />
         <CloseButton modalCloseHandler={modalCloseHandler} />
       </div>
