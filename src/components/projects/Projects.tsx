@@ -15,6 +15,7 @@ export default function Projects({ projects }: props) {
             _id={p._id}
             name={p.name}
             github={p.github}
+            link={p.link}
             category={p.category}
             image={p.image}
             duration={p.duration}
