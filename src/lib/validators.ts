@@ -29,6 +29,9 @@ function descriptionValidator(value: string) {
 function gitHubLinkValidator(link: string) {
   return /^https:\/\/github.com\//gi.test(link.trim());
 }
+function linkValidator(link: string) {
+  return /^https:\//gi.test(link.trim());
+}
 
 function dateValidator(value: any) {
   return true;
@@ -45,5 +48,6 @@ export {
   descriptionValidator,
   dateValidator,
   gitHubLinkValidator,
+  linkValidator,
   fileValidator,
 };

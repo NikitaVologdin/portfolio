@@ -11,6 +11,7 @@ import {
   imageUploadValidator,
   nameValidator,
   gitHubLinkValidator,
+  linkValidator,
   dateValidator,
   colorValidator,
   descriptionValidator,
@@ -90,6 +91,16 @@ export default function NewProjectForm({
     changeHandler: gitHubLinkChangeHandler,
     blurHandler: gitHubLinkBlurHandler,
   } = useInput(gitHubLinkValidator);
+
+  const {
+    value: linkValue,
+    setValue: setLinkValue,
+    isTouched: linkIsTouched,
+    setIsTouched: setLinkIsTouched,
+    hasError: linkHasError,
+    changeHandler: linkChangeHandler,
+    blurHandler: linkBlurHandler,
+  } = useInput(linkValidator);
 
   const {
     value: startDateValue,
@@ -280,6 +291,22 @@ export default function NewProjectForm({
           hasError={gitHubLinkHasError}
           changeHandler={gitHubLinkChangeHandler}
           blurHandler={gitHubLinkBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Deployment link"
+        id="link"
+        hasError={linkHasError}
+        error="Invalid link"
+      >
+        <Input
+          id="link"
+          name="link"
+          value={linkValue}
+          isTouched={linkIsTouched}
+          hasError={linkHasError}
+          changeHandler={linkChangeHandler}
+          blurHandler={linkBlurHandler}
         />
       </InputGroup>
       <InputGroup
