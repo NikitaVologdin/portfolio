@@ -5,6 +5,7 @@ const projectSchema = new Schema<IProject>({
   name: String,
   category: String,
   github: String,
+  link: String,
   start: String,
   end: String,
   duration: Number,
@@ -12,6 +13,7 @@ const projectSchema = new Schema<IProject>({
   image: String,
   color: String,
   skills: [{ type: Schema.Types.ObjectId, ref: Skill }],
+  preview: String,
   description: String,
 });
 

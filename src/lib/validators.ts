@@ -26,8 +26,15 @@ function descriptionValidator(value: string) {
   return value.trim().length > 20;
 }
 
+function previewValidator(value: string) {
+  return value.trim().length < 150;
+}
+
 function gitHubLinkValidator(link: string) {
   return /^https:\/\/github.com\//gi.test(link.trim());
+}
+function linkValidator(link: string) {
+  return /^https:\//gi.test(link.trim());
 }
 
 function dateValidator(value: any) {
@@ -42,8 +49,10 @@ export {
   nameValidator,
   imageUploadValidator,
   colorValidator,
+  previewValidator,
   descriptionValidator,
   dateValidator,
   gitHubLinkValidator,
+  linkValidator,
   fileValidator,
 };

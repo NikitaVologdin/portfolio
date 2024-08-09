@@ -19,20 +19,38 @@ export default function ProjectAbout({ project }: props) {
           <Heading>{project.name}</Heading>
           <h5 className="pt-3 pb-2">{project.category}</h5>
           <div className="w-9/12 h-px bg-slate-200 my-3 rounded"></div>
-          <ButtonLink link={project.github} target="_blank">
-            <div className="flex gap-2 items-center">
-              <div className="h-3 w-3">
-                <Image
-                  src="/icons/link.svg"
-                  height={0}
-                  width={0}
-                  alt="github logo"
-                  className="h-auto w-auto my-auto"
-                />
+          <div className="flex gap-2">
+            <ButtonLink link={project.github} target="_blank">
+              <div className="flex gap-2 items-center">
+                <div className="h-3 w-3">
+                  <Image
+                    src="/icons/link.svg"
+                    height={0}
+                    width={0}
+                    alt="github logo"
+                    className="h-auto w-auto my-auto"
+                  />
+                </div>
+                <span className="text-xs">GitHub</span>
               </div>
-              <span className="text-xs">GitHub</span>
-            </div>
-          </ButtonLink>
+            </ButtonLink>
+            <ButtonLink link={project.link} target="_blank">
+              <div className="flex gap-2 items-center">
+                <div className="h-3 w-3">
+                  <Image
+                    src="/icons/link.svg"
+                    height={0}
+                    width={0}
+                    alt="github logo"
+                    className="h-auto w-auto my-auto"
+                  />
+                </div>
+                <span className="text-xs">
+                  <span className="text-xs">Deployment</span>
+                </span>
+              </div>
+            </ButtonLink>
+          </div>
           <div className="flex gap-2 flex-wrap mt-3 justify-center">
             {project.skills.map((s, index) => {
               return (

@@ -1,4 +1,5 @@
 import { IFetchedProject } from "@/types/Projects";
+import Link from "next/link";
 
 interface props {
   project: IFetchedProject;
@@ -20,8 +21,20 @@ export default function ProjectItem({
           {project.name}
         </h5>
         <p className="mt-1 font-semibold">{project.category}</p>
-        <p className="mt-3">{project.description}</p>
         <p className="mt-3">
+          Preview: <span className="italic">{project.preview}</span>
+        </p>
+        <p className="mt-3">
+          Link:{" "}
+          {project.link ? (
+            <Link href={project.link} target="_blank">
+              {<span className="font-semibold">{project.link}</span>}
+            </Link>
+          ) : (
+            "empty"
+          )}
+        </p>
+        <p>
           Color:{" "}
           <span
             className={`font-semibold`}

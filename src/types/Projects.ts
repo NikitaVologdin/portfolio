@@ -5,6 +5,7 @@ export interface IProject extends Document<Types.ObjectId> {
   name: string;
   category: string;
   github: string;
+  link: string;
   start: string;
   end: string;
   present: boolean;
@@ -12,6 +13,7 @@ export interface IProject extends Document<Types.ObjectId> {
   color: string;
   image: string;
   skills: string[];
+  preview: string;
   description: string;
 }
 
@@ -20,6 +22,7 @@ export interface IFetchedProject {
   name: string;
   category: string;
   github: string;
+  link?: string;
   start: string;
   end: string;
   present: boolean;
@@ -27,5 +30,6 @@ export interface IFetchedProject {
   color: string;
   image: string;
   skills: IFetchedSkill[];
+  preview: string;
   description: string;
 }

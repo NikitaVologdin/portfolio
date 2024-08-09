@@ -11,8 +11,10 @@ import {
   imageUploadValidator,
   nameValidator,
   gitHubLinkValidator,
+  linkValidator,
   dateValidator,
   colorValidator,
+  previewValidator,
   descriptionValidator,
 } from "@/lib/validators";
 import { SyntheticEvent, useContext, useEffect, useRef, useState } from "react";
@@ -92,6 +94,16 @@ export default function NewProjectForm({
   } = useInput(gitHubLinkValidator);
 
   const {
+    value: linkValue,
+    setValue: setLinkValue,
+    isTouched: linkIsTouched,
+    setIsTouched: setLinkIsTouched,
+    hasError: linkHasError,
+    changeHandler: linkChangeHandler,
+    blurHandler: linkBlurHandler,
+  } = useInput(linkValidator);
+
+  const {
     value: startDateValue,
     setValue: setStartDateValue,
     isTouched: startDateIsTouched,
@@ -136,6 +148,16 @@ export default function NewProjectForm({
   } = useCheckboxes<string>();
 
   const {
+    value: previewValue,
+    setValue: setPreviewValue,
+    isTouched: previewIsTouched,
+    setIsTouched: setPreviewIsTouched,
+    hasError: previewHasError,
+    changeHandler: previewChangeHandler,
+    blurHandler: previewBlurHandler,
+  } = useInput(previewValidator);
+
+  const {
     value: descriptionValue,
     setValue: setDescriptionValue,
     isTouched: descriptionIsTouched,
@@ -149,15 +171,18 @@ export default function NewProjectForm({
     if (project) {
       setNameValue(project.name);
       setGitHubLinkValue(project.github);
+      setLinkValue(project.link ? project.link : "");
       setStartDateValue(project.start);
       setEndDateValue(project.end);
       setImageUploadValue([{ name: project.image }]);
       setCategoryValue(project.category);
       setColorValue(project.color);
       setSelectedChecks(project.skills.map((s) => s._id));
+      setPreviewValue(project.preview);
       setDescriptionValue(project.description);
 
       setNameIsTouched(true);
+      setLinkIsTouched(true);
       setGitHubLinkIsTouched(true);
       setStartDateIsTouched(true);
       setPresentCheckbox(project.present);
@@ -166,12 +191,15 @@ export default function NewProjectForm({
       setCategoryIsTouched(true);
       setColorIsTouched(true);
       setSelectedChecksAreTouched(true);
+      setPreviewIsTouched(true);
       setDescriptionIsTouched(true);
     }
   }, [
     project,
     setNameValue,
     setNameIsTouched,
+    setLinkValue,
+    setLinkIsTouched,
     setGitHubLinkValue,
     setGitHubLinkIsTouched,
     setCategoryValue,
@@ -187,6 +215,8 @@ export default function NewProjectForm({
     setColorIsTouched,
     setSelectedChecks,
     setSelectedChecksAreTouched,
+    setPreviewValue,
+    setPreviewIsTouched,
     setDescriptionValue,
     setDescriptionIsTouched,
   ]);
@@ -280,6 +310,22 @@ export default function NewProjectForm({
           hasError={gitHubLinkHasError}
           changeHandler={gitHubLinkChangeHandler}
           blurHandler={gitHubLinkBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Deployment link"
+        id="link"
+        hasError={linkHasError}
+        error="Invalid link"
+      >
+        <Input
+          id="link"
+          name="link"
+          value={linkValue}
+          isTouched={linkIsTouched}
+          hasError={linkHasError}
+          changeHandler={linkChangeHandler}
+          blurHandler={linkBlurHandler}
         />
       </InputGroup>
       <InputGroup
@@ -404,7 +450,25 @@ export default function NewProjectForm({
         </div>
       </InputGroup>
       <InputGroup
-        label="description"
+        label="Description preview"
+        id="preview"
+        hasError={previewHasError}
+        error="Preview is not valid"
+      >
+        <TextArea
+          id="preview"
+          name="preview"
+          value={previewValue}
+          rows={3}
+          cols={7}
+          isTouched={previewIsTouched}
+          hasError={previewHasError}
+          changeHandler={previewChangeHandler}
+          blurHandler={previewBlurHandler}
+        />
+      </InputGroup>
+      <InputGroup
+        label="Full description"
         id="description"
         hasError={descriptionHasError}
         error="Description is not valid"
@@ -413,7 +477,7 @@ export default function NewProjectForm({
           id="description"
           name="description"
           value={descriptionValue}
-          rows={5}
+          rows={7}
           cols={7}
           isTouched={descriptionIsTouched}
           hasError={descriptionHasError}
