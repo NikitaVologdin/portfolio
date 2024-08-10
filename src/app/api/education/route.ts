@@ -58,7 +58,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       });
     }
     await education.save();
-    revalidateTag("education");
+    // revalidateTag("education");
     revalidatePath("/admin/education");
     return NextResponse.json({
       message: `${education.name} education is created`,
