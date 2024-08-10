@@ -208,6 +208,7 @@ export default function NewEducationForm({
         .json()
         .then((info) => {
           setIsFormSubmitting(false);
+          router.refresh();
           modalCloseHandler();
           ctx.setNotification({
             isActive: true,

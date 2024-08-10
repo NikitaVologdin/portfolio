@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { uploadImage } from "@/lib/cloudinary";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 interface IFormDataEducation {
   _id: string;
@@ -58,8 +58,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       });
     }
     await education.save();
-    // revalidateTag("education");
-    revalidatePath("/admin/education");
+    revalidateTag("education");
     return NextResponse.json({
       message: `${education.name} education is created`,
       status: 200,
@@ -78,7 +77,6 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     const body = Object.fromEntries(
       formData.entries()
     ) as unknown as IFormDataEducation;
-
     const skills = JSON.parse(body.skills) as string[];
     skills.forEach((skill, index) => {
       new mongoose.Types.ObjectId(skill);
@@ -92,7 +90,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     if (body.end) {
       endDate = new Date(body.end);
       difTime = endDate.getTime() - startDate.getTime();
-      await EducationModel.findOneAndUpdate(
+      const document = await EducationModel.findOneAndUpdate(
         { _id: body._id },
         {
           ...body,
@@ -107,6 +105,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
           new: true,
         }
       );
+      console.log(document);
     } else {
       await EducationModel.findOneAndUpdate(
         { _id: body._id },
