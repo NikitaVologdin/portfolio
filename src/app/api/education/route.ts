@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { uploadImage } from "@/lib/cloudinary";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 interface IFormDataEducation {
   _id: string;
@@ -59,6 +59,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
     await education.save();
     revalidateTag("education");
+    revalidatePath("/admin/education");
     return NextResponse.json({
       message: `${education.name} education is created`,
       status: 200,
