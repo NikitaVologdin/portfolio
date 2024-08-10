@@ -10,14 +10,14 @@ export default async function page() {
     async () => {
       return fetchDataOnServer(EducationModel);
     },
-    [],
+    ["my-app-education"],
     { tags: ["education"] }
   );
   const cashedSkills = unstable_cache(
     async () => {
       return fetchDataOnServer(Skills);
     },
-    [],
+    ["my-app-skills"],
     { tags: ["skills"] }
   );
   const education = await cashedEducation();
