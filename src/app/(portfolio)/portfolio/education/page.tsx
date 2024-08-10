@@ -6,10 +6,18 @@ import Container from "@/components/Container";
 import { fetchDataWithPopulate } from "@/lib/utils";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
+import { unstable_cache } from "next/cache";
 
 export default function Page() {
   async function Component() {
-    const education = await fetchDataWithPopulate(EducationModel, "skills");
+    const cashedEducation = unstable_cache(
+      async () => {
+        return fetchDataWithPopulate(EducationModel, "skills");
+      },
+      [],
+      { tags: ["education"] }
+    );
+    const education = await cashedEducation();
     return (
       <>
         <Search />

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { uploadImage } from "@/lib/cloudinary";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
+import { revalidateTag } from "next/cache";
 
 interface IFormDataEducation {
   _id: string;
@@ -57,6 +58,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       });
     }
     await education.save();
+    revalidateTag("education");
     return NextResponse.json({
       message: `${education.name} education is created`,
       status: 200,
@@ -121,7 +123,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
         }
       );
     }
-
+    revalidateTag("education");
     return NextResponse.json({
       message: "Experience info has been uptated",
       status: 200,

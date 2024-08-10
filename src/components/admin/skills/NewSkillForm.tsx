@@ -198,7 +198,6 @@ export default function SkillsForm({
             message: info.message,
           });
           setEdit({ state: false });
-          router.refresh();
         })
         .catch((info) => {
           setIsFormSubmitting(false);
@@ -209,7 +208,6 @@ export default function SkillsForm({
             message: info.message,
           });
           setEdit({ state: false });
-          router.refresh();
         });
     }
   }
