@@ -167,13 +167,19 @@ export default function NewEducationForm({
 
   const isFormValid =
     !nameHasError &&
+    nameIsTouched &&
     !universityHasError &&
+    universityIsTouched &&
     !locationHasError &&
+    locationIsTouched &&
     !imageUploadHasError &&
+    imageUploadIsTouched &&
     !startDateHasError &&
+    startDateIsTouched &&
     !endDateHasError &&
     !checksHaveError &&
-    !descriptionHasError;
+    !descriptionHasError &&
+    descriptionIsTouched;
 
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>

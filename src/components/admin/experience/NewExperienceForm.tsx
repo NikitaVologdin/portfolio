@@ -213,14 +213,21 @@ export default function NewProjectForm({
 
   const isFormValid =
     !nameHasError &&
+    nameIsTouched &&
     !locationHasError &&
+    locationIsTouched &&
     !startDateHasError &&
+    startDateIsTouched &&
     !endDateHasError &&
     !imageUploadHasError &&
+    imageUploadIsTouched &&
     !colorHasError &&
+    colorIsTouched &&
     !checksHaveError &&
     !previewHasError &&
-    !descriptionHasError;
+    previewIsTouched &&
+    !descriptionHasError &&
+    descriptionIsTouched;
 
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>

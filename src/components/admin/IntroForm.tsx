@@ -58,7 +58,11 @@ export default function IntroForm({ developer, path }: props) {
     setDescriptionIsTouched,
   ]);
 
-  const isFormValid = !nameHasError && !descriptionHasError;
+  const isFormValid =
+    !nameHasError &&
+    nameIsTouched &&
+    !descriptionHasError &&
+    descriptionIsTouched;
 
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>

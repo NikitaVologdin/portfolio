@@ -75,7 +75,11 @@ export default function NewProjectForm({
     setFileUploadValue,
     setFileUploadIsTouched,
   ]);
-  const isFormValid = !nameHasError && !fileUploadHasError;
+  const isFormValid =
+    !nameHasError &&
+    nameIsTouched &&
+    !fileUploadHasError &&
+    fileUploadIsTouched;
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) {

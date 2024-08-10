@@ -166,11 +166,16 @@ export default function SkillsForm({
 
   const isFormValid =
     !skillNameHasError &&
+    skillNameIsTouched &&
     !skillGroupHasError &&
+    skillGroupIsTouched &&
     !newSkillsGroupHasError &&
     !skillImageUploadHasError &&
+    skillImageUploadIsTouched &&
     !colorHasError &&
+    colorIsTouched &&
     !skillDescriptionHasError;
+  skillDescriptionIsTouched;
 
   async function submitHandler(
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>

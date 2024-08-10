@@ -19,12 +19,12 @@ export default function FormButton({
   return (
     <button
       className={
-        isFormValid
+        !isFormValid
           ? `border py-1 px-3 text-md rounded ${disabledClasses}`
           : `border py-1 px-3 text-md rounded ${activeClasses} ${hoverClasses} ${className}`
       }
       type="submit"
-      disabled={isFormValid}
+      disabled={!isFormValid}
     >
       {isSubmitting ? name + "ing..." : name}
     </button>

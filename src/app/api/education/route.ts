@@ -125,7 +125,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     }
     revalidateTag("education");
     return NextResponse.json({
-      message: "Experience info has been uptated",
+      message: "Education info has been uptated",
       status: 200,
     });
   } catch (error) {
