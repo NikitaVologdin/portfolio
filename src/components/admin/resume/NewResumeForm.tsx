@@ -100,7 +100,6 @@ export default function NewProjectForm({
             status: info.status,
             message: info.message,
           });
-          router.refresh();
         })
         .catch((e) => {
           setIsFormSubmitting(false);

@@ -59,7 +59,6 @@ export default function Experience({ experiences, skills, path }: props) {
           message: info.message,
           status: info.status,
         });
-        router.refresh();
       })
       .catch((info) => {
         ctx.setNotification({

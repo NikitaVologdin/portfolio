@@ -49,7 +49,6 @@ export default function Skills({ groups, path }: props) {
           message: info.message,
           status: info.status,
         });
-        router.refresh();
       })
       .catch((info) => {
         ctx.setNotification({

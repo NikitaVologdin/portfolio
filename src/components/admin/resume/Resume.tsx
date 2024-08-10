@@ -57,7 +57,6 @@ export default function Resume({ resume, path }: props) {
           message: info.message,
           status: info.status,
         });
-        router.refresh();
       })
       .catch((info) => {
         ctx.setNotification({
