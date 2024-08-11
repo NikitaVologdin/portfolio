@@ -7,21 +7,17 @@ import { fetchDataWithPopulate } from "@/lib/utils";
 import { IProject } from "@/types/Projects";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
+import { unstable_cache } from "next/cache";
 
-export default function page() {
-  async function Component() {
-    const projects = await fetchDataWithPopulate<IProject>(
-      ProjectsModel,
-      "skills"
-    );
-
-    return (
-      <>
-        <Search />
-        <Projects projects={projects.reverse()} />
-      </>
-    );
-  }
+export default async function page() {
+  const cachedProjects = unstable_cache(
+    async () => {
+      return fetchDataWithPopulate<IProject>(ProjectsModel, "skills");
+    },
+    ["my-app-projects"],
+    { tags: ["projects"] }
+  );
+  const projects = await cachedProjects();
 
   return (
     <>
@@ -30,7 +26,8 @@ export default function page() {
       </div>
       <Container className="h-dvh my-auto">
         <Suspense fallback={<Loading />}>
-          <Component />
+          <Search />
+          <Projects projects={projects.reverse()} />
         </Suspense>
       </Container>
     </>

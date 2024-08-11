@@ -3,6 +3,7 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import { Resume } from "@/models/resume";
 import dbConnect from "@/lib/dbConnect";
+import { revalidateTag } from "next/cache";
 
 interface IFormDataResume {
   _id?: string;
@@ -43,6 +44,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       file,
     });
     await resume.save();
+    revalidateTag("resume");
     return NextResponse.json({
       message: `${resume.name} resume is created`,
       status: 200,
@@ -75,6 +77,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
       }
     );
     if (query) {
+      revalidateTag("resume");
       return NextResponse.json({
         message: `${query.name} project info has been uptated`,
         status: 200,

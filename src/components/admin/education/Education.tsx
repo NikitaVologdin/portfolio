@@ -7,7 +7,6 @@ import NewEducationForm from "../education/NewEducationForm";
 import EducationItem from "./EducationItem";
 import { fetchDataOnClient, deleteData } from "@/lib/utils";
 import { NotificationContext } from "@/context/NotificationContext";
-import { useRouter } from "next/navigation";
 import { IFetchedSkill } from "@/types/Skills";
 import { IFetchedEducation } from "@/types/Education";
 

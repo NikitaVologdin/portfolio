@@ -1,9 +1,9 @@
 "use client";
-import InputGroup from "../ui/form/InputGroup";
-import Input from "../ui/form/Input";
-import TextArea from "../ui/form/TextArea";
-import useInput from "../../hooks/use-input";
-import SubmitButton from "../ui/form/SubmitButton";
+import InputGroup from "@/components/ui/form/InputGroup";
+import Input from "@/components/ui/form/Input";
+import TextArea from "@/components/ui/form/TextArea";
+import useInput from "@/hooks/use-input";
+import SubmitButton from "@/components/ui/form/SubmitButton";
 import { SyntheticEvent, useEffect, useContext } from "react";
 import { NotificationContext } from "@/context/NotificationContext";
 import { useRouter } from "next/navigation";

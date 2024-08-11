@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Developer from "@/models/developer";
+import { revalidateTag } from "next/cache";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
@@ -8,8 +9,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const body = await req.json();
     const developer = new Developer(body);
     await developer.save();
+    revalidateTag("hero");
     return NextResponse.json({
-      revalidated: true,
       message: `${body.name} developer is created`,
       code: 201,
     });
@@ -28,6 +29,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
       await Developer.findOneAndUpdate({ _id: body._id }, body, {
         new: true,
       });
+      revalidateTag("hero");
       return NextResponse.json({
         message: "Developer info has been uptated",
         status: 200,

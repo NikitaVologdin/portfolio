@@ -6,17 +6,17 @@ import { fetchDataWithPopulate } from "@/lib/utils";
 import { Experiences as ExperienceModel } from "@/models/experience";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
+import { unstable_cache } from "next/cache";
 
-export default function Page() {
-  async function Component() {
-    const experiences = await fetchDataWithPopulate(ExperienceModel, "skills");
-    return (
-      <>
-        <Search />
-        <Experiences experiences={experiences.reverse()} />
-      </>
-    );
-  }
+export default async function Page() {
+  const cachedExperiences = unstable_cache(
+    async () => {
+      return fetchDataWithPopulate(ExperienceModel, "skills");
+    },
+    ["my-app-experiences"],
+    { tags: ["experiences"] }
+  );
+  const experiences = await cachedExperiences();
 
   return (
     <>
@@ -25,7 +25,8 @@ export default function Page() {
       </header>
       <Container className="h-dvh my-auto">
         <Suspense fallback={<Loading />}>
-          <Component />
+          <Search />
+          <Experiences experiences={experiences.reverse()} />
         </Suspense>
       </Container>
     </>

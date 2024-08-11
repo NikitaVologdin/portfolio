@@ -3,6 +3,7 @@ import { Projects } from "@/models/projects";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
 import { uploadImage } from "@/lib/cloudinary";
+import { revalidateTag } from "next/cache";
 
 interface IFormDataProject {
   _id: string;
@@ -57,6 +58,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     });
 
     await project.save();
+    revalidateTag("projects");
     return NextResponse.json({
       message: `${project.name} Project is created`,
       status: 200,
@@ -112,6 +114,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
       );
     }
     if (query) {
+      revalidateTag("projects");
       return NextResponse.json({
         message: `${query.name} project info has been uptated`,
         status: 200,

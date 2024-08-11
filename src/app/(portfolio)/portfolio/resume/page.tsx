@@ -5,22 +5,18 @@ import Button from "@/components/ui/Button";
 import { fetchDataOnServer } from "@/lib/utils";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
+import { unstable_cache } from "next/cache";
 
-export default function page() {
-  async function Component() {
-    const [resume] = await fetchDataOnServer(Resume);
-    return (
-      <>
-        <div className="flex justify-center">
-          <Button
-            name="Download"
-            link={`../resume/${resume.file}`}
-            target={"_blank"}
-          />
-        </div>
-      </>
-    );
-  }
+export default async function page() {
+  const cachedResume = unstable_cache(
+    async () => {
+      return fetchDataOnServer(Resume);
+    },
+    ["my-app-resume"],
+    { tags: ["resume"] }
+  );
+  const [resume] = await cachedResume();
+
   return (
     <>
       <header className="mt-10">
@@ -28,7 +24,13 @@ export default function page() {
       </header>
       <Container>
         <Suspense fallback={<Loading />}>
-          <Component />
+          <div className="flex justify-center">
+            <Button
+              name="Download"
+              link={`../resume/${resume.file}`}
+              target={"_blank"}
+            />
+          </div>
         </Suspense>
       </Container>
     </>

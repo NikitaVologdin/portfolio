@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { EducationModel } from "@/models/education";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 
 export async function GET(
@@ -9,9 +9,9 @@ export async function GET(
   try {
     await dbConnect();
     const id = params.slug;
-    const experience = await EducationModel.findById(id).populate("skills");
-    if (experience) {
-      return NextResponse.json(experience);
+    const education = await EducationModel.findById(id).populate("skills");
+    if (education) {
+      return NextResponse.json(education);
     } else {
       return NextResponse.json({
         message: "Experience has not been found",

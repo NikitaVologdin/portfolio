@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
 import { uploadImage } from "@/lib/cloudinary";
+import { revalidateTag } from "next/cache";
 
 interface IFormDataExperience {
   _id: string;
@@ -58,6 +59,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       });
     }
     await experience.save();
+    revalidateTag("experiences");
     return NextResponse.json({
       message: `${experience.name} experience is created`,
       status: 200,
@@ -122,7 +124,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
         }
       );
     }
-
+    revalidateTag("experiences");
     return NextResponse.json({
       message: "Experience info has been uptated",
       status: 200,

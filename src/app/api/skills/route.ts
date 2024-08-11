@@ -3,6 +3,7 @@ import dbConnect from "@/lib/dbConnect";
 import { Skill, SkillsGroup } from "@/models/skills";
 import mongoose from "mongoose";
 import { uploadImage } from "@/lib/cloudinary";
+import { revalidateTag } from "next/cache";
 
 export interface IFormDataSkill {
   _id: string;
@@ -51,7 +52,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       });
       await skill.save();
       await group.save();
-
+      revalidateTag("skills");
       return NextResponse.json({
         message: `${group.name} group and ${skill.name} skill have been created`,
         status: 200,
@@ -73,7 +74,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
       await group.save();
       await skill.save();
-
+      revalidateTag("skills");
       return NextResponse.json({
         message: `${skill.name} skill has been created`,
         status: 200,
@@ -106,6 +107,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
       }
     );
     if (query) {
+      revalidateTag("skills");
       return NextResponse.json({
         message: `${query.name} skill info has been uptated`,
         status: 200,

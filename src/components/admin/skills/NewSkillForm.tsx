@@ -195,8 +195,9 @@ export default function SkillsForm({
       response
         .json()
         .then((info) => {
-          modalCloseHandler();
           setIsFormSubmitting(false);
+          router.refresh();
+          modalCloseHandler();
           ctx.setNotification({
             isActive: true,
             status: info.status,
