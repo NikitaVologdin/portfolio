@@ -1,5 +1,6 @@
-import { Schema, model, models, Document } from "mongoose";
+import { Schema, model, models } from "mongoose";
 import { IEducation } from "@/types/Education";
+import { Skill } from "./skills";
 
 const educationSchema = new Schema<IEducation>({
   name: String,
@@ -10,7 +11,7 @@ const educationSchema = new Schema<IEducation>({
   present: Boolean,
   duration: Number,
   image: String,
-  skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
+  skills: [{ type: Schema.Types.ObjectId, ref: Skill }],
   description: String,
 });
 
