@@ -3,7 +3,6 @@ import { fetchDataOnServer } from "@/lib/utils";
 import SkillAbout from "@/components/skills/SkillAbout";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
-import { notFound } from "next/navigation";
 import { unstable_cache } from "next/cache";
 
 export default async function page({ params }: { params: { slug: string } }) {
