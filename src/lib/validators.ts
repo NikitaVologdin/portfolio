@@ -27,7 +27,7 @@ function descriptionValidator(value: string) {
 }
 
 function previewValidator(value: string) {
-  return value.trim().length < 150;
+  return value.trim().length > 20;
 }
 
 function gitHubLinkValidator(link: string) {
