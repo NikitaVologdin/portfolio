@@ -5,19 +5,35 @@ import { Skill as Skills } from "@/models/skills";
 import Developer from "@/models/developer";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
+import { unstable_cache } from "next/cache";
 
-export default function page() {
-  async function Component() {
-    const skills = await fetchDataOnServer(Skills);
-    const [developer] = await fetchDataOnServer(Developer);
+export default async function page() {
+  const cachedDeveloper = unstable_cache(
+    async () => {
+      return fetchDataOnServer(Developer);
+    },
+    ["my-app-hero"],
+    {
+      tags: ["hero"],
+    }
+  );
+  const cachedSkills = unstable_cache(
+    async () => {
+      return fetchDataOnServer(Skills);
+    },
+    ["my-app-skills"],
+    {
+      tags: ["skills"],
+    }
+  );
 
-    return <Intro developer={developer} skills={skills} />;
-  }
+  const skills = await cachedDeveloper();
+  const [developer] = await cachedSkills();
 
   return (
     <Container className="h-dvh my-auto">
       <Suspense fallback={<Loading />}>
-        <Component />
+        <Intro developer={developer} skills={skills} />
       </Suspense>
     </Container>
   );

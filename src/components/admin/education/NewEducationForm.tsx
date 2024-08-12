@@ -37,6 +37,7 @@ export default function NewEducationForm({
 }: props) {
   const ctx = useContext(NotificationContext);
   const router = useRouter();
+  // console.log(router.pathName);
 
   const [presentCheckbox, setPresentCheckbox] = useState(false);
   const [isFormSubmitting, setIsFormSubmitting] = useState(false);
@@ -208,8 +209,8 @@ export default function NewEducationForm({
         .json()
         .then((info) => {
           setIsFormSubmitting(false);
-          router.refresh();
           modalCloseHandler();
+          router.refresh();
           ctx.setNotification({
             isActive: true,
             status: info.status,

@@ -84,12 +84,13 @@ export default function IntroForm({ developer, path }: props) {
       response
         .json()
         .then((info) => {
+          setIsFormSubmitting(false);
+          router.refresh();
           notificationCTX.setNotification({
             status: info.status,
             message: info.message,
             isActive: true,
           });
-          setIsFormSubmitting(false);
         })
         .catch((e) => {
           console.log(e);
