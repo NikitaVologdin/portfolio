@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Projects } from "@/models/projects";
 import dbConnect from "@/lib/dbConnect";
 import { deleteImage } from "@/lib/cloudinary";
+import { revalidateTag } from "next/cache";
 
 export async function GET(
   request: NextRequest,
@@ -39,6 +40,7 @@ export async function DELETE(
     if (id) {
       const project = await Projects.findByIdAndDelete(id);
       const image = await deleteImage(project.image);
+      revalidateTag("projects");
       return NextResponse.json({
         message: `${project.name} skill is deleted`,
         status: 200,

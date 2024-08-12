@@ -9,6 +9,7 @@ import { fetchDataOnClient, deleteData } from "@/lib/utils";
 import { NotificationContext } from "@/context/NotificationContext";
 import { IFetchedSkill } from "@/types/Skills";
 import { IFetchedEducation } from "@/types/Education";
+import { useRouter } from "next/navigation";
 
 interface props {
   education: IFetchedEducation[];
@@ -26,6 +27,7 @@ export default function Education({ education, skills, path }: props) {
   const [edit, setEdit] = useState<IEditState>({ state: false });
   const dialog = useRef<HTMLDialogElement>(null);
   const ctx = useContext(NotificationContext);
+  const router = useRouter();
 
   const modalToggleHandler = () => {
     setModalOpen(!isModalOpen);
@@ -43,6 +45,7 @@ export default function Education({ education, skills, path }: props) {
     response
       ?.json()
       .then((info) => {
+        router.refresh();
         ctx.setNotification({
           isActive: true,
           message: info.message,

@@ -1,6 +1,7 @@
 import { EducationModel } from "@/models/education";
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
+import { revalidateTag } from "next/cache";
 
 export async function GET(
   request: NextRequest,
@@ -37,6 +38,7 @@ export async function DELETE(
     const id = params.slug;
     if (id) {
       const project = await EducationModel.findByIdAndDelete(id);
+      revalidateTag("education");
       return NextResponse.json({
         message: `${project.name} experience is deleted`,
         status: 200,

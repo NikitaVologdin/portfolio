@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Skill as Skills } from "@/models/skills";
 import dbConnect from "@/lib/dbConnect";
 import { deleteImage } from "@/lib/cloudinary";
+import { revalidateTag } from "next/cache";
 
 export async function GET(
   request: NextRequest,
@@ -44,6 +45,7 @@ export async function DELETE(
         status: 200,
       });
     }
+    revalidateTag("skills");
     return NextResponse.json({ message: "Skill id is missing", status: 204 });
   } catch (error) {
     if (error instanceof Error) {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resume } from "@/models/resume";
 import dbConnect from "@/lib/dbConnect";
+import { revalidateTag } from "next/cache";
 
 export async function GET(
   request: NextRequest,
@@ -37,6 +38,7 @@ export async function DELETE(
     const id = params.slug;
     if (id) {
       const resume = await Resume.findByIdAndDelete(id);
+      revalidateTag("resume");
       return NextResponse.json({
         message: `${resume.name} skill is deleted`,
         status: 200,

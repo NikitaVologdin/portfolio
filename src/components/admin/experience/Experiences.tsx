@@ -54,6 +54,7 @@ export default function Experience({ experiences, skills, path }: props) {
     response
       ?.json()
       .then((info) => {
+        router.refresh();
         ctx.setNotification({
           isActive: true,
           message: info.message,
