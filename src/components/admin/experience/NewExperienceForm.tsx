@@ -257,8 +257,8 @@ export default function NewProjectForm({
         .json()
         .then((info) => {
           setIsFormSubmitting(false);
-          router.refresh();
           modalCloseHandler();
+          router.refresh();
           ctx.setNotification({
             isActive: true,
             status: info.status,
