@@ -27,7 +27,7 @@ export default async function page() {
     }
   );
 
-  const skills = await cachedDeveloper();
+  const skills = await cachedSkills();
   const [developer] = await cachedSkills();
 
   return (
