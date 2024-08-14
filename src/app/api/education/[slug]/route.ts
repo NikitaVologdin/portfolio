@@ -15,7 +15,7 @@ export async function GET(
       return NextResponse.json(education);
     } else {
       return NextResponse.json({
-        message: "Experience has not been found",
+        message: "Education has not been found",
         status: 404,
       });
     }
@@ -40,12 +40,12 @@ export async function DELETE(
       const project = await EducationModel.findByIdAndDelete(id);
       revalidateTag("education");
       return NextResponse.json({
-        message: `${project.name} experience is deleted`,
+        message: `${project.name} education is deleted`,
         status: 200,
       });
     }
     return NextResponse.json({
-      message: "Experience id is missing",
+      message: "Education id is missing",
       status: 204,
     });
   } catch (error) {

@@ -24,7 +24,7 @@ export default async function skillsPage() {
   const skills = await cachedSkills();
   const path =
     process.env.MY_DOMAIN || process.env.APP_URL || process.env.VERCEL_URL;
-  console.log(projects);
+
   return (
     <Container>
       <Projects
