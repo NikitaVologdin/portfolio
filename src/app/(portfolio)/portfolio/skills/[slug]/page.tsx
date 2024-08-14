@@ -10,7 +10,7 @@ export default async function page({ params }: { params: { slug: string } }) {
     async () => {
       return fetchDataOnServer(Skills, params.slug);
     },
-    ["my-app-skills"],
+    [`skills${params.slug}`],
     {
       tags: ["skills"],
     }

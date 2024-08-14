@@ -14,7 +14,7 @@ export default async function page() {
     async () => {
       return fetchDataWithPopulate<IProject>(ProjectsModel, "skills");
     },
-    ["my-app-projects"],
+    ["portfolio-projects"],
     { tags: ["projects"] }
   );
   const projects = await cachedProjects();

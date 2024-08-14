@@ -10,14 +10,14 @@ export default async function page() {
     async () => {
       return fetchDataOnServer(Experiences);
     },
-    ["my-app-experiences"],
+    ["admin--experiences"],
     { tags: ["experiences"] }
   );
   const cachedSkills = unstable_cache(
     async () => {
       return fetchDataOnServer(Skills);
     },
-    ["my-app-skills"],
+    ["stack-skills"],
     { tags: ["skills"] }
   );
   const experiences = await cachedExperiences();

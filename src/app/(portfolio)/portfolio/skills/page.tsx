@@ -13,7 +13,7 @@ export default async function page() {
     async () => {
       return fetchDataWithPopulate(SkillsGroups, "skills");
     },
-    ["my-app-skills"],
+    ["portfolio-skills"],
     {
       tags: ["skills"],
     }

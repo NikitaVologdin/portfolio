@@ -10,21 +10,21 @@ export default async function skillsPage() {
     async () => {
       return fetchDataOnServer(ProjectsModel);
     },
-    ["my-app-projects"],
+    ["admin-projects"],
     { tags: ["projects"] }
   );
   const cachedSkills = unstable_cache(
     async () => {
       return fetchDataOnServer(Skills);
     },
-    ["my-app-skills"],
+    ["stack-skills"],
     { tags: ["skills"] }
   );
   const projects = await cachedProjects();
   const skills = await cachedSkills();
   const path =
     process.env.MY_DOMAIN || process.env.APP_URL || process.env.VERCEL_URL;
-
+  console.log(projects);
   return (
     <Container>
       <Projects

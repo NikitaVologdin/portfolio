@@ -11,7 +11,7 @@ export default async function page() {
     async () => {
       return fetchDataOnServer(Developer);
     },
-    ["my-app-hero"],
+    ["admin-hero"],
     { tags: ["hero"] }
   );
   const [developer] = await cachedHero();

@@ -7,16 +7,16 @@ import { Suspense } from "react";
 import { unstable_cache } from "next/cache";
 
 export default async function page({ params }: { params: { slug: string } }) {
-  const cachedProjects = unstable_cache(
+  const cachedProject = unstable_cache(
     async () => {
       return fetchDataWithPopulate<IProject>(Projects, "skills", params.slug);
     },
-    ["my-app-projects"],
+    [`project${params.slug}`],
     {
       tags: ["projects"],
     }
   );
-  const project = await cachedProjects();
+  const project = await cachedProject();
 
   return (
     <div className={"container h-full mx-auto lg:px-24"}>

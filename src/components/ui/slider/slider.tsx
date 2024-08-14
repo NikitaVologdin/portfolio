@@ -2,7 +2,6 @@
 import left from "../../../../public/arrows/left.svg";
 import right from "../../../../public/arrows/right.svg";
 
-import { CldImage } from "next-cloudinary";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";

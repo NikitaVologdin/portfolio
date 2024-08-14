@@ -13,7 +13,7 @@ export default async function Page() {
     async () => {
       return fetchDataWithPopulate(ExperienceModel, "skills");
     },
-    ["my-app-experiences"],
+    ["portfolio-experiences"],
     { tags: ["experiences"] }
   );
   const experiences = await cachedExperiences();

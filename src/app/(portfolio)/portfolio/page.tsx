@@ -12,7 +12,7 @@ export default async function page() {
     async () => {
       return fetchDataOnServer(Developer);
     },
-    ["my-app-hero"],
+    ["portfolio-hero"],
     {
       tags: ["hero"],
     }
@@ -21,7 +21,7 @@ export default async function page() {
     async () => {
       return fetchDataOnServer(Skills);
     },
-    ["my-app-skills"],
+    ["developer-skills"],
     {
       tags: ["skills"],
     }

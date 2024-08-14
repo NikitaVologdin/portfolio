@@ -9,7 +9,7 @@ export default async function skillsPage() {
     async () => {
       return fetchDataWithPopulate(SkillsGroups, "skills");
     },
-    ["my-app-skills"],
+    ["skills-groups"],
     { tags: ["skills"] }
   );
   const groups = await cachedGroups();

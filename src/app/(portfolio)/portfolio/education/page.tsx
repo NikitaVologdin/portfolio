@@ -13,7 +13,7 @@ export default async function Page() {
     async () => {
       return fetchDataWithPopulate(EducationModel, "skills");
     },
-    ["my-app-education"],
+    ["portfolio-education"],
     { tags: ["education"] }
   );
   const education = await cashedEducation();

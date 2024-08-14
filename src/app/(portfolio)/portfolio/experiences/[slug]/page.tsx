@@ -11,7 +11,7 @@ export default async function page({ params }: { params: { slug: string } }) {
     async () => {
       return fetchDataWithPopulate(Experiences, "skills", params.slug);
     },
-    ["my-app-experiences"],
+    [`experiences${params.slug}`],
     { tags: ["experiences"] }
   );
   const experience = await cachedExperience();

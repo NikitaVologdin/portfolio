@@ -12,7 +12,7 @@ export default async function page() {
     async () => {
       return fetchDataOnServer(Resume);
     },
-    ["my-app-resume"],
+    ["portfolio-resume"],
     { tags: ["resume"] }
   );
   const [resume] = await cachedResume();
