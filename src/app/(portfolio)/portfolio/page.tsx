@@ -28,7 +28,7 @@ export default async function page() {
   );
 
   const skills = await cachedSkills();
-  const [developer] = await cachedSkills();
+  const [developer] = await cachedDeveloper();
 
   return (
     <Container className="h-dvh my-auto">
