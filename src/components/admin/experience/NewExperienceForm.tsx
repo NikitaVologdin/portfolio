@@ -396,7 +396,7 @@ export default function NewProjectForm({
         />
       </InputGroup>
       <InputGroup
-        label="image"
+        label="Experience image"
         id="image"
         hasError={imageUploadHasError}
         error="Image is not valid"

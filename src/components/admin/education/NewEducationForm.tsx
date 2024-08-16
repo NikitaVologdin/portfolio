@@ -331,7 +331,7 @@ export default function NewEducationForm({
         />
       </InputGroup>
       <InputGroup
-        label="image"
+        label="Education image"
         id="image"
         hasError={imageUploadHasError}
         error="Image is not valid"
