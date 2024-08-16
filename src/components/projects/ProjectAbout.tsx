@@ -4,6 +4,7 @@ import ButtonLink from "@/components/ui/about/ButtonLink";
 import Background from "@/components/ui/about/Background";
 import Image from "next/image";
 import Container from "@/components/Container";
+import createMarkup from "@/lib/createMarkup";
 
 interface props {
   project: IFetchedProject;
@@ -75,7 +76,9 @@ export default function ProjectAbout({ project }: props) {
       </Background>
       <div className="mt-5 py-3 font-mono border-b border-[#e1e1e1]">
         <Container>
-          <article>{project.description}</article>
+          <article
+            dangerouslySetInnerHTML={createMarkup(project.description)}
+          ></article>
         </Container>
       </div>
     </div>

@@ -4,6 +4,7 @@ import ButtonLink from "@/components/ui/about/ButtonLink";
 import Background from "@/components/ui/about/Background";
 import Container from "@/components/Container";
 import Image from "next/image";
+import createMarkup from "@/lib/createMarkup";
 
 interface props {
   experience: IFetchedExperience;
@@ -46,7 +47,9 @@ export default function ProjectAbout({ experience }: props) {
       </Background>
       <div className="mt-5 py-3 font-mono border-b border-[#e1e1e1]">
         <Container>
-          <article>{experience.description}</article>
+          <article
+            dangerouslySetInnerHTML={createMarkup(experience.description)}
+          ></article>
         </Container>
       </div>
     </div>

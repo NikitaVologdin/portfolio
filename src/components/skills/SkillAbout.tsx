@@ -2,6 +2,7 @@ import { IFetchedSkill } from "@/types/Skills";
 import Heading from "../Heading";
 import Background from "@/components/ui/about/Background";
 import Container from "@/components/Container";
+import createMarkup from "@/lib/createMarkup";
 
 interface props {
   skill: IFetchedSkill;
@@ -20,7 +21,9 @@ export default function SkillAbout({ skill }: props) {
       </Background>
       <div className="mt-5 py-3 font-mono border-b border-[#e1e1e1]">
         <Container>
-          <article>{skill.description}</article>
+          <article
+            dangerouslySetInnerHTML={createMarkup(skill.description)}
+          ></article>
         </Container>
       </div>
     </div>
