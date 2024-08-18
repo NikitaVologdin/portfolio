@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@testing-library/user-event": "^14.5.1",
+    "bcrypt": "^5.1.1",
     "cloudinary": "^2.3.0",
     "framer-motion": "^11.2.10",
+    "jose": "^5.6.3",
     "mongoose": "^8.2.0",
     "next": "^14.2.5",
     "next-cloudinary": "^6.6.2",
@@ -23,6 +25,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
+    "@types/bcrypt": "^5.0.2",
     "@types/jest": "^29.5.11",
     "@types/node": "^20",
     "@types/react": "^18",

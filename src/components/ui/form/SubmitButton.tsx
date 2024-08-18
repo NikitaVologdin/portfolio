@@ -18,11 +18,7 @@ export default function FormButton({
 
   return (
     <button
-      className={
-        !isFormValid
-          ? `border py-1 px-3 text-md rounded ${disabledClasses}`
-          : `border py-1 px-3 text-md rounded ${activeClasses} ${hoverClasses} ${className}`
-      }
+      className={`border py-1 px-3 text-md rounded ${activeClasses} ${hoverClasses} ${disabledClasses} ${className}`}
       type="submit"
       disabled={!isFormValid}
     >

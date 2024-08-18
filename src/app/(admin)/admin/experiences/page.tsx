@@ -22,15 +22,16 @@ export default async function page() {
   );
   const experiences = await cachedExperiences();
   const skills = await cachedSkills();
-  const path =
-    process.env.MY_DOMAIN || process.env.APP_URL || process.env.VERCEL_URL;
+  const path = (process.env.MY_DOMAIN ||
+    process.env.APP_URL ||
+    process.env.VERCEL_URL)!;
 
   return (
     <Container>
       <Experience
         experiences={experiences.reverse()}
         skills={skills}
-        path={path ? path : ""}
+        path={path}
       />
     </Container>
   );

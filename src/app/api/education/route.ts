@@ -4,6 +4,7 @@ import { uploadImage } from "@/lib/cloudinary";
 import dbConnect from "@/lib/dbConnect";
 import mongoose from "mongoose";
 import { revalidateTag } from "next/cache";
+import { verifySession } from "@/lib/dal";
 
 interface IFormDataEducation {
   _id: string;

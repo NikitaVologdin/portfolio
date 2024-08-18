@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import { fetchDataOnServer } from "@/lib/utils";
 import { Skill as Skills } from "@/models/skills";
 import { unstable_cache } from "next/cache";
+import { verifySession } from "@/lib/dal";
 
 export default async function page() {
   const cashedEducation = unstable_cache(
@@ -22,6 +23,7 @@ export default async function page() {
   );
   const education = await cashedEducation();
   const skills = await cashedSkills();
+  const session = await verifySession();
 
   const path =
     process.env.MY_DOMAIN || process.env.APP_URL || process.env.VERCEL_URL;

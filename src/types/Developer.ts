@@ -1,3 +1,5 @@
+import { Document } from "mongoose";
+
 export interface IDeveloper extends Document {
   name: string;
   description: string;
