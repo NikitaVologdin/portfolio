@@ -3,7 +3,7 @@ import dbConnect from "@/lib/dbConnect";
 import Developer from "@/models/developer";
 import { revalidateTag } from "next/cache";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
     await dbConnect();
     const body = await req.json();
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
   }
 }
 
-export async function PUT(req: NextRequest, res: NextResponse) {
+export async function PUT(req: NextRequest) {
   try {
     await dbConnect();
     const body = await req.json();

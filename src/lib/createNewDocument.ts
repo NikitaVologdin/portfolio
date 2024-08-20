@@ -17,13 +17,13 @@ interface IFormData {
 export default async function createNewDocument<TModel>(
   req: NextRequest,
   Model: Model<TModel>,
-  cloudinaryFolder: string
+  cloudinaryTag: string
 ) {
   const formData = await req.formData();
   const image = formData.get("image") as File;
   const body = Object.fromEntries(formData.entries()) as unknown as IFormData;
   const skills = JSON.parse(body.skills) as string[];
-  body.image = await uploadImage(image, [cloudinaryFolder]);
+  body.image = await uploadImage(image, [cloudinaryTag]);
   body.start = new Date(body.start).toISOString().slice(0, 10);
   body.present = body.present === "on" ? true : false;
   if (body.end) {
