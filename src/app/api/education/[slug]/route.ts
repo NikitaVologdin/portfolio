@@ -11,7 +11,8 @@ export async function GET(
     await dbConnect();
     const id = params.slug;
     const education = await EducationModel.findById(id).populate("skills");
-    if (education.length > 0) {
+    console.log(education);
+    if (education) {
       return NextResponse.json(education);
     } else {
       return NextResponse.json({

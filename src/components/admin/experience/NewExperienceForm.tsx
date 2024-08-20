@@ -453,7 +453,7 @@ export default function NewProjectForm({
         </div>
       </InputGroup>
       <InputGroup
-        label="Description preview"
+        label="Preview"
         id="preview"
         hasError={previewHasError}
         error="Preview is not valid"
@@ -471,7 +471,7 @@ export default function NewProjectForm({
         />
       </InputGroup>
       <InputGroup
-        label="description"
+        label="Description"
         id="description"
         hasError={descriptionHasError}
         error="Description is not valid"

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Projects } from "@/models/projects";
 import dbConnect from "@/lib/dbConnect";
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { uploadImage } from "@/lib/cloudinary";
 import { revalidateTag } from "next/cache";
 
@@ -10,11 +10,33 @@ interface IFormDataProject {
   name: string;
   github: string;
   start: string;
-  present: string;
+  present: string | boolean;
   end: string;
-  image: File;
+  image: File | string;
   skills: string;
   description: string;
+}
+
+async function createProjectBody<T>(
+  req: NextRequest,
+  Model: Model<T>,
+  cloudinaryFolder: string
+) {
+  const formData = await req.formData();
+  const image = formData.get("image") as File;
+  const body = Object.fromEntries(
+    formData.entries()
+  ) as unknown as IFormDataProject;
+  const skills = JSON.parse(body.skills) as string[];
+  body.image = await uploadImage(image, [cloudinaryFolder]);
+  body.start = new Date(body.start).toISOString().slice(0, 10);
+  body.present = body.present === "on" ? true : false;
+  if (body.end) {
+    body.end = new Date(body.end).toISOString().slice(0, 10);
+  }
+  const document = new Model({ ...body, skills });
+  await document.save();
+  return document;
 }
 
 export async function POST(req: NextRequest, res: NextResponse) {

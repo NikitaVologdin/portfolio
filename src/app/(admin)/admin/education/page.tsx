@@ -23,8 +23,6 @@ export default async function page() {
   );
   const education = await cashedEducation();
   const skills = await cashedSkills();
-  const session = await verifySession();
-
   const path =
     process.env.MY_DOMAIN || process.env.APP_URL || process.env.VERCEL_URL;
   return (

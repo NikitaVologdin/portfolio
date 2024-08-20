@@ -207,9 +207,6 @@ export default function NewEducationForm({
       response
         .json()
         .then((info) => {
-          setIsFormSubmitting(false);
-          modalCloseHandler();
-          router.push("/admin/education");
           router.refresh();
           ctx.setNotification({
             isActive: true,
@@ -218,13 +215,15 @@ export default function NewEducationForm({
           });
         })
         .catch((e) => {
-          setIsFormSubmitting(false);
-          modalCloseHandler();
           ctx.setNotification({
             isActive: true,
             status: e.status,
             message: e.message,
           });
+        })
+        .finally(() => {
+          setIsFormSubmitting(false);
+          modalCloseHandler();
         });
     }
   }
@@ -372,7 +371,7 @@ export default function NewEducationForm({
         </div>
       </InputGroup>
       <InputGroup
-        label="description"
+        label="Description"
         id="description"
         hasError={descriptionHasError}
         error="Description is not valid"

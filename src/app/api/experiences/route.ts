@@ -9,55 +9,41 @@ interface IFormDataExperience {
   _id: string;
   name: string;
   start: string;
-  present: string;
+  present: string | boolean;
   end: string;
-  image: File;
+  image: File | string;
   skills: string;
   description: string;
+}
+
+async function createExperienceBody(req: NextRequest) {
+  const formData = await req.formData();
+  const image = formData.get("image") as File;
+  const body = Object.fromEntries(
+    formData.entries()
+  ) as unknown as IFormDataExperience;
+  const skills = JSON.parse(body.skills) as string[];
+  skills.forEach((skill, index) => {
+    new mongoose.Types.ObjectId(skill);
+  });
+  body.image = await uploadImage(image, ["experiences"]);
+  body.start = new Date(body.start).toISOString().slice(0, 10);
+  body.present = body.present === "on" ? true : false;
+  if (body.end) {
+    body.end = new Date(body.end).toISOString().slice(0, 10);
+  }
+  return { body, skills };
 }
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     dbConnect();
-    const formData = await req.formData();
-    const body = Object.fromEntries(
-      formData.entries()
-    ) as unknown as IFormDataExperience;
-    const skills = JSON.parse(body.skills) as string[];
-    skills.forEach((skill, index) => {
-      new mongoose.Types.ObjectId(skill);
+    const { body, skills } = await createExperienceBody(req);
+    const experience = new Experiences({
+      ...body,
+      skills,
     });
-    const image = formData.get("image") as File;
-    const imageName = await uploadImage(image, ["experiences"]);
-    const startDate = new Date(body.start);
-    let endDate;
-    let diffTime;
-    let experience;
-    let present = body.present === "on" ? true : false;
-    if (body.end) {
-      endDate = new Date(body.end);
-      diffTime = endDate.getTime() - startDate.getTime();
 
-      experience = new Experiences({
-        ...body,
-        image: imageName,
-        start: startDate.toISOString().slice(0, 10),
-        end: endDate.toISOString().slice(0, 10),
-        duration: diffTime,
-        skills,
-        present,
-      });
-    } else {
-      experience = new Experiences({
-        ...body,
-        image: imageName,
-        start: startDate.toISOString().slice(0, 10),
-        end: undefined,
-        duration: undefined,
-        skills,
-        present,
-      });
-    }
     await experience.save();
     revalidateTag("experiences");
     return NextResponse.json({
@@ -74,56 +60,17 @@ export async function POST(req: NextRequest, res: NextResponse) {
 export async function PUT(req: NextRequest, res: NextResponse) {
   try {
     await dbConnect();
-    const formData = await req.formData();
-    const body = Object.fromEntries(
-      formData.entries()
-    ) as unknown as IFormDataExperience;
-
-    const skills = JSON.parse(body.skills) as string[];
-    skills.forEach((skill, index) => {
-      new mongoose.Types.ObjectId(skill);
-    });
-    const image = formData.get("image") as File;
-    const imageName = await uploadImage(image, ["experiences"]);
-    const startDate = new Date(body.start);
-    let endDate;
-    let difTime;
-    let present = body.present === "on" ? true : false;
-    if (body.end) {
-      endDate = new Date(body.end);
-      difTime = endDate.getTime() - startDate.getTime();
-      await Experiences.findOneAndUpdate(
-        { _id: body._id },
-        {
-          ...body,
-          image: imageName,
-          start: startDate.toISOString().slice(0, 10),
-          end: endDate.toISOString().slice(0, 10),
-          duration: difTime,
-          skills,
-          present,
-        },
-        {
-          new: true,
-        }
-      );
-    } else {
-      await Experiences.findOneAndUpdate(
-        { _id: body._id },
-        {
-          ...body,
-          image: imageName,
-          start: startDate.toISOString().slice(0, 10),
-          end: undefined,
-          duration: undefined,
-          skills,
-          present,
-        },
-        {
-          new: true,
-        }
-      );
-    }
+    const { body, skills } = await createExperienceBody(req);
+    await Experiences.findOneAndUpdate(
+      { _id: body._id },
+      {
+        ...body,
+        skills,
+      },
+      {
+        new: true,
+      }
+    );
     revalidateTag("experiences");
     return NextResponse.json({
       message: "Experience info has been uptated",

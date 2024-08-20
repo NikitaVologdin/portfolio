@@ -1,64 +1,15 @@
 import { EducationModel } from "@/models/education";
 import { NextRequest, NextResponse } from "next/server";
-import { uploadImage } from "@/lib/cloudinary";
 import dbConnect from "@/lib/dbConnect";
-import mongoose from "mongoose";
 import { revalidateTag } from "next/cache";
 import { verifySession } from "@/lib/dal";
-
-interface IFormDataEducation {
-  _id: string;
-  name: string;
-  start: string;
-  present: string;
-  end: string;
-  image: File;
-  skills: string;
-}
+import CreateNewDocument from "@/lib/createNewDocument";
+import updateDocument from "@/lib/updateDocument";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
     dbConnect();
-    const formData = await req.formData();
-    const body = Object.fromEntries(
-      formData.entries()
-    ) as unknown as IFormDataEducation;
-    const skills = JSON.parse(body.skills) as string[];
-    skills.forEach((skill, index) => {
-      new mongoose.Types.ObjectId(skill);
-    });
-    const image = formData.get("image") as File;
-    const imageName = await uploadImage(image, ["education"]);
-    const startDate = new Date(body.start);
-    let endDate;
-    let difTime;
-    let education;
-    let present = body.present === "on" ? true : false;
-    if (body.end) {
-      endDate = new Date(body.end);
-      difTime = endDate.getTime() - startDate.getTime();
-
-      education = new EducationModel({
-        ...body,
-        image: imageName,
-        start: startDate.toISOString().slice(0, 10),
-        end: endDate.toISOString().slice(0, 10),
-        duration: difTime,
-        skills,
-        present,
-      });
-    } else {
-      education = new EducationModel({
-        ...body,
-        image: imageName,
-        start: startDate.toISOString().slice(0, 10),
-        end: undefined,
-        duration: undefined,
-        skills,
-        present,
-      });
-    }
-    await education.save();
+    const education = await CreateNewDocument(req, EducationModel, "education");
     revalidateTag("education");
     return NextResponse.json({
       message: `${education.name} education is created`,
@@ -71,62 +22,13 @@ export async function POST(req: NextRequest, res: NextResponse) {
   }
 }
 
-export async function PUT(req: NextRequest, res: NextResponse) {
+export async function PUT(req: NextRequest) {
   try {
     await dbConnect();
-    const formData = await req.formData();
-    const body = Object.fromEntries(
-      formData.entries()
-    ) as unknown as IFormDataEducation;
-    const skills = JSON.parse(body.skills) as string[];
-    skills.forEach((skill, index) => {
-      new mongoose.Types.ObjectId(skill);
-    });
-    const image = formData.get("image") as File;
-    const imageName = await uploadImage(image, ["education"]);
-    const startDate = new Date(body.start);
-    let endDate;
-    let difTime;
-    let present = body.present === "on" ? true : false;
-    if (body.end) {
-      endDate = new Date(body.end);
-      difTime = endDate.getTime() - startDate.getTime();
-      const document = await EducationModel.findOneAndUpdate(
-        { _id: body._id },
-        {
-          ...body,
-          image: imageName,
-          start: startDate.toISOString().slice(0, 10),
-          end: endDate.toISOString().slice(0, 10),
-          duration: difTime,
-          skills,
-          present,
-        },
-        {
-          new: true,
-        }
-      );
-      console.log(document);
-    } else {
-      await EducationModel.findOneAndUpdate(
-        { _id: body._id },
-        {
-          ...body,
-          image: imageName,
-          start: startDate.toISOString().slice(0, 10),
-          end: undefined,
-          duration: undefined,
-          skills,
-          present,
-        },
-        {
-          new: true,
-        }
-      );
-    }
+    const education = await updateDocument(req, EducationModel, "education");
     revalidateTag("education");
     return NextResponse.json({
-      message: "Education info has been uptated",
+      message: `${education.name} education info has been uptated`,
       status: 200,
     });
   } catch (error) {
