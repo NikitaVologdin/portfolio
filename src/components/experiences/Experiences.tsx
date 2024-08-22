@@ -1,16 +1,26 @@
+"use client";
 import { IFetchedExperience } from "@/types/Experience";
 import ExperienceCard from "./ExperienceCard";
 import Image from "next/image";
+import { SearchContext } from "@/context/portfolio/SearchContext";
+import { useContext, useState, useEffect } from "react";
+import filterData from "@/lib/search/filterData";
 
 interface props {
   experiences: IFetchedExperience[];
 }
 
 export default function Experiences({ experiences }: props) {
+  const [filtered, setFiltered] = useState<IFetchedExperience[]>([]);
+  const ctx = useContext(SearchContext);
+
+  useEffect(() => {
+    setFiltered(filterData<IFetchedExperience>(ctx.value, experiences));
+  }, [ctx.value]);
   return (
     <div className="flex flex-col items-center relative mt-10 gap-5 md:gap-0 ">
       <div className="hidden md:block absolute w-px rounded bg-slate-300 top-0 bottom-0 py-12"></div>
-      {experiences.map((e, index) => {
+      {filtered.map((e, index) => {
         const isEven = index % 2;
         const flexRow = isEven ? "flex-row md:flex-row-reverse" : "flex-row";
         return (

@@ -7,6 +7,7 @@ import { Experiences as ExperienceModel } from "@/models/experience";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
 import { unstable_cache } from "next/cache";
+import SearchContextProvider from "@/context/portfolio/SearchContext";
 
 export default async function Page() {
   const cachedExperiences = unstable_cache(
@@ -24,10 +25,12 @@ export default async function Page() {
         <Heading>Experiences</Heading>
       </header>
       <Container className="h-dvh my-auto">
-        <Suspense fallback={<Loading />}>
+        <SearchContextProvider>
           <Search />
-          <Experiences experiences={experiences.reverse()} />
-        </Suspense>
+          <Suspense fallback={<Loading />}>
+            <Experiences experiences={experiences.reverse()} />
+          </Suspense>
+        </SearchContextProvider>
       </Container>
     </>
   );

@@ -7,6 +7,7 @@ import { fetchDataWithPopulate } from "@/lib/utils";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
 import { unstable_cache } from "next/cache";
+import SearchContextProvider from "@/context/portfolio/SearchContext";
 
 export default async function Page() {
   const cashedEducation = unstable_cache(
@@ -24,10 +25,12 @@ export default async function Page() {
         <Heading>Education</Heading>
       </header>
       <Container className="h-dvh my-auto">
-        <Suspense fallback={<Loading />}>
+        <SearchContextProvider>
           <Search />
-          <Education education={education.reverse()} />
-        </Suspense>
+          <Suspense fallback={<Loading />}>
+            <Education education={education.reverse()} />
+          </Suspense>
+        </SearchContextProvider>
       </Container>
     </>
   );

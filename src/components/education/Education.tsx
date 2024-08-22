@@ -1,16 +1,27 @@
+"use client";
 import EducationCard from "../education/EducationCard";
 import Image from "next/image";
 import { IFetchedEducation } from "@/types/Education";
+import { SearchContext } from "@/context/portfolio/SearchContext";
+import { useContext, useState, useEffect } from "react";
+import filterData from "@/lib/search/filterData";
 
 interface props {
   education: IFetchedEducation[];
 }
 
 export default function Education({ education }: props) {
+  const [filtered, setFiltered] = useState<IFetchedEducation[]>([]);
+  const ctx = useContext(SearchContext);
+
+  useEffect(() => {
+    setFiltered(filterData<IFetchedEducation>(ctx.value, education));
+  }, [ctx.value]);
+
   return (
     <div className="flex flex-col items-center relative mt-10 gap-5 md:gap-0">
       <div className="hidden md:block absolute w-px rounded bg-slate-300 top-0 bottom-0 py-12"></div>
-      {education.map((e, index) => {
+      {filtered.map((e, index) => {
         const isEven = index % 2;
         const flexRow = isEven ? "flex-row md:flex-row-reverse" : "flex-row";
         return (

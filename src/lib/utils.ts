@@ -79,7 +79,6 @@ async function deleteData(path: string, uri: string, id: string) {
 export {
   fetchDataOnServer,
   fetchDataOnClient,
-  // updateData,
   fetchDataWithPopulate,
   deleteData,
 };

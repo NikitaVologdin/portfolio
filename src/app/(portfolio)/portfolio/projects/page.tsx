@@ -8,6 +8,7 @@ import { IProject } from "@/types/Projects";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
 import { unstable_cache } from "next/cache";
+import SearchContextProvider from "@/context/portfolio/SearchContext";
 
 export default async function page() {
   const cachedProjects = unstable_cache(
@@ -25,10 +26,12 @@ export default async function page() {
         <Heading>Projects</Heading>
       </div>
       <Container className="h-dvh my-auto">
-        <Suspense fallback={<Loading />}>
+        <SearchContextProvider>
           <Search />
-          <Projects projects={projects.reverse()} />
-        </Suspense>
+          <Suspense fallback={<Loading />}>
+            <Projects projects={projects.reverse()} />
+          </Suspense>
+        </SearchContextProvider>
       </Container>
     </>
   );

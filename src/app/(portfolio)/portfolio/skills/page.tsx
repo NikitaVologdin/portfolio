@@ -7,6 +7,7 @@ import { SkillsGroup as SkillsGroups } from "@/models/skills";
 import Loading from "@/components/ui/Loading";
 import { Suspense } from "react";
 import { unstable_cache } from "next/cache";
+import SearchContextProvider from "@/context/portfolio/SearchContext";
 
 export default async function page() {
   const cachedGroups = unstable_cache(
@@ -26,10 +27,12 @@ export default async function page() {
         <Heading>Skills</Heading>
       </header>
       <Container className="h-dvh my-auto">
-        <Suspense fallback={<Loading />}>
+        <SearchContextProvider>
           <Search />
-          <Skills groups={groups} />
-        </Suspense>
+          <Suspense fallback={<Loading />}>
+            <Skills groups={groups} />
+          </Suspense>
+        </SearchContextProvider>
       </Container>
     </>
   );
