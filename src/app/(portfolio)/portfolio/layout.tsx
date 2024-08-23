@@ -6,6 +6,7 @@ import Nav from "@/components/nav/Nav";
 import Navbar from "@/components/nav/Navbar";
 import MenuContextProvider from "@/context/portfolio/MenuContext";
 import { ReactElement } from "react";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "Portfolio",

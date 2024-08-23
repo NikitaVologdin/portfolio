@@ -11,7 +11,7 @@ export default function page() {
   return (
     <Container>
       <header>
-        <Heading>Search</Heading>
+        <Heading style={"dark:invert"}>Search</Heading>
       </header>
       <Suspense fallback={<Loading />}>
         <Search />

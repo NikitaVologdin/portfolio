@@ -23,33 +23,45 @@ export default function Intro({ skills, developer }: props) {
   return (
     <div className="h-full flex flex-wrap justify-center items-center md:flex-nowrap md:justify-around">
       <header className="md:w-9/12 px-3 md:px-4">
-        <h1 className="text-3xl text-center md:text-left md:text-6xl font-black my-1.5 tracking-heading-wider">
+        <h1 className="text-3xl text-center md:text-left md:text-6xl font-black my-1.5 tracking-heading-wider dark:invert">
           {developer.name},
         </h1>
-        <p className="text-medium-grey text-lg text-center md:text-left font-extralight text-left tracking-wider m-0">
+        <p className="text-medium-grey text-lg text-center md:text-left font-extralight text-left tracking-wider m-0 dark:invert">
           {developer.description}
         </p>
         <div className="flex justify-center md:justify-start py-4 gap-2">
           <Link href="https://github.com/nikitaVologdin" target="_blank">
-            <Image src={gitHubSvg} alt="github icon" className="" />
+            <Image src={gitHubSvg} alt="github icon" className="dark:invert" />
           </Link>
           <Link href="https://github.com/nikitaVologdin" target="_blank">
-            <Image src={linkedInSvg} alt="github icon" className="" />
+            <Image
+              src={linkedInSvg}
+              alt="github icon"
+              className="dark:invert"
+            />
           </Link>
           <Link href="https://github.com/nikitaVologdin" target="_blank">
-            <Image src={twitterSvg} alt="github icon" className="" />
+            <Image src={twitterSvg} alt="github icon" className="dark:invert" />
           </Link>
           <Link href="https://github.com/nikitaVologdin" target="_blank">
-            <Image src={stackoverflowSvg} alt="github icon" className="" />
+            <Image
+              src={stackoverflowSvg}
+              alt="github icon"
+              className="dark:invert"
+            />
           </Link>
           <Link href="https://github.com/nikitaVologdin" target="_blank">
-            <Image src={emailSvg} alt="github icon" className="" />
+            <Image src={emailSvg} alt="github icon" className="dark:invert" />
           </Link>
           <Link href="https://github.com/nikitaVologdin" target="_blank">
-            <Image src={youtubeSvg} alt="github icon" className="" />
+            <Image src={youtubeSvg} alt="github icon" className="dark:invert" />
           </Link>
           <Link href="https://github.com/nikitaVologdin" target="_blank">
-            <Image src={facebookSvg} alt="github icon" className="" />
+            <Image
+              src={facebookSvg}
+              alt="github icon"
+              className="dark:invert"
+            />
           </Link>
         </div>
       </header>

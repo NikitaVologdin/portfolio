@@ -2,22 +2,33 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import nameSvg from "../../../public/name.svg";
-import skillsSvg from "../../../public/skills.svg";
-import projectsSvg from "../../../public/projects.svg";
-import experiencesSvg from "../../../public/experiences.svg";
-import educationSvg from "../../../public/education.svg";
-import resumeSvg from "../../../public/resume.svg";
-import searchSvg from "../../../public/search.svg";
-import sunSvg from "../../../public/sun.svg";
-import moonSvg from "../../../public/moon.svg";
+import nameSvg from "../../../public/icons/name.svg";
+import skillsSvg from "../../../public/icons/skills.svg";
+import projectsSvg from "../../../public/icons/projects.svg";
+import experiencesSvg from "../../../public/icons/experiences.svg";
+import educationSvg from "../../../public/icons/education.svg";
+import resumeSvg from "../../../public/icons/resume.svg";
+import searchSvg from "../../../public/icons/search.svg";
+import sunSvg from "../../../public/icons/sun.svg";
+import moonSvg from "../../../public/icons/moon.svg";
 import linked from "../../../public/social-icons/linkedin.svg";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 
 import NavItem from "./NavItem";
 
 const Nav = () => {
   const pathName = usePathname();
+  const { resolvedTheme, setTheme } = useTheme();
+
+  function themeChangeHandler() {
+    if (resolvedTheme === "light") {
+      setTheme("dark");
+    }
+    if (resolvedTheme === "dark") {
+      setTheme("light");
+    }
+  }
 
   const spanClasses = "ml-3";
   const actionIconClasses =
@@ -28,49 +39,75 @@ const Nav = () => {
       <div className="menu flex flex-col lg:flex-row lg:flex-1 lg:justify-center">
         <NavItem
           href={"/portfolio/skills"}
-          classes={`${pathName === "/portfolio/skills" ? "active" : ""}`}
+          classes={`${
+            pathName === "/portfolio/skills" ? "active dark:bg-zinc-800" : ""
+          }`}
         >
-          <Image src={skillsSvg} alt="code icone" />
+          <Image src={skillsSvg} alt="skills icon" className="dark:invert" />
           <span className={spanClasses}>Skills</span>
         </NavItem>
         <NavItem
           href="/portfolio/projects"
-          classes={`${pathName === "/portfolio/projects" ? "active" : ""}`}
+          classes={`${
+            pathName === "/portfolio/projects" ? "active dark:bg-zinc-800" : ""
+          }`}
         >
-          <Image src={projectsSvg} alt="code icone" />
+          <Image src={projectsSvg} alt="project icon" className="dark:invert" />
           <span className={spanClasses}>Projects</span>
         </NavItem>
         <NavItem
           href="/portfolio/experiences"
-          classes={`${pathName === "/portfolio/experiences" ? "active" : ""}`}
+          classes={`${
+            pathName === "/portfolio/experiences"
+              ? "active dark:bg-zinc-800"
+              : ""
+          }`}
         >
-          <Image src={experiencesSvg} alt="code icone" />
+          <Image
+            src={experiencesSvg}
+            alt="experience icon"
+            className="dark:invert"
+          />
           <span className={spanClasses}>Experiences</span>
         </NavItem>
         <NavItem
           href="/portfolio/education"
-          classes={`${pathName === "/portfolio/education" ? "active" : ""}`}
+          classes={`${
+            pathName === "/portfolio/education" ? "active dark:bg-zinc-800" : ""
+          }`}
         >
-          <Image src={educationSvg} alt="code icone" />
+          <Image
+            src={educationSvg}
+            alt="education icon"
+            className="dark:invert"
+          />
           <span className={spanClasses}>Education</span>
         </NavItem>
         <NavItem
           href="/portfolio/resume"
-          classes={`${pathName === "/portfolio/resume" ? "active" : ""}`}
+          classes={`${
+            pathName === "/portfolio/resume" ? "active dark:bg-zinc-800" : ""
+          }`}
         >
-          <Image src={resumeSvg} alt="code icone" />
+          <Image src={resumeSvg} alt="resume icon" className="dark:invert" />
           <span className={spanClasses}>Resume</span>
         </NavItem>
       </div>
-      <div className="actions flex flex-col lg:flex-row mt-5 lg:mt-0">
-        <Link href="/portfolio/search" className={actionIconClasses}>
-          <Image src={searchSvg} alt="code icone" />
+      <div className="flex flex-col lg:flex-row mt-5 lg:mt-0">
+        <Link
+          href="/portfolio/search"
+          className={`${actionIconClasses} dark:hover:bg-zinc-800`}
+        >
+          <Image src={searchSvg} alt="search icon" className="dark:invert" />
           <span className={`${spanClasses} lg:hidden`}>Search</span>
         </Link>
-        <Link href="" className={actionIconClasses}>
-          <Image src={sunSvg} alt="code icone" />
+        <div
+          className={`${actionIconClasses} cursor-pointer dark:hover:bg-zinc-800`}
+          onClick={themeChangeHandler}
+        >
+          <Image src={sunSvg} alt="sun icon" className="dark:invert" />
           <span className={`${spanClasses} lg:hidden`}>Light theme</span>
-        </Link>
+        </div>
       </div>
     </nav>
   );

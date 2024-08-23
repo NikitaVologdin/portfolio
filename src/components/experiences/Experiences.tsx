@@ -18,7 +18,7 @@ export default function Experiences({ experiences }: props) {
     setFiltered(filterData<IFetchedExperience>(ctx.value, experiences));
   }, [ctx.value]);
   return (
-    <div className="flex flex-col items-center relative mt-10 gap-5 md:gap-0 ">
+    <div className="flex flex-col items-center relative mt-10 gap-5 md:gap-0">
       <div className="hidden md:block absolute w-px rounded bg-slate-300 top-0 bottom-0 py-12"></div>
       {filtered.map((e, index) => {
         const isEven = index % 2;
@@ -43,8 +43,14 @@ export default function Experiences({ experiences }: props) {
                 color={e.color}
               />
             </div>
-            <div className="hidden md:block p-3.5 mx-2 inline bg-white z-10">
-              <Image src="../bullet.svg" alt="" width="16" height="16" />
+            <div className="hidden md:block p-3.5 mx-2 inline bg-white z-10 dark:bg-[#121212]">
+              <Image
+                src="../icons/bullet.svg"
+                alt=""
+                width="16"
+                height="16"
+                className={"dark:invert"}
+              />
             </div>
             <div className="hidden md:block flex flex-1"></div>
           </div>

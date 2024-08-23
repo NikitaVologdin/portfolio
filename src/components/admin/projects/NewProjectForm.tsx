@@ -1,4 +1,3 @@
-"use client";
 import InputGroup from "../../ui/form/InputGroup";
 import Input from "../../ui/form/Input";
 import FileInput from "../../ui/form/FileInput";
@@ -17,7 +16,7 @@ import {
   previewValidator,
   descriptionValidator,
 } from "@/lib/validators";
-import { SyntheticEvent, useContext, useEffect, useRef, useState } from "react";
+import { SyntheticEvent, useContext, useEffect, useState } from "react";
 import { NotificationContext } from "@/context/NotificationContext";
 import { useRouter } from "next/navigation";
 import { IFetchedSkill } from "@/types/Skills";

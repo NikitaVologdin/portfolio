@@ -52,7 +52,9 @@ export default function ProjectCard({
         </div>
       </div>
       <div className="flex justify-between">
-        <h5 className="text-xl text-black font-bold tracking-wide">{name}</h5>
+        <h5 className="text-xl text-black font-bold tracking-wide dark:text-gray-200">
+          {name}
+        </h5>
         <div className="flex items-center gap-2">
           {link && (
             <Link href={link} target="_blank">
@@ -60,14 +62,7 @@ export default function ProjectCard({
                 backdropText={link}
                 className={"p-[5px] rounded-[10px]"}
               >
-                <div className="h-3.5 w-3.5 flex justify-center items-center">
-                  {/* <Image
-                  alt="github link icon"
-                  src="/icons/live.svg"
-                  width={0}
-                  height={0}
-                  className="w-auto h-auto"
-                /> */}
+                <div className="h-3.5 w-3.5 flex justify-center items-center dark:invert">
                   <span className="text-[9px]">live</span>
                 </div>
               </SquaredButton>
@@ -84,7 +79,7 @@ export default function ProjectCard({
                   src="/icons/link.svg"
                   width={0}
                   height={0}
-                  className="w-auto h-auto"
+                  className="w-auto h-auto dark:invert"
                 />
               </div>
             </SquaredButton>
@@ -94,10 +89,10 @@ export default function ProjectCard({
       <hr className="my-2.5 border-light-grey" />
       <div className="h-52">
         <div className="flex justify-between italic">
-          <div>{category}</div>
-          <div>{daysAmount} days</div>
+          <div className="dark:text-gray-200">{category}</div>
+          <div className="dark:text-gray-200">{daysAmount} days</div>
         </div>
-        <div className="mt-5 mb-8 grow">{preview}</div>
+        <div className="mt-5 mb-8 grow dark:text-gray-200">{preview}</div>
       </div>
       <div className="flex justify-between">
         <Button name={`${startDate.month.name} ${startDate.year}`} />

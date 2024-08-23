@@ -15,14 +15,14 @@ export default async function Page() {
       return fetchDataWithPopulate(EducationModel, "skills");
     },
     ["portfolio-education"],
-    { tags: ["education"] }
+    { tags: ["education"] },
   );
   const education = await cashedEducation();
 
   return (
     <>
       <header className="mt-10">
-        <Heading>Education</Heading>
+        <Heading style={"dark:invert"}>Education</Heading>
       </header>
       <Container className="h-dvh my-auto">
         <SearchContextProvider>

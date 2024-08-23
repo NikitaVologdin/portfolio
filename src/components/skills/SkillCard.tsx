@@ -57,7 +57,7 @@ export default function SkillCard({ _id, name, image, color }: props) {
       onClick={clickHandler}
     >
       <div className="h-full flex items-center justify-between px-10 relative">
-        <h6 className="z-10">{name}</h6>
+        <h6 className="z-10 dark:text-gray-200">{name}</h6>
         <div className="absolute top-0 bottom-0 right-0 left-0 z-20 bg-gradient-to-l from-[#fffffff7] to-80%"></div>
         <div
           className={`absolute top-0 bottom-0 right-0 left-0 z-0 h-full bg-right bg-no-repeat bg-contain`}

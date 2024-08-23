@@ -16,14 +16,14 @@ export default async function page() {
       return fetchDataWithPopulate<IProject>(ProjectsModel, "skills");
     },
     ["portfolio-projects"],
-    { tags: ["projects"] }
+    { tags: ["projects"] },
   );
   const projects = await cachedProjects();
 
   return (
     <>
       <div className="mt-10">
-        <Heading>Projects</Heading>
+        <Heading style={"dark:invert"}>Projects</Heading>
       </div>
       <Container className="h-dvh my-auto">
         <SearchContextProvider>

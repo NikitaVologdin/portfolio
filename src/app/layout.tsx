@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ReactNode } from "react";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -15,8 +15,12 @@ const inter = Inter({
 });
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth h-full">
+    <html lang="en" className="scroll-smooth h-full" suppressHydrationWarning>
       <head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
         <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
         <link
           rel="apple-touch-icon"
@@ -39,7 +43,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <body
         className={`${inter.className} h-full antialiased min-h-screen text-grey flex flex-col relative z-20`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -17,9 +17,9 @@ export default function ProjectAbout({ project }: props) {
         path={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${project.image}.svg`}
       >
         <div className="h-full flex flex-col justify-center items-center py-5">
-          <Heading>{project.name}</Heading>
+          <Heading style="dark:text-black">{project.name}</Heading>
           <h5 className="pt-3 pb-2">{project.category}</h5>
-          <div className="w-9/12 h-px bg-slate-200 my-3 rounded"></div>
+          <div className="w-9/12 h-px bg-slate-200 my-3 rounded dark:bg-slate-900"></div>
           <div className="flex gap-2">
             <ButtonLink link={project.github} target="_blank">
               <div className="flex gap-2 items-center">
@@ -77,6 +77,7 @@ export default function ProjectAbout({ project }: props) {
       <div className="mt-5 py-3 font-mono border-b border-[#e1e1e1]">
         <Container>
           <article
+            className="dark:text-gray-200"
             dangerouslySetInnerHTML={createMarkup(project.description)}
           ></article>
         </Container>

@@ -13,14 +13,14 @@ export default async function page() {
       return fetchDataOnServer(Resume);
     },
     ["portfolio-resume"],
-    { tags: ["resume"] }
+    { tags: ["resume"] },
   );
   const [resume] = await cachedResume();
 
   return (
     <>
       <header className="mt-10">
-        <Heading>Resume</Heading>
+        <Heading style={"dark:invert"}>Resume</Heading>
       </header>
       <Container>
         <Suspense fallback={<Loading />}>

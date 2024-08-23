@@ -111,6 +111,7 @@ export default function Slider({
             src={left}
             alt="left arrow for corousel"
             data-testid="left-arrow"
+            className="dark:invert"
           />
         </button>
         <motion.div
@@ -142,7 +143,11 @@ export default function Slider({
           className="w-6 h-6 p-1.5 border rounded-full"
           onClick={swipeSliderToRightClickHandler}
         >
-          <Image src={right} alt="right arrow for corousel" />
+          <Image
+            src={right}
+            alt="right arrow for corousel"
+            className="dark:invert"
+          />
         </button>
       </div>
     </AnimatePresence>

@@ -1,4 +1,3 @@
-"use client";
 import InputGroup from "../../ui/form/InputGroup";
 import Input from "../../ui/form/Input";
 import FileInput from "../../ui/form/FileInput";
@@ -6,8 +5,8 @@ import SubmitButton from "../../ui/form/SubmitButton";
 import useInput from "../../../hooks/use-input";
 import useFileInput from "../../../hooks/use-fileInput";
 import CloseButton from "@/components/ui/form/CloseButton";
-import { imageUploadValidator, nameValidator } from "@/lib/validators";
-import { SyntheticEvent, useContext, useEffect, useRef, useState } from "react";
+import { nameValidator } from "@/lib/validators";
+import { SyntheticEvent, useContext, useEffect, useState } from "react";
 import { NotificationContext } from "@/context/NotificationContext";
 import { useRouter } from "next/navigation";
 import { IFetchedResume } from "@/types/Resume";

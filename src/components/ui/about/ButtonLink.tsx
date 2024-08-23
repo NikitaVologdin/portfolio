@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { ReactElement } from "react";
 
 interface props {
   link?: string;
   target?: string;
-  children: JSX.Element | JSX.Element[];
+  children: ReactElement | ReactElement[];
 }
 
 export default function ButtonLink({

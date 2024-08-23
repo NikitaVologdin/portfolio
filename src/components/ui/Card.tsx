@@ -1,9 +1,10 @@
-import { SyntheticEvent } from "react";
 import useGradient from "../../hooks/use-gradient";
 import useTransform from "../../hooks/use-transform";
+import { ReactElement } from "react";
+
 
 interface props {
-  children: JSX.Element[];
+  children: ReactElement[];
   color: string;
   className?: string;
   clickHandler?: () => void;

@@ -1,4 +1,3 @@
-"use client";
 import InputGroup from "@/components/ui/form/InputGroup";
 import Input from "@/components/ui/form/Input";
 import SubmitButton from "@/components/ui/form/SubmitButton";

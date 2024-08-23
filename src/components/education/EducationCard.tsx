@@ -4,6 +4,7 @@ import Card from "../ui/Card";
 import Button from "../ui/Button";
 import { IFetchedEducation } from "@/types/Education";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 interface props extends IFetchedEducation {
   className?: "string";
@@ -30,9 +31,10 @@ export default function EducationCard({
     duration = endDate.toUnix() - startDate.toUnix();
   }
   const monthAmount = Math.floor(duration / 60 / 60 / 24 / 30);
+  const { theme } = useTheme();
   return (
     <Card
-      color={"#ffffff"}
+      color={theme === "dark" ? "#5c5c5c" : "#ffffff"}
       className={`flex-col w-full items-stretch ${className}`}
     >
       <div className="">
@@ -45,10 +47,12 @@ export default function EducationCard({
         />
       </div>
       <div className="flex flex-col gap-3 mt-6">
-        <h5 className="text-xl text-black tracking-wide font-medium">{name}</h5>
-        <div>{description}</div>
-        <h6 className="text-base">{university}</h6>
-        <p className="text-[#3e3e3e] font-extralight text-sm mb-2">
+        <h5 className="text-xl text-black tracking-wide font-medium dark:text-gray-200">
+          {name}
+        </h5>
+        <div className="dark:text-gray-200">{description}</div>
+        <h6 className="text-base dark:text-gray-200">{university}</h6>
+        <p className="text-[#3e3e3e] font-extralight text-sm mb-2 dark:text-gray-200">
           <span className="capitalize">{location}</span>
           <span> · </span>
           <span>{`${startDate.month.name} ${startDate.year}`}</span>

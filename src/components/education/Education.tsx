@@ -41,8 +41,14 @@ export default function Education({ education }: props) {
                 description={e.description}
               />
             </div>
-            <div className="hidden md:block p-3.5 mx-2 inline bg-white z-10">
-              <Image src="../bullet.svg" alt="" width="16" height="16" />
+            <div className="hidden md:block p-3.5 mx-2 inline bg-white z-10 dark:bg-[#121212]">
+              <Image
+                src="../icons/bullet.svg"
+                alt=""
+                width="16"
+                height="16"
+                className={"dark:invert"}
+              />
             </div>
             <div className="hidden md:block flex flex-1"></div>
           </div>

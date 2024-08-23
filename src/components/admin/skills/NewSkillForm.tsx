@@ -1,5 +1,3 @@
-"use client";
-
 import InputGroup from "../../ui/form/InputGroup";
 import Input from "../../ui/form/Input";
 import FileInput from "../../ui/form/FileInput";

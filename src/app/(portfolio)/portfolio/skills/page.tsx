@@ -17,14 +17,14 @@ export default async function page() {
     ["portfolio-skills"],
     {
       tags: ["skills"],
-    }
+    },
   );
   const groups = await cachedGroups();
 
   return (
     <>
       <header className="mt-10">
-        <Heading>Skills</Heading>
+        <Heading style={"dark:invert"}>Skills</Heading>
       </header>
       <Container className="h-dvh my-auto">
         <SearchContextProvider>

@@ -1,6 +1,8 @@
+import { ReactElement } from "react";
+
 interface props {
   path: string;
-  children: JSX.Element;
+  children: ReactElement;
 }
 
 export default function background({ path, children }: props) {

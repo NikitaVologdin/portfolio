@@ -15,14 +15,14 @@ export default async function Page() {
       return fetchDataWithPopulate(ExperienceModel, "skills");
     },
     ["portfolio-experiences"],
-    { tags: ["experiences"] }
+    { tags: ["experiences"] },
   );
   const experiences = await cachedExperiences();
 
   return (
     <>
       <header className="mt-10">
-        <Heading>Experiences</Heading>
+        <Heading style={"dark:invert"}>Experiences</Heading>
       </header>
       <Container className="h-dvh my-auto">
         <SearchContextProvider>

@@ -57,7 +57,9 @@ export default function ExperienceCard({
         </div>
       </div>
       <div className="flex flex-col gap-3 md:ml-6">
-        <h5 className="text-xl text-black font-bold tracking-wide">{name}</h5>
+        <h5 className="text-xl text-black font-bold tracking-wide dark:text-gray-200">
+          {name}
+        </h5>
         <div className="flex flex-row gap-2">
           <SquaredButton backdropText={`Company: ${company}`}>
             <Image
@@ -65,7 +67,7 @@ export default function ExperienceCard({
               alt="company icon"
               width="14"
               height="14"
-              className=""
+              className="dark:invert"
             />
           </SquaredButton>
           <SquaredButton backdropText={`Location: ${location}`}>
@@ -74,6 +76,7 @@ export default function ExperienceCard({
               alt="location icon"
               width="14"
               height="14"
+              className="dark:invert"
             />
           </SquaredButton>
           <SquaredButton backdropText={`Contract: ${contract}`}>
@@ -82,15 +85,16 @@ export default function ExperienceCard({
               alt="contract icon"
               width="14"
               height="14"
+              className={"dark:invert"}
             />
           </SquaredButton>
         </div>
-        <div className="text-[#3e3e3e] text-sm font-extralight">
+        <div className="text-[#3e3e3e] text-sm font-extralight dark:text-gray-200">
           {`${startDate.month.name} ${startDate.year} - ${
             present ? "present" : `${endDate?.month.name} ${endDate?.year}`
           } · ${daysAmount} days`}
         </div>
-        <div>{preview}</div>
+        <div className="dark:text-gray-200">{preview}</div>
         <Stack skills={skills} />
       </div>
     </Card>

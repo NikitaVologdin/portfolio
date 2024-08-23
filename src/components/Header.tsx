@@ -1,6 +1,8 @@
+import { ReactElement } from "react";
+
 interface props {
-  children: JSX.Element;
+  children: ReactElement;
 }
 export default function Header({ children }: props) {
-  return <header className="border-b-1 border-light-grey">{children}</header>;
+  return <header className="border-b-1 border-light-grey dark:border-b-zinc-800">{children}</header>;
 }

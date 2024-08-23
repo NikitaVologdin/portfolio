@@ -1,5 +1,7 @@
+import { ReactElement } from "react";
+
 interface props {
-  children: JSX.Element;
+  children: ReactElement;
   backdropText?: string;
   className?: string;
 }

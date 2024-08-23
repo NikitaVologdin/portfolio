@@ -9,7 +9,7 @@ export default function Heading({
 }) {
   return (
     <h1
-      className={`text-4xl md:text-6xl text-black font-bold my-1.5 text-center tracking-heading-wider ${style}`}
+      className={`text-4xl md:text-6xl text-black font-bold my-1.5 text-center tracking-heading-wider ${style} `}
     >
       {children}
     </h1>

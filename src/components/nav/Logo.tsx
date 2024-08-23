@@ -1,7 +1,7 @@
 import NavItem from "./NavItem";
 import Image from "next/image";
 
-import nameSvg from "../../../public/name.svg";
+import nameSvg from "../../../public/icons/name.svg";
 
 interface props {
   className?: string;
@@ -14,8 +14,8 @@ export default function Logo({ className, iconClass }: props) {
       <NavItem href="/" classes={"hover:bg-transparent"}>
         <Image
           src={nameSvg}
-          alt="code icone"
-          className={`scale-150 ${iconClass}`}
+          alt="code icon"
+          className={`scale-150 ${iconClass} dark:invert`}
         />
         <span
           className={`ml-3 text-sm md:text-base font-medium md:font-semibold ${className}`}
