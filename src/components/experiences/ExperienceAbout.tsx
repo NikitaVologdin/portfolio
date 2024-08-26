@@ -49,6 +49,7 @@ export default function ProjectAbout({ experience }: props) {
         <Container>
           <article
             dangerouslySetInnerHTML={createMarkup(experience.description)}
+            className={"dark:text-gray-200"}
           ></article>
         </Container>
       </div>
