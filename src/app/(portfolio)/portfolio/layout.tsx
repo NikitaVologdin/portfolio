@@ -16,16 +16,18 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: ReactElement }) {
   return (
     <>
-      <Header>
-        <div className="container my-auto h-full mx-auto md:px-5 lg:px-24">
-          <MenuContextProvider>
-            <Navbar>
-              <Nav />
-            </Navbar>
-          </MenuContextProvider>
-        </div>
-      </Header>
-      <Main>{children}</Main>
+      <ThemeProvider attribute={"class"}>
+        <Header>
+          <div className="container my-auto h-full mx-auto md:px-5 lg:px-24">
+            <MenuContextProvider>
+              <Navbar>
+                <Nav />
+              </Navbar>
+            </MenuContextProvider>
+          </div>
+        </Header>
+        <Main>{children}</Main>
+      </ThemeProvider>
     </>
   );
 }

@@ -43,9 +43,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <body
         className={`${inter.className} h-full antialiased min-h-screen text-grey flex flex-col relative z-20`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   );
