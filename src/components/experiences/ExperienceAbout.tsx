@@ -48,6 +48,7 @@ export default function ProjectAbout({ experience }: props) {
       <div className="mt-5 py-3 font-mono border-b border-[#e1e1e1]">
         <Container>
           <article
+            className={"dark:text-gray-200"}
             dangerouslySetInnerHTML={createMarkup(experience.description)}
           ></article>
         </Container>

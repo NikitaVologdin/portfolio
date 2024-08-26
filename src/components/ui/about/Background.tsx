@@ -9,7 +9,7 @@ export default function background({ path, children }: props) {
   return (
     <div
       className={
-        "h-[350px] bg-cover bg-gradient-to-l border-b border-[#e1e1e1]"
+        "h-[350px] bg-cover bg-gradient-to-l border-b border-[#e1e1e1] dark:invert"
       }
       style={{
         backgroundRepeat: "no-repeat",
