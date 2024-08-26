@@ -7,20 +7,24 @@ import {
   ReactNode,
 } from "react";
 
-export interface ImenuContext {
+export interface IMenuContext {
   isMenuShown: boolean;
   setMenuIsShown: Dispatch<SetStateAction<boolean>>;
   toggleMenu: () => void;
+  openMenu: () => void;
+  closeMenu: () => void;
 }
 
 interface props {
   children: ReactNode;
 }
 
-export const MenuContext = createContext<ImenuContext>({
+export const MenuContext = createContext<IMenuContext>({
   isMenuShown: false,
   setMenuIsShown: () => {},
   toggleMenu: () => {},
+  openMenu: () => {},
+  closeMenu: () => {},
 });
 export default function MenuContextProvider({ children }: props) {
   const [isMenuShown, setMenuIsShown] = useState(false);
@@ -29,8 +33,24 @@ export default function MenuContextProvider({ children }: props) {
     setMenuIsShown(!isMenuShown);
   }
 
+  function openMenu() {
+    setMenuIsShown(true);
+
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function closeMenu() {
+    setMenuIsShown(false);
+
+    document.body.style.overflow = "unset";
+  }
+
   return (
-    <MenuContext.Provider value={{ isMenuShown, setMenuIsShown, toggleMenu }}>
+    <MenuContext.Provider
+      value={{ isMenuShown, setMenuIsShown, toggleMenu, openMenu, closeMenu }}
+    >
       {children}
     </MenuContext.Provider>
   );

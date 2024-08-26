@@ -104,14 +104,16 @@ const Nav = () => {
           className={`${actionIconClasses} dark:hover:bg-zinc-800`}
         >
           <Image src={searchSvg} alt="search icon" className="dark:invert" />
-          <span className={`${spanClasses} lg:hidden`}>Search</span>
+          <span className={`${spanClasses} lg:hidden dark:invert`}>Search</span>
         </Link>
         <div
           className={`${actionIconClasses} cursor-pointer dark:hover:bg-zinc-800`}
           onClick={themeChangeHandler}
         >
           <Image src={themeIcon} alt="sun icon" className="dark:invert" />
-          <span className={`${spanClasses} lg:hidden`}>Light theme</span>
+          <span className={`${spanClasses} lg:hidden dark:invert`}>
+            Light theme
+          </span>
         </div>
       </div>
     </nav>
