@@ -16,17 +16,22 @@ import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 
 import NavItem from "./NavItem";
+import { useState } from "react";
 
 const Nav = () => {
   const pathName = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
+  const [themeIcon, setThemeIcon] = useState(moonSvg);
 
   function themeChangeHandler() {
     if (resolvedTheme === "light") {
       setTheme("dark");
+      setThemeIcon(sunSvg);
+      console.log("here");
     }
     if (resolvedTheme === "dark") {
       setTheme("light");
+      setThemeIcon(moonSvg);
     }
   }
 
@@ -105,7 +110,7 @@ const Nav = () => {
           className={`${actionIconClasses} cursor-pointer dark:hover:bg-zinc-800`}
           onClick={themeChangeHandler}
         >
-          <Image src={sunSvg} alt="sun icon" className="dark:invert" />
+          <Image src={themeIcon} alt="sun icon" className="dark:invert" />
           <span className={`${spanClasses} lg:hidden`}>Light theme</span>
         </div>
       </div>
