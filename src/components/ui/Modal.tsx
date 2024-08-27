@@ -8,7 +8,7 @@ interface props {
 
 const Modal = forwardRef(function Modal(
   { children, modalToggleHandler }: props,
-  ref: ForwardedRef<HTMLDialogElement>
+  ref: ForwardedRef<HTMLDialogElement>,
 ) {
   return createPortal(
     <dialog
@@ -18,7 +18,7 @@ const Modal = forwardRef(function Modal(
     >
       <div className="overflow-scroll ">{children}</div>
     </dialog>,
-    document.body
+    document.body,
   );
 });
 

@@ -10,7 +10,7 @@ export default function FormWrapper({ children, modalCloseHandler }: props) {
     <div className="h-full flex flex-col">
       <div className="flex justify-end">
         <button className="" onClick={modalCloseHandler}>
-          <ClosingFormIcon className="fill-indigo-900 hover:fill-red-600" />
+          <ClosingFormIcon className="fill-indigo-900 hover:fill-red-600 cursor-pointer" />
         </button>
       </div>
       <div className="h-full">{children}</div>

@@ -62,10 +62,10 @@ export default function Education({ education, skills, path }: props) {
   };
 
   useEffect(() => {
-    if (isModalOpen === true && dialog.current) {
+    if (isModalOpen && dialog.current) {
       dialog.current.showModal();
     }
-    if (isModalOpen === false && dialog.current) {
+    if (!isModalOpen && dialog.current) {
       dialog.current.close();
     }
   }, [isModalOpen, setModalOpen]);
