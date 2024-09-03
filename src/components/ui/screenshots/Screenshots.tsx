@@ -1,32 +1,5 @@
 "use client";
-<<<<<<< HEAD
-import { useState, useEffect, useRef } from "react";
-import Modal from "@/components/ui/Modal";
-import ScreenShotsWrapper from "@/components/ui/screenshots/ScreenShotsWrapper";
 
-interface props {
-  screenshots?: Array<File>;
-}
-
-const data = [
-  "string",
-  "string",
-  "string",
-  "string",
-  "string",
-  "string",
-  "string",
-  "string",
-  "string",
-  "string",
-  "string",
-  "string",
-];
-
-export default function Screenshots({}: props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const dialog = useRef<HTMLDialogElement>(null);
-=======
 import { useState, useEffect, useRef, SyntheticEvent } from "react";
 import Modal from "@/components/ui/Modal";
 import ScreenshotViewer from "@/components/ui/screenshots/ScreenshotViewer";
@@ -42,18 +15,10 @@ export default function Screenshots({ screenshots }: props) {
   const [index, setIndex] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
 
->>>>>>> screenshots
   function modalToggleHandler() {
     setIsModalOpen(!isModalOpen);
   }
 
-<<<<<<< HEAD
-  function showScreenshot() {
-    console.log(isModalOpen);
-    modalToggleHandler();
-  }
-
-=======
   function showScreenshot(event: SyntheticEvent<HTMLDivElement, MouseEvent>) {
     const index = event.currentTarget.dataset.attribute;
     if (index) {
@@ -87,7 +52,6 @@ export default function Screenshots({ screenshots }: props) {
     setScreenshot(screenshots[index]);
   }, [index, screenshots]);
 
->>>>>>> screenshots
   useEffect(() => {
     if (isModalOpen && dialog.current) {
       dialog.current.showModal();
@@ -101,23 +65,6 @@ export default function Screenshots({ screenshots }: props) {
     <div className="screenshots flex flex-col mt-5">
       <h5 className={"dark:invert py-3 font-semibold"}>Screenshots:</h5>
       {isModalOpen && (
-<<<<<<< HEAD
-        <Modal modalToggleHandler={modalToggleHandler} ref={dialog}>
-          <ScreenShotsWrapper>
-            <h3>Hi!</h3>
-          </ScreenShotsWrapper>
-        </Modal>
-      )}
-      <div className={"mt-3 grid grid-cols-4 gap-4"}>
-        {data.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className={"border rounded p-1 cursor-pointer"}
-              onClick={showScreenshot}
-            >
-              item.data
-=======
         <Modal
           modalToggleHandler={modalToggleHandler}
           ref={dialog}
@@ -149,7 +96,6 @@ export default function Screenshots({ screenshots }: props) {
                 alt="screenshot"
                 fill
               />
->>>>>>> screenshots
             </div>
           );
         })}
