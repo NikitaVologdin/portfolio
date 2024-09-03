@@ -38,7 +38,7 @@ const Nav = () => {
     "flex items-center py-3 px-3 lg:py-2.5 lg:px-1.5 text-grey text-xl md:text-sm hover:bg-light-grey tracking-wide dark:hover:bg-zinc-800";
 
   return (
-    <nav className="flex flex-col h-full lg:flex-row">
+    <nav className="flex flex-col h-full lg:flex-row bg-white dark:bg-[#121212]">
       <div className="menu flex flex-col lg:flex-row lg:flex-1 lg:justify-center">
         <NavItem
           href={"/portfolio/skills"}

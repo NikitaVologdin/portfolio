@@ -84,10 +84,6 @@ export default function ProjectAbout({ project }: props) {
           <Screenshots screenshots={project.screenshots} />
         </Container>
       </div>
-      {/* <div>
-        <Container>
-        </Container>
-      </div> */}
     </div>
   );
 }

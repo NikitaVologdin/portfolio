@@ -42,7 +42,7 @@ export default function ExperienceCard({
   return (
     <Card
       color={color}
-      className={`w-full flex-col md:flex-row items-stretch ${className}`}
+      className={`w-full flex-col md:flex-row items-stretch ${className} min-h-[340px]`}
       clickHandler={clickHandler}
     >
       <div className="mb-4 md:mb-0">
