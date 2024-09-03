@@ -15,6 +15,7 @@ export interface IProject extends Document<Types.ObjectId> {
   skills: string[];
   preview: string;
   description: string;
+  screenshots: string[];
 }
 
 export interface IFetchedProject {
@@ -32,4 +33,5 @@ export interface IFetchedProject {
   skills: IFetchedSkill[];
   preview: string;
   description: string;
+  screenshots: string[];
 }

@@ -28,11 +28,12 @@ export async function PUT(req: NextRequest) {
     const project = await updateDocument(req, Projects, "projects");
     revalidateTag("projects");
     return NextResponse.json({
-      message: `${project.name} project info has been uptated`,
+      message: `${project.name} project info has been updated`,
       status: 200,
     });
   } catch (error) {
     if (error instanceof Error) {
+      console.log(error);
       return NextResponse.json({ message: error.message, status: 500 });
     }
   }

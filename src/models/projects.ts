@@ -15,6 +15,7 @@ const projectSchema = new Schema<IProject>({
   skills: [{ type: Schema.Types.ObjectId, ref: Skill }],
   preview: String,
   description: String,
+  screenshots: [String],
 });
 
 const Projects = models.Project || model<IProject>("Project", projectSchema);

@@ -5,6 +5,8 @@ import Background from "@/components/ui/about/Background";
 import Image from "next/image";
 import Container from "@/components/Container";
 import createMarkup from "@/lib/createMarkup";
+import Screenshots from "../ui/screenshots/Screenshots";
+import { fetchDataOnClient } from "@/lib/utils";
 
 interface props {
   project: IFetchedProject;
@@ -80,6 +82,11 @@ export default function ProjectAbout({ project }: props) {
             className="dark:text-gray-200"
             dangerouslySetInnerHTML={createMarkup(project.description)}
           ></article>
+        </Container>
+      </div>
+      <div>
+        <Container>
+          <Screenshots screenshots={project.screenshots} />
         </Container>
       </div>
     </div>

@@ -89,7 +89,7 @@ export default function Projects({ projects, skills, path }: props) {
         <div className="flex justify-end">
           <Nav
             modalToggleHandler={modalToggleHandler}
-            openFormButtonName="New Propject"
+            openFormButtonName="New Project"
           />
         </div>
         <div className="flex flex-col">

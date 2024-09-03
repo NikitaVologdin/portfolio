@@ -15,7 +15,8 @@ export default function Projects({ projects }: props) {
 
   useEffect(() => {
     setFiltered(filterData<IFetchedProject>(ctx.value, projects));
-  }, [ctx.value]);
+  }, [ctx.value, projects]);
+
   return (
     <div className="flex flex-col md:grid md:grid-cols-3 md:auto-rows-auto gap-5 mt-10">
       {filtered.map((p, index) => {
@@ -36,6 +37,7 @@ export default function Projects({ projects }: props) {
             skills={p.skills}
             color={p.color}
             key={index}
+            screenshots={p.screenshots}
           />
         );
       })}

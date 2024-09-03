@@ -168,6 +168,18 @@ export default function NewProjectForm({
     blurHandler: descriptionBlurHandler,
   } = useInput(descriptionValidator);
 
+  const {
+    value: screenshotsUploadValue,
+    setValue: setScreenshotsUploadValue,
+    isTouched: screenshotsUploadIsTouched,
+    setIsTouched: setScreenshotsUploadIsTouched,
+    valueIsValid: screenshotsUploadIsValid,
+    hasError: screenshotsUploadHasError,
+    setHasError: setScreenshotsUploadHasError,
+    changeHandler: screenshotsUploadChangeHandler,
+    blurHandler: screenshotsUploadBlurHandler,
+  } = useFileInput(imageUploadValidator);
+
   useEffect(() => {
     if (project) {
       setNameValue(project.name);
@@ -181,6 +193,11 @@ export default function NewProjectForm({
       setSelectedChecks(project.skills.map((s) => s._id));
       setPreviewValue(project.preview);
       setDescriptionValue(project.description);
+      setScreenshotsUploadValue(
+        project.screenshots.map((screen) => {
+          return { name: screen };
+        })
+      );
 
       setNameIsTouched(true);
       setLinkIsTouched(true);
@@ -194,6 +211,7 @@ export default function NewProjectForm({
       setSelectedChecksAreTouched(true);
       setPreviewIsTouched(true);
       setDescriptionIsTouched(true);
+      setScreenshotsUploadIsTouched(true);
     }
   }, [
     project,
@@ -220,6 +238,8 @@ export default function NewProjectForm({
     setPreviewIsTouched,
     setDescriptionValue,
     setDescriptionIsTouched,
+    setScreenshotsUploadValue,
+    setScreenshotsUploadIsTouched,
   ]);
 
   const isFormValid =
@@ -242,8 +262,8 @@ export default function NewProjectForm({
     event: SyntheticEvent<HTMLFormElement, SubmitEvent>
   ) {
     event.preventDefault();
-    setIsFormSubmitting(true);
     if (isFormValid) {
+      setIsFormSubmitting(true);
       const formData = new FormData(event.currentTarget);
       skills.forEach((skill) => {
         formData.delete(skill.name);
@@ -494,10 +514,29 @@ export default function NewProjectForm({
           blurHandler={descriptionBlurHandler}
         />
       </InputGroup>
+      <InputGroup
+        label="Project Screenshots"
+        id="projectScreenshots"
+        hasError={screenshotsUploadHasError}
+        error="ImaScreenshots are not valid"
+      >
+        <FileInput
+          id="projectScreenshots"
+          name="screenshots"
+          value={screenshotsUploadValue}
+          fetchedImageName={project?.screenshots.join(", ")}
+          multiple
+          accept="image/png image/jpeg"
+          isTouched={screenshotsUploadIsTouched}
+          hasError={screenshotsUploadHasError}
+          changeHandler={screenshotsUploadChangeHandler}
+          blurHandler={screenshotsUploadBlurHandler}
+        />
+      </InputGroup>
       <div className="control flex gap-3">
         <SubmitButton
           name={project ? "Edit" : "Submit"}
-          isFormValid={isFormValid}
+          isFormValid
           isSubmitting={isFormSubmitting}
         />
         <CloseButton modalCloseHandler={modalCloseHandler} />

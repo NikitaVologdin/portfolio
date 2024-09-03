@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Projects } from "@/models/projects";
 import dbConnect from "@/lib/dbConnect";
-import { deleteImage } from "@/lib/cloudinary";
+import { deleteImage, deleteScreenshots } from "@/lib/cloudinary";
 import { revalidateTag } from "next/cache";
 
 export async function GET(
@@ -40,9 +40,10 @@ export async function DELETE(
     if (id) {
       const project = await Projects.findByIdAndDelete(id);
       const image = await deleteImage(project.image);
+      const screenshots = await deleteScreenshots(project.screenshots);
       revalidateTag("projects");
       return NextResponse.json({
-        message: `${project.name} skill is deleted`,
+        message: `${project.name} project is deleted`,
         status: 200,
       });
     }
