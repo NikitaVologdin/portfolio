@@ -16,7 +16,7 @@ export default function Education({ education }: props) {
 
   useEffect(() => {
     setFiltered(filterData<IFetchedEducation>(ctx.value, education));
-  }, [ctx.value]);
+  }, [ctx.value, education]);
 
   return (
     <div className="flex flex-col items-center relative mt-10 gap-5 md:gap-0">

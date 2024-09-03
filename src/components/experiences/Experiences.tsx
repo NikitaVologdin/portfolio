@@ -16,7 +16,7 @@ export default function Experiences({ experiences }: props) {
 
   useEffect(() => {
     setFiltered(filterData<IFetchedExperience>(ctx.value, experiences));
-  }, [ctx.value]);
+  }, [ctx.value, experiences]);
   return (
     <div className="flex flex-col items-center relative mt-10 gap-5 md:gap-0">
       <div className="hidden md:block absolute w-px rounded bg-slate-300 top-0 bottom-0 py-12"></div>

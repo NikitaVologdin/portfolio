@@ -4,6 +4,7 @@ import { IFetchedSkillsGroup } from "@/types/Skills";
 import SkillsGroup from "./SkillsGroup";
 import { SearchContext } from "@/context/portfolio/SearchContext";
 import { useContext, useEffect, useState } from "react";
+import { group } from "console";
 
 interface props {
   groups: IFetchedSkillsGroup[];
@@ -34,7 +35,7 @@ export default function Skills({ groups }: props) {
 
   useEffect(() => {
     setFiltered(filterGroups(ctx.value, groups));
-  }, [ctx.value]);
+  }, [ctx.value, groups]);
 
   return (
     <div className="flex flex-col gap-5 mt-10">
