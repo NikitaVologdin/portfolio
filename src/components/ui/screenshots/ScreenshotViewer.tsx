@@ -1,3 +1,9 @@
+import React from "react";
+import ClosingFormIcon from "@/components/ui/form/ClosingFormIcon";
+import ArrowToLeftSVG from "./ArrowToLeftSVG";
+import ArrowToRightSVG from "./ArrowToRightSVG";
+import Image from "next/image";
+
 interface props {
   modalToggleHandler: () => void;
   screenshot: string | null;
