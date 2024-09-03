@@ -1,7 +1,7 @@
 import React from "react";
 import ClosingFormIcon from "@/components/ui/form/ClosingFormIcon";
-import ArrowToLeftSVG from "./ArrowToLeftSVG";
-import ArrowToRightSVG from "./ArrowToRightSVG";
+import ArrowToLeftSVG from "./ToLeftSVG";
+import ArrowToRightSVG from "./ToRightSVG";
 import Image from "next/image";
 
 interface props {
