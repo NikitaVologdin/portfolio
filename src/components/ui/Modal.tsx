@@ -8,13 +8,8 @@ interface props {
 }
 
 const Modal = forwardRef(function Modal(
-<<<<<<< HEAD
-  { children, modalToggleHandler }: props,
-  ref: ForwardedRef<HTMLDialogElement>,
-=======
   { children, modalToggleHandler, width = "w-5/12" }: props,
   ref: ForwardedRef<HTMLDialogElement>
->>>>>>> screenshots
 ) {
   function clickHandler(event: React.MouseEvent<HTMLDialogElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -37,7 +32,7 @@ const Modal = forwardRef(function Modal(
     >
       <div className="overflow-scroll">{children}</div>
     </dialog>,
-    document.body,
+    document.body
   );
 });
 
