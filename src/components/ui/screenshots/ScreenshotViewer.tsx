@@ -17,6 +17,7 @@ export default function ScreenshotViewer({
   previousScreenshot,
   nextScreenshot,
 }: props) {
+  let a;
   return (
     <div className={"flex flex-col grow"}>
       <div className={"flex justify-end shrink"}>
