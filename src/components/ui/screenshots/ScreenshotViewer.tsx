@@ -10,15 +10,36 @@ import { AnimatePresence } from "framer-motion";
 interface props {
   modalToggleHandler: () => void;
   screenshot: string | null;
-  nextScreenshot: () => void;
-  previousScreenshot: () => void;
+  switchSlide: (direction: number) => void;
+  direction: number;
 }
+
+const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    };
+  },
+};
 
 export default function ScreenshotViewer({
   modalToggleHandler,
   screenshot,
-  previousScreenshot,
-  nextScreenshot,
+  switchSlide,
+  direction,
 }: props) {
   return (
     <div className={"flex flex-col grow"}>
@@ -29,30 +50,35 @@ export default function ScreenshotViewer({
       </div>
       <div className={"grow"}>
         <div className={"h-full flex grow items-center justify-between"}>
-          <div className="cursor-pointer" onClick={previousScreenshot}>
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              switchSlide(-1);
+            }}
+          >
             <ArrowToLeftSVG
               className={"hover:fill-amber-900 fill-slate-950"}
               height="35px"
               width="35px"
             />
           </div>
-          <motion.div
-            className={"grow h-[320px] md:m-4 md:mb-10 relative"}
-            // initial={{ x: 100 }}
-            // animate={{ x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div className={"grow h-[320px] md:m-4 md:mb-10 relative"}>
             <motion.img
               src={`https://res.cloudinary.com/dojvgjueu/image/upload/v1722225586/${screenshot}.jpg`}
               key={screenshot}
               alt="screenshot"
-              initial={{ x: 100 }}
-              animate={{ x: 0 }}
-              exit={{ x: -100 }}
-              transition={{ duration: 0.4 }}
+              custom={direction}
+              variants={variants}
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+              initial="enter"
+              animate="center"
+              exit="exit"
             />
           </motion.div>
-          <div className="cursor-pointer" onClick={nextScreenshot}>
+          <div className="cursor-pointer" onClick={() => switchSlide(1)}>
             <ArrowToRightSVG
               className={"hover:fill-amber-900 fill-slate-950"}
               height="35px"

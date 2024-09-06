@@ -11,8 +11,7 @@ interface props {
 
 export default function Screenshots({ screenshots }: props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [screenshot, setScreenshot] = useState<null | string>(null);
-  const [index, setIndex] = useState(0);
+  const [[index, direction], setIndex] = useState([0, 0]);
   const dialog = useRef<HTMLDialogElement>(null);
 
   function modalToggleHandler() {
@@ -20,37 +19,26 @@ export default function Screenshots({ screenshots }: props) {
   }
 
   function showScreenshot(event: SyntheticEvent<HTMLDivElement, MouseEvent>) {
-    const index = event.currentTarget.dataset.attribute;
-    if (index) {
-      setIndex(+index);
-      setScreenshot(screenshots[+index]);
+    const target = event.currentTarget.dataset.attribute;
+    if (target) {
+      setIndex([+target, 1]);
     }
     modalToggleHandler();
   }
 
-  function previousScreenshot() {
-    setIndex((prev) => {
-      const newIndex = prev - 1;
-      if (newIndex < 0) {
-        return screenshots.length - 1;
-      }
-      return newIndex;
-    });
-  }
-
-  function nextScreenshot() {
-    setIndex((prev) => {
-      const newIndex = prev + 1;
-      if (newIndex > screenshots.length - 1) {
-        return 0;
-      }
-      return newIndex;
-    });
+  function switchSlide(newDirection: number) {
+    setIndex([index + newDirection, newDirection]);
   }
 
   useEffect(() => {
-    setScreenshot(screenshots[index]);
-  }, [index, screenshots]);
+    if (index < 0) {
+      setIndex([screenshots.length - 1, direction]);
+    }
+
+    if (index > screenshots.length - 1) {
+      setIndex([0, direction]);
+    }
+  }, [index, screenshots.length, direction]);
 
   useEffect(() => {
     if (isModalOpen && dialog.current) {
@@ -68,14 +56,14 @@ export default function Screenshots({ screenshots }: props) {
         {isModalOpen && (
           <Modal
             modalToggleHandler={modalToggleHandler}
-            // ref={dialog}
+            ref={dialog}
             width="w-11/12 md:w-9/12 lg:w-7/12"
           >
             <ScreenshotViewer
               modalToggleHandler={modalToggleHandler}
-              screenshot={screenshot}
-              previousScreenshot={previousScreenshot}
-              nextScreenshot={nextScreenshot}
+              screenshot={screenshots[index]}
+              switchSlide={switchSlide}
+              direction={direction}
             />
           </Modal>
         )}
