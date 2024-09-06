@@ -81,6 +81,9 @@ export default function ProjectAbout({ project }: props) {
             className="dark:text-gray-200"
             dangerouslySetInnerHTML={createMarkup(project.description)}
           ></article>
+          {/* {Boolean(project.screenshots.length) && (
+            <Screenshots screenshots={project.screenshots} />
+          )} */}
           <Screenshots screenshots={project.screenshots} />
         </Container>
       </div>

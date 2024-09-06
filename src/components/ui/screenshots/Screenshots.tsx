@@ -1,9 +1,9 @@
 "use client";
-
 import { useState, useEffect, useRef, SyntheticEvent } from "react";
 import Modal from "@/components/ui/Modal";
 import ScreenshotViewer from "@/components/ui/screenshots/ScreenshotViewer";
 import Image from "next/image";
+import { AnimatePresence } from "framer-motion";
 
 interface props {
   screenshots: Array<string>;
@@ -64,20 +64,22 @@ export default function Screenshots({ screenshots }: props) {
   return (
     <div className="screenshots flex flex-col mt-5">
       <h5 className={"dark:invert py-3 font-semibold"}>Screenshots:</h5>
-      {isModalOpen && (
-        <Modal
-          modalToggleHandler={modalToggleHandler}
-          ref={dialog}
-          width="w-11/12 md:w-9/12 lg:w-7/12"
-        >
-          <ScreenshotViewer
+      <AnimatePresence>
+        {isModalOpen && (
+          <Modal
             modalToggleHandler={modalToggleHandler}
-            screenshot={screenshot}
-            previousScreenshot={previousScreenshot}
-            nextScreenshot={nextScreenshot}
-          />
-        </Modal>
-      )}
+            // ref={dialog}
+            width="w-11/12 md:w-9/12 lg:w-7/12"
+          >
+            <ScreenshotViewer
+              modalToggleHandler={modalToggleHandler}
+              screenshot={screenshot}
+              previousScreenshot={previousScreenshot}
+              nextScreenshot={nextScreenshot}
+            />
+          </Modal>
+        )}
+      </AnimatePresence>
       <div
         className={
           "mt-3 flex flex-col gap-5 md:grid md:grid-cols-3 md:gap-4 lg:grid-cols-4"

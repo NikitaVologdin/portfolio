@@ -99,7 +99,7 @@ export async function uploadScreenshots(
       screenshots.push(imageName);
     });
   }
-
+  console.log(screenshots);
   return screenshots;
 }
 
