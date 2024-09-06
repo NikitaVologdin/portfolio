@@ -125,7 +125,10 @@ export default function Slider({
             opacity: 0,
             x: animateDirection === "right" ? -xMovementValue : xMovementValue,
           }}
-          transition={{ duration: transitionDuration }}
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 },
+          }}
           className="grow w-fit h-48 px-4 flex justify-center items-center"
         >
           <Image
